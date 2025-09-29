@@ -1,0 +1,27 @@
+ide: vscode
+flavors:
+  dev:
+    app:
+      name: "Stime in campo DEV"
+
+    android:
+      applicationId: "com.incampagna.stima.dev"
+    ios:
+      bundleId: "com.incampagna.stima.dev"
+
+  stg:
+    app:
+      name: "Stime in campo STG"
+
+    android:
+      applicationId: "com.incampagna.stima.stg"
+    ios:
+      bundleId: "com.incampagna.stima.stg"
+
+  prod:
+    app:
+      name: "Stime in campo"
+    android:
+      applicationId: "com.incampagna.stima"
+    ios:
+      bundleId: "com.incampagna.stima"

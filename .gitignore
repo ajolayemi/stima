@@ -1,0 +1,186 @@
+# Miscellaneous
+*.class
+*.log
+*.pyc
+*.swp
+.DS_Store
+.atom/
+.build/
+.buildlog/
+.history
+.svn/
+.swiftpm/
+migrate_working_dir/
+
+# IntelliJ related
+*.iml
+*.ipr
+*.iws
+.idea/
+
+# The .vscode folder contains launch configuration and tasks you configure in
+# VS Code which you may wish to be included in version control, so this line
+# is commented out by default.
+#.vscode/
+
+# Flutter/Dart/Pub related
+**/doc/api/
+**/ios/Flutter/.last_build_id
+.dart_tool/
+.flutter-plugins-dependencies
+.pub-cache/
+.pub/
+/build/
+/coverage/
+
+# Symbolication related
+app.*.symbols
+
+# Obfuscation related
+app.*.map.json
+
+# Android related
+**/android/**/gradle-wrapper.jar
+**/android/.gradle
+**/android/captures/
+**/android/gradlew
+**/android/gradlew.bat
+**/android/local.properties
+**/android/**/GeneratedPluginRegistrant.java
+**/android/key.properties
+*.jks
+**/android/app/src/*/res/drawable-*/
+**/android/app/src/*/res/mipmap-*/
+**/android/app/src/*/res/xml/file_paths.xml
+
+# Android Studio will place build artifacts here
+/android/app/debug
+/android/app/profile
+/android/app/release
+
+# Firebase related files
+lib/firebase_options*.dart
+ios/Runner/GoogleService-Info.plist
+ios/flavors/*/GoogleService-Info.plist
+macos/Runner/GoogleService-Info.plist
+macos/flavors/*/GoogleService-Info.plist
+android/app/google-services.json
+android/app/src/*/google-services.json
+firebase.json
+
+# Files in Config folder with firebase related infos
+ios/config/*/GoogleService-Info.plist
+
+# Translations
+untranslated_messages.txt
+
+# node related files
+node_modules/
+
+# dart generated files
+*.g.dart
+*.freezed.dart
+*.gr.dart
+*.config.dart
+*.mocks.dart
+*.pb.dart
+*.pbgrpc.dart
+*.pbjson.dart
+*.pbenum.dart
+
+# Build and generated directories
+.dart_tool/
+build/
+.flutter-plugins
+.flutter-plugins-dependencies
+.packages
+.metadata
+pubspec.lock
+
+# iOS specific
+ios/Flutter/flutter_export_environment.sh
+ios/Flutter/Generated.xcconfig
+ios/Flutter/App.framework/
+ios/Flutter/Flutter.framework/
+ios/ServiceDefinitions.json
+ios/Runner/GeneratedPluginRegistrant.*
+ios/DerivedData/
+ios/build/
+ios/.symlinks/
+ios/Pods/
+ios/.generated/
+ios/Flutter/app.flx
+ios/Flutter/app.zip
+ios/RunnerTests
+
+# Android specific
+android/.gradle/
+android/app/build/
+android/build/
+android/gradle/
+android/gradlew
+android/gradlew.bat
+android/local.properties
+android/app/src/main/java/io/flutter/plugins/GeneratedPluginRegistrant.java
+android/app/src/debug/res/
+android/app/src/profile/res/
+android/app/src/release/res/
+
+# Web specific
+web/main.dart.js
+web/main.dart.js.map
+web/assets/AssetManifest.json
+web/assets/FontManifest.json
+
+# macOS specific
+macos/Flutter/GeneratedPluginRegistrant.swift
+macos/Flutter/flutter_export_environment.sh
+macos/build/
+
+# Windows specific
+windows/flutter/generated_plugin_registrant.cc
+windows/flutter/generated_plugin_registrant.h
+windows/build/
+
+# Linux specific
+linux/flutter/generated_plugin_registrant.cc
+linux/flutter/generated_plugin_registrant.h
+linux/build/
+
+# FVM (Flutter Version Management)
+
+# Environment and secrets
+.env
+.env.*
+secrets.json
+api_keys.json
+
+# IDE and editor files
+.vscode/settings.json
+.vscode/launch.json
+.vscode/tasks.json
+*.code-workspace
+
+# Test coverage
+lcov.info
+
+# Temporary files
+*.tmp
+*.temp
+*.cache
+
+# OS generated files
+Thumbs.db
+.DS_Store?
+._*
+.Spotlight-V100
+.Trashes
+ehthumbs.db
+
+# Android .cxxx file
+**/.cxx
+
+WARP.md
+
+# FVM Version Cache
+.fvm/
