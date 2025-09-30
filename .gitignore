@@ -156,9 +156,9 @@ secrets.json
 api_keys.json
 
 # IDE and editor files
-.vscode/settings.json
-.vscode/launch.json
-.vscode/tasks.json
+# .vscode/settings.json
+# .vscode/launch.json
+# .vscode/tasks.json
 *.code-workspace
 
 # Test coverage
