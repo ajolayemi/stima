@@ -19,8 +19,8 @@ class SurveyApp extends ConsumerWidget {
       onGenerateTitle: (context) => 'Stima',
       supportedLocales: AppLocalizations.supportedLocales,
       localizationsDelegates: AppLocalizations.localizationsDelegates,
-      theme: AppTheme.getLightTheme(),
-      darkTheme: AppTheme.getDarkTheme(),
+      theme: AppTheme.light,
+      darkTheme: AppTheme.dark,
       builder: (context, child) {
         return AppStartupWidget(
           onLoaded: GoRouterDelegateListener(child: child!),
