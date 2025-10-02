@@ -184,3 +184,6 @@ WARP.md
 
 # FVM Version Cache
 .fvm/
+
+#  generated localizations
+lib/l10n/gen/
