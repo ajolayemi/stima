@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
-import 'package:stima/l10n/app_localizations.dart';
+
+import 'package:stima/l10n/gen/app_localizations.dart';
 
 extension BuildContextExt on BuildContext {
   FocusScopeNode get focusScope => FocusScope.of(this);
