@@ -48,7 +48,7 @@ flutter_gen:
     flutter_svg: true
   
   assets:
-   enable: true
+   enabled: true
 
 flutter_launcher_icons:
   android: "launcher_icon"
