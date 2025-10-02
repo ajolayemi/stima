@@ -156,6 +156,9 @@ class AppTheme {
       bodyMedium: AppTextStyles.small,
       bodySmall: AppTextStyles.tiny,
       labelLarge: AppTextStyles.label,
+      titleLarge: AppTextStyles.h2,
+      titleMedium: AppTextStyles.h3,
+      titleSmall: AppTextStyles.h4,
     ),
 
     appBarTheme: const AppBarTheme(
@@ -167,6 +170,20 @@ class AppTheme {
 
     elevatedButtonTheme: ElevatedButtonThemeData(
       style: ElevatedButton.styleFrom(
+        backgroundColor: AppColors.green600,
+        foregroundColor: AppColors.white,
+        textStyle: AppTextStyles.button,
+        minimumSize: const Size.fromHeight(48),
+        shape: RoundedRectangleBorder(
+          borderRadius: BorderRadius.all(Radius.circular(AppRadius.xl)),
+        ),
+        shadowColor: AppColors.green600.withValues(alpha: 0.2),
+        elevation: 4,
+      ),
+    ),
+
+    filledButtonTheme: FilledButtonThemeData(
+      style: FilledButton.styleFrom(
         backgroundColor: AppColors.green600,
         foregroundColor: AppColors.white,
         textStyle: AppTextStyles.button,

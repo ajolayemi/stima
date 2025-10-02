@@ -13,3 +13,15 @@ AuthRepository authRepository(Ref ref) {
 Stream<void> authStateChanges(Ref ref) {
   return ref.watch(authRepositoryProvider).authStateChanges();
 }
+
+@riverpod
+class LoginShowPassword extends _$LoginShowPassword {
+  @override
+  bool build() {
+    return false;
+  }
+
+  void toggle() {
+    state = !state;
+  }
+}

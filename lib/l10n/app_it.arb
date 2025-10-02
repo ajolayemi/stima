@@ -1,4 +1,21 @@
 {
-    "@@locale": "it",
-    "app_title": "Stima"
+  "@@locale": "it",
+  "app_title": "Stima",
+  "login_screen_icon_text": "Stime in campo",
+  "login_screen_welcome_back": "Benvenuto",
+  "login_screen_sign_in_to_continue": "Accedi per continuare",
+  "login_screen_email": "Email",
+  "login_screen_email_hint": "name@example.com",
+  "login_screen_password": "Password",
+  "login_screen_password_hint": "Inserisci la tua password",
+  "login_screen_forgot_password": "Password dimenticata?",
+  "login_screen_sign_in_btn": "Accedi",
+  "login_screen_continue_with": "Oppure continua con",
+  "login_screen_login_with_google": "Accedi con Google",
+  "login_screen_no_account": "Non hai un account? ",
+  "login_screen_sign_up": "Registrati",
+  "validator_error_empty_email": "L'email non può essere vuota",
+  "validator_error_invalid_email": "Per favore inserisci un indirizzo email valido",
+  "validator_error_empty_password": "La password non può essere vuota",
+  "validator_error_invalid_password": "La password deve contenere almeno {minChar} caratteri, di cui almeno una maiuscola, una minuscola, un numero e un carattere speciale"
 }
