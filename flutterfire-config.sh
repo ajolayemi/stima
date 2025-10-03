@@ -10,7 +10,7 @@ fi
 case $1 in
   dev)
     flutterfire config \
-      --project=stime-dev-654b7 \
+      --project=stime-dev-473921 \
       --out=lib/firebase_options_dev.dart \
       --android-package-name=com.incampagna.stima.dev \
       --android-out=android/app/src/dev/google-services.json \
