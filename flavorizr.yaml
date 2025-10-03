@@ -8,6 +8,13 @@ flavors:
       applicationId: "com.incampagna.stima.dev"
     ios:
       bundleId: "com.incampagna.stima.dev"
+      variables:
+        APP_ENV:
+          value: "dev" # Custom variable to differentiate environments
+        APP_CLIENT_ID:
+          value: "183519482289-jl8nors5vuinqkghqd5ried8jtedu229.apps.googleusercontent.com" # Client ID for Google Sign-In on iOS
+        APP_REVERSED_CLIENT_ID:
+          value: "com.googleusercontent.apps.183519482289-jl8nors5vuinqkghqd5ried8jtedu229" # Reversed Client ID for Google Sign-In on iOS
 
   stg:
     app:

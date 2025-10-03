@@ -4,3 +4,6 @@
 ASSET_PREFIX=dev
 BUNDLE_NAME=Stime in campo DEV
 BUNDLE_DISPLAY_NAME=Stime in campo DEV
+APP_ENV=dev
+APP_CLIENT_ID=183519482289-jl8nors5vuinqkghqd5ried8jtedu229.apps.googleusercontent.com
+APP_REVERSED_CLIENT_ID=com.googleusercontent.apps.183519482289-jl8nors5vuinqkghqd5ried8jtedu229

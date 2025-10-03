@@ -42,8 +42,25 @@
       <string>UIInterfaceOrientationLandscapeRight</string>
     </array>
     <key>CADisableMinimumFrameDurationOnPhone</key>
-    <true/>
+    <true />
     <key>UIApplicationSupportsIndirectInputEvents</key>
-    <true/>
+    <true />
+    <key>GIDClientID</key>
+    <!-- Copied from GoogleService-Info.plist key CLIENT_ID -->
+    <string>$(APP_CLIENT_ID)</string>
+    <!-- Google Sign-in Section -->
+    <key>CFBundleURLTypes</key>
+    <array>
+      <dict>
+        <key>CFBundleTypeRole</key>
+        <string>Editor</string>
+        <key>CFBundleURLSchemes</key>
+        <array>
+          <!-- Copied from GoogleService-Info.plist key REVERSED_CLIENT_ID -->
+          <string>$(APP_REVERSED_CLIENT_ID)</string>
+        </array>
+      </dict>
+    </array>
+    <!-- End of the Google Sign-in Section -->
   </dict>
 </plist>
