@@ -17,12 +17,17 @@
   "validator_error_empty_email": "Email cannot be empty",
   "validator_error_invalid_email": "Please enter a valid email address",
   "validator_error_empty_password": "Password cannot be empty",
-  "validator_error_invalid_password": "Password must contain at least {minChar} characters, including at least one uppercase letter, one lowercase letter, one digit, and one special character",
+  "validator_error_invalid_password": "At least {minChar} characters with uppercase, lowercase, numbers and special characters",
   "@validator_error_invalid_password": {
     "placeholders": {
       "minChar": {
         "type": "int"
       }
     }
-  }
+  },
+  
+  "error_dialog_user_not_found_content": "The credentials entered aren't correct",
+  "error_dialog_generic_content": "There was an error, try again",
+  "error_dialog_ok_cta_btn": "Ok",
+  "error_dialog_title": "Attention"
 }

@@ -1,16 +1,16 @@
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 
-
-
 /// Error logger class to keep track of all AsyncError states that are set
 /// by the controllers in the app
-sealed class AsyncErrorLogger extends ProviderObserver {
+final class AsyncErrorLoggerObserver extends ProviderObserver {
   @override
   void didUpdateProvider(
     ProviderObserverContext context,
     Object? previousValue,
     Object? newValue,
   ) {
+    // context.container.
+    // print('here: $context');
     // final errorLogger = context.read(errorLoggerProvider);
     // final error = _findError(newValue);
 
@@ -25,11 +25,22 @@ sealed class AsyncErrorLogger extends ProviderObserver {
     // }
   }
 
-  AsyncError<dynamic>? _findError(Object? value) {
-    if (value is AsyncError) {
-      return value;
-    } else {
-      return null;
-    }
+  // AsyncError<dynamic>? _findError(Object? value) {
+  //   if (value is AsyncError) {
+  //     return value;
+  //   } else {
+  //     return null;
+  //   }
+  // }
+
+  @override
+  void providerDidFail(
+    ProviderObserverContext context,
+    Object error,
+    StackTrace stackTrace,
+  ) {
+    // TODO: implemente crashlytics log
+    print('''"providerFailed": "${context.provider}, er: ${error.toString()}"''');
+    super.providerDidFail(context, error, stackTrace);
   }
 }

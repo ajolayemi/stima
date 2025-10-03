@@ -1,5 +1,5 @@
 import 'package:flutter/material.dart';
-import 'package:stima/utils/extensions/context_extensions.dart';
+import 'package:stima/core/utils/extensions/context_extensions.dart';
 
 /// Base flutter's [RichText] widget has a default textScaler set to [TextScaler.noScaling]
 /// this widget serves as a common workaround to apply a custom [TextScaler]

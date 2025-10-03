@@ -2,7 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
 import 'package:stima/config/theme/app_theme.dart';
 import 'package:stima/shared/constants/app_sizes.dart';
-import 'package:stima/utils/extensions/context_extensions.dart';
+import 'package:stima/core/utils/extensions/context_extensions.dart';
 
 class FormTitleAndField extends StatelessWidget {
   const FormTitleAndField({
@@ -28,6 +28,7 @@ class FormTitleAndField extends StatelessWidget {
     this.errorText,
     this.maxLength,
     this.prefixIcon,
+    this.onChanged,
   });
 
   final Key fieldKey;
@@ -51,6 +52,7 @@ class FormTitleAndField extends StatelessWidget {
   final bool canRequestFocus;
   final String? errorText;
   final int? maxLength;
+  final void Function(String value)? onChanged;
   @override
   Widget build(BuildContext context) {
     return Column(
@@ -88,6 +90,7 @@ class FormTitleAndField extends StatelessWidget {
             inputFormatters: inputFormatters,
             obscureText: obscureText,
             maxLength: maxLength,
+            onChanged: onChanged,
           ),
         ),
       ],

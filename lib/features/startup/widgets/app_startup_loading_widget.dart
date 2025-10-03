@@ -1,5 +1,6 @@
 // Widget to show while app initialization is ongoing
 import 'package:flutter/material.dart';
+import 'package:stima/shared/widgets/progress/app_circular_loader.dart';
 
 class AppStartupLoadingWidget extends StatelessWidget {
   const AppStartupLoadingWidget({super.key});
@@ -9,7 +10,7 @@ class AppStartupLoadingWidget extends StatelessWidget {
     return Scaffold(
       appBar: AppBar(),
       body: const Center(
-        child: CircularProgressIndicator(),
+        child: AppCircularLoader(),
       ),
     );
   }

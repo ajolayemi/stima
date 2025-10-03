@@ -1,7 +1,7 @@
 import 'package:flutter/widgets.dart';
 import 'package:stima/config/theme/app_theme.dart';
 import 'package:stima/shared/constants/app_sizes.dart';
-import 'package:stima/utils/extensions/context_extensions.dart';
+import 'package:stima/core/utils/extensions/context_extensions.dart';
 
 class OrWithWidget extends StatelessWidget {
   const OrWithWidget({

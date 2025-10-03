@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:stima/config/theme/app_theme.dart';
+import 'package:stima/features/auth/pages/login_controller.dart';
 import 'package:stima/features/auth/providers/auth_providers.dart';
 import 'package:stima/gen/assets.gen.dart';
 import 'package:stima/shared/constants/app_constants.dart';
@@ -11,13 +12,16 @@ import 'package:stima/shared/widgets/buttons/app_text_button.dart';
 import 'package:stima/shared/widgets/buttons/visibility_icon_button.dart';
 import 'package:stima/shared/widgets/form/form_title_and_field.dart';
 import 'package:stima/shared/widgets/or_with_widget.dart';
-import 'package:stima/utils/extensions/app_form_errors_extension.dart';
-import 'package:stima/utils/extensions/context_extensions.dart';
-import 'package:stima/utils/keyboard/app_keyboard_utils.dart';
-import 'package:stima/utils/validators/app_form_validator_mixin.dart';
+import 'package:stima/shared/widgets/progress/app_circular_loader.dart';
+import 'package:stima/core/utils/extensions/app_form_errors_extension.dart';
+import 'package:stima/core/utils/extensions/context_extensions.dart';
+import 'package:stima/core/utils/keyboard/app_keyboard_utils.dart';
+import 'package:stima/core/utils/validators/app_form_validator_mixin.dart';
 
 class LoginForm extends ConsumerStatefulWidget {
-  const LoginForm({super.key});
+  const LoginForm({super.key, this.isLoading = false});
+
+  final bool isLoading;
 
   @override
   ConsumerState<ConsumerStatefulWidget> createState() => _LoginFormState();
@@ -39,7 +43,7 @@ class _LoginFormState extends ConsumerState<LoginForm>
   // * Keys for eventual widget texts
   static const emailFieldKey = Key('loginForm_emailField');
   static const passwordFieldKey = Key('loginForm_passwordField');
-  static const submitButtonKey = Key('loginForm_submitButton');
+  static const loginButtonKey = Key('loginForm_loginButton');
 
   bool _formSubmitted = false;
 
@@ -99,19 +103,41 @@ class _LoginFormState extends ConsumerState<LoginForm>
         password: _password,
         minLength: AppConstants.minPasswordLength,
       ),
+      minFieldLength: AppConstants.minPasswordLength,
     );
+  }
+
+  void _resetForm() {
+    _formKey.currentState?.reset();
+    _emailController.clear();
+    _passwordController.clear();
+    _toggleFormSubmitted(false);
   }
 
   // TODO: [Kehinde] implement logic
   Future<void> _login() async {
     _toggleFormSubmitted(true);
+    final valid = _formKey.currentState?.validate() ?? false;
+    if (!valid) return;
+    _unfocus();
+    await ref
+        .read(loginControllerProvider.notifier)
+        .loginWithEmailAndPassword(email: _email, password: _password);
   }
 
   // TODO: [Kehinde] implement logic
-  Future<void> _loginWithGoogle() async {}
+  Future<void> _loginWithGoogle() async {
+    _unfocus();
+    _resetForm();
+    await ref.read(loginControllerProvider.notifier).loginWithGoogle();
+  }
 
   // TODO: [Kehinde] implement logic
   Future<void> _forgotPassword() async {}
+
+  void _onFormFieldChanged(String val) {
+    ref.read(loginButtonEnabledProvider.notifier).toggle(_email, _password);
+  }
 
   @override
   Widget build(BuildContext context) {
@@ -169,6 +195,8 @@ class _LoginFormState extends ConsumerState<LoginForm>
                       onEditingComplete: _emailEditingComplete,
                       validator: (_) => _emailErrorText(),
                       prefixIcon: Assets.icons.email.svg(fit: BoxFit.scaleDown),
+                      enabled: !widget.isLoading,
+                      onChanged: _onFormFieldChanged,
                     ),
                     gapH20,
 
@@ -182,6 +210,7 @@ class _LoginFormState extends ConsumerState<LoginForm>
                           fieldHintText: loc.login_screen_password_hint,
                           fieldController: _passwordController,
                           obscureText: obscure,
+                          enabled: !widget.isLoading,
                           textInputAction: TextInputAction.done,
                           onEditingComplete: _passwordEditingComplete,
                           validator: (_) => _passwordErrorText(),
@@ -196,6 +225,7 @@ class _LoginFormState extends ConsumerState<LoginForm>
                                   .toggle();
                             },
                           ),
+                          onChanged: _onFormFieldChanged,
                         );
                       },
                     ),
@@ -203,24 +233,70 @@ class _LoginFormState extends ConsumerState<LoginForm>
                 ),
               ),
 
-              gapH24,
+              gapH12,
+              Consumer(
+                builder: (context, ref, child) {
+                  final btnEnabled = ref.watch(loginButtonEnabledProvider);
+                  return _LoginFormButtonSection(
+                    isLoading: widget.isLoading,
+                    loginButtonEnabled: btnEnabled,
+                    onForgotPasswordPressed: _forgotPassword,
+                    onLoginPressed: _login,
+                    onLoginWithGooglePressed: _loginWithGoogle,
+                    loginButtonKey: loginButtonKey,
+                  );
+                },
+              ),
 
+              gapH32,
+            ],
+          ),
+        ),
+      ),
+    );
+  }
+}
+
+class _LoginFormButtonSection extends StatelessWidget {
+  const _LoginFormButtonSection({
+    this.isLoading = false,
+    this.loginButtonEnabled = false,
+    this.onForgotPasswordPressed,
+    this.onLoginPressed,
+    this.onLoginWithGooglePressed,
+    this.loginButtonKey,
+  });
+
+  final bool isLoading;
+  final bool loginButtonEnabled;
+  final VoidCallback? onForgotPasswordPressed;
+  final VoidCallback? onLoginPressed;
+  final VoidCallback? onLoginWithGooglePressed;
+  final Key? loginButtonKey;
+
+  @override
+  Widget build(BuildContext context) {
+    final loc = context.loc;
+    return isLoading
+        ? const AppCircularLoader()
+        : Column(
+            children: [
               // Forgot password button
               Align(
                 alignment: Alignment.bottomRight,
                 child: AppTextButton(
                   label: loc.login_screen_forgot_password,
-                  onPressed: _forgotPassword,
+                  onPressed: onForgotPasswordPressed,
                 ),
               ),
 
-              gapH24,
+              gapH12,
 
               // Submit button
               AppPrimaryButton(
                 label: loc.login_screen_sign_in_btn,
-                onPressed: _login,
-                key: submitButtonKey,
+                onPressed: loginButtonEnabled ? onLoginPressed : null,
+                key: loginButtonKey,
               ),
 
               gapH32,
@@ -231,16 +307,10 @@ class _LoginFormState extends ConsumerState<LoginForm>
 
               AppSecondaryButton(
                 label: loc.login_screen_login_with_google,
-                onPressed: _loginWithGoogle,
+                onPressed: onLoginWithGooglePressed,
                 icon: Assets.icons.google.svg(fit: BoxFit.scaleDown),
               ),
-
-              gapH32,
-
             ],
-          ),
-        ),
-      ),
-    );
+          );
   }
 }

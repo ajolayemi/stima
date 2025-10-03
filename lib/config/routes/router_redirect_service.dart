@@ -1,6 +1,10 @@
 import 'package:flutter/material.dart';
 import 'package:go_router/go_router.dart';
 import 'package:riverpod_annotation/riverpod_annotation.dart';
+import 'package:stima/config/routes/route_enums.dart';
+import 'package:stima/features/auth/data/auth_repository.dart';
+import 'package:stima/features/auth/providers/auth_providers.dart';
+import 'package:stima/core/utils/extensions/router_extensions.dart';
 
 part 'router_redirect_service.g.dart';
 
@@ -9,9 +13,30 @@ class RouterRedirectService {
   const RouterRedirectService(this._ref);
   final Ref _ref;
 
+  AuthRepository get _authRepository => _ref.read(authRepositoryProvider);
+
   FutureOr<String?> redirect(BuildContext context, GoRouterState state) async {
-    // TODO: [Kehinde] - finish implmentation based on auth state
-    return state.uri.path;
+    final currentUser = _authRepository.currentUser;
+
+    final currentPath = state.uri.path;
+
+    if (currentUser != null && currentUser.uid.isNotEmpty) {
+      // An already logged in user trying to access the login or register page
+      // should be directed to home page
+      if (currentPath.isLoginOrRegister) {
+        return AppRoute.home.path;
+      }
+      // No need to redirect, let the user continue to the intended page
+      return null;
+    }
+    // A non-logged in user trying to access a protected route should be
+    // redirected to the login page
+    if (!currentPath.isLoginOrRegister) {
+      return AppRoute.login.path;
+    }
+
+    // No need to redirect, let the user continue to the intended page
+    return null;
   }
 }
 

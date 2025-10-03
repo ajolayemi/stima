@@ -1,5 +1,5 @@
 import 'package:flutter/material.dart';
-import 'package:stima/utils/extensions/context_extensions.dart';
+import 'package:stima/core/utils/extensions/context_extensions.dart';
 
 extension AppFormErrorsContextExt on BuildContext {
   String? getLocalizedFormErrorText({

@@ -4,11 +4,12 @@ import 'dart:ui';
 import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:stima/app.dart';
-import 'package:stima/exceptions/error_logger.dart';
+import 'package:stima/core/observers/async_error_observer.dart';
+import 'package:stima/core/exceptions/error_logger.dart';
 
 class AppBootstrap {
   Future<ProviderContainer> createProviderContainer() async {
-    return ProviderContainer(observers: []);
+    return ProviderContainer(observers: [AsyncErrorLoggerObserver()]);
   }
 
   /// Create the root widget that should be passed to [runApp]

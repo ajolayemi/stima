@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:riverpod_annotation/riverpod_annotation.dart';
-import 'package:stima/exceptions/app_exception.dart';
+import 'package:stima/core/exceptions/app_exception.dart';
 
 
 part 'error_logger.g.dart';

@@ -17,5 +17,10 @@
   "validator_error_empty_email": "L'email non può essere vuota",
   "validator_error_invalid_email": "Per favore inserisci un indirizzo email valido",
   "validator_error_empty_password": "La password non può essere vuota",
-  "validator_error_invalid_password": "La password deve contenere almeno {minChar} caratteri, di cui almeno una maiuscola, una minuscola, un numero e un carattere speciale"
+  "validator_error_invalid_password": "Almeno {minChar} caratteri con lettere maiuscole, minuscole, numeri e caratteri speciali",
+  
+  "error_dialog_user_not_found_content": "Le credenziali inserite non sono corrette",
+  "error_dialog_generic_content": "C'è stato un errore, si prega di riprovare",
+  "error_dialog_ok_cta_btn": "Ok",
+  "error_dialog_title": "Attenzione"
 }

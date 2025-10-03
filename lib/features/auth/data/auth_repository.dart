@@ -1,4 +1,21 @@
-abstract class AuthRepository {
+import 'package:stima/core/enums/app_role.dart';
+import 'package:stima/features/auth/models/app_user.dart';
 
-  Stream<void> authStateChanges();
+abstract class AuthRepository {
+  Future<AppUser?> loginWithEmailAndPassword({
+    required String email,
+    required String password,
+  });
+
+  Future<AppUser?> loginWithGoogle();
+
+  Future<void> logOut();
+
+  Stream<AppUser?> authStateChanges();
+
+  Future<void> refreshUserToken();
+
+  AppUser? get currentUser;
+
+  Future<AppRole?> getUserRole({bool forceRefreshToken = true});
 }

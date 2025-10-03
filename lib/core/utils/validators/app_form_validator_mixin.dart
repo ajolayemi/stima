@@ -1,10 +1,10 @@
-import 'package:stima/utils/validators/validators.dart';
+import 'package:stima/core/utils/validators/validators.dart';
 
 /// Holds onto various form validation utilities
 mixin AppFormValidatorMixin {
   final _nonEmptyValidator = NonEmptyStringValidator();
 
-  final _numberFieldsValidator = NumberValidators();
+  // final _numberFieldsValidator = NumberValidators();
 
   final _emailValidator = EmailValidator();
 
