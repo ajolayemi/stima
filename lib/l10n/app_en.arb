@@ -1,6 +1,7 @@
 {
   "@@locale": "en",
   "app_title": "Stima",
+
   "login_screen_icon_text": "Stime in campo",
   "login_screen_welcome_back": "Welcome back",
   "login_screen_sign_in_to_continue": "Sign in to continue",
@@ -14,6 +15,7 @@
   "login_screen_login_with_google": "Login with Google",
   "login_screen_no_account": "Don't have an account? ",
   "login_screen_sign_up": "Sign Up",
+
   "validator_error_empty_email": "Email cannot be empty",
   "validator_error_invalid_email": "Please enter a valid email address",
   "validator_error_empty_password": "Password cannot be empty",
@@ -25,9 +27,37 @@
       }
     }
   },
+  "validator_generic_error_empty_field": "This field cannot be empty",
+  "validator_error_passwords_do_not_match": "Passwords do not match",
   
   "error_dialog_user_not_found_content": "The credentials entered aren't correct",
   "error_dialog_generic_content": "There was an error, try again",
   "error_dialog_ok_cta_btn": "Ok",
-  "error_dialog_title": "Attention"
+  "error_dialog_title": "Attention",
+  "error_dialog_email_already_in_use": "The email address is already in use by another account.",
+
+  "registration_screen_icon_text": "Create an account",
+  "registration_form_name_field_title": "Name",
+  "registration_form_name_field_hint": "Enter your name",
+  "registration_form_surname_field_title": "Surname",
+  "registration_form_surname_field_hint": "Enter your surname",
+  "registration_form_email_field_title": "Email",
+  "registration_form_email_field_hint": "name@example.com",
+  "registration_form_password_field_title": "Password",
+  "registration_form_password_field_hint": "Enter your password",
+  "registration_form_password_field_suggestion": "At least {maxChar} characters with uppercase, lowercase, numbers and special characters",
+  "@registration_form_password_field_suggestion": {
+    "placeholders": {
+      "maxChar": {
+        "type": "int"
+      }
+    }
+  },
+  "registration_form_confirm_password_field_title": "Confirm Password",
+  "registration_form_confirm_password_field_hint": "Confirm your password",
+  "registration_form_submit_btn": "Register",
+  "registration_page_continue_with": "Or register with",
+  "registration_page_register_with_google": "Register with Google",
+  "registration_page_already_have_account": "Already have an account? ",
+  "registration_page_login_btn": "Log In"
 }

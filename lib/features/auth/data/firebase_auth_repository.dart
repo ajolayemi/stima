@@ -102,6 +102,30 @@ class FirebaseAuthRepository implements AuthRepository {
   }
 
   @override
+  Future<AppUser?> createUserWithEmailAndPassword({
+    required String email,
+    required String password,
+  }) async {
+    await Future.delayed(const Duration(seconds: 3));
+    try {
+      final credential = await _auth.createUserWithEmailAndPassword(
+        email: email,
+        password: password,
+      );
+
+      final user = credential.user;
+      if (user == null) {
+        return null;
+      }
+      return FirebaseAppUser(firebaseUser: user);
+    } on FirebaseAuthException catch (authException, st) {
+      throw authException.toAppException(st) ?? authException;
+    } catch (e) {
+      rethrow;
+    }
+  }
+
+  @override
   Future<void> logOut() async {
     await _auth.signOut();
     await _googleSignIn.signOut();
@@ -111,5 +135,4 @@ class FirebaseAuthRepository implements AuthRepository {
   Future<void> refreshUserToken() async {
     await _firebaseUser?.getIdTokenResult(true);
   }
-
 }

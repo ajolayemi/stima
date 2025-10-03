@@ -6,7 +6,7 @@ import 'package:stima/config/routes/go_router_refresh_stream.dart';
 import 'package:stima/config/routes/route_enums.dart';
 import 'package:stima/config/routes/router_redirect_service.dart';
 import 'package:stima/features/auth/pages/login_screen.dart';
-import 'package:stima/features/auth/pages/signup_screen.dart';
+import 'package:stima/features/auth/pages/registration_screen.dart';
 import 'package:stima/features/auth/providers/auth_providers.dart';
 import 'package:stima/features/home/pages/home_page.dart';
 
@@ -37,7 +37,10 @@ GoRouter goRouter(Ref ref) {
         path: AppRoute.register.path,
         name: AppRoute.register.name,
         pageBuilder: (context, state) {
-          return MaterialPage(child: SignupScreen(), fullscreenDialog: true);
+          return MaterialPage(
+            child: RegistrationScreen(),
+            fullscreenDialog: true,
+          );
         },
       ),
       GoRoute(

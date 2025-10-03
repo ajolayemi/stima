@@ -30,6 +30,9 @@ class $AssetsIconsGen {
   /// File path: assets/icons/lock.svg
   SvgGenImage get lock => const SvgGenImage('assets/icons/lock.svg');
 
+  /// File path: assets/icons/person.svg
+  SvgGenImage get person => const SvgGenImage('assets/icons/person.svg');
+
   /// File path: assets/icons/visibility-off.svg
   SvgGenImage get visibilityOff =>
       const SvgGenImage('assets/icons/visibility-off.svg');
@@ -45,6 +48,7 @@ class $AssetsIconsGen {
     email,
     google,
     lock,
+    person,
     visibilityOff,
     visibilityOn,
   ];

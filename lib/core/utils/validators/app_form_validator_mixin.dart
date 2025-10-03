@@ -86,4 +86,38 @@ mixin AppFormValidatorMixin {
       return 'validator_error_invalid_password';
     }
   }
+
+  /// Validates fields that should not be empty
+  /// Validates form fields that shouldn't be empty
+  bool canSubmitNonEmptyFields({required String value}) {
+    return _nonEmptyValidator.isValid(value);
+  }
+
+  /// Gets the error key that will be used to show error message for non-empty fields
+  String? getNonEmptyFieldsErrorKey({required String value}) {
+    if (!canSubmitNonEmptyFields(value: value)) {
+      return 'validator_generic_error_empty_field';
+    }
+    return null;
+  }
+
+  /// Validates if two fields match
+  /// Useful for confirming password fields
+  bool doFieldsMatch({required String value1, required String value2}) {
+    return _nonEmptyValidator.isValid(value1) &&
+        _nonEmptyValidator.isValid(value2) &&
+        value1 == value2;
+  }
+
+  /// Gets the error key that will be used to show error message for matching fields
+  /// Useful for confirming password fields
+  String? getPasswordFieldsErrorKey({
+    required String password,
+    required String confirmPassword,
+  }) {
+    if (!doFieldsMatch(value1: password, value2: confirmPassword)) {
+      return 'validator_error_passwords_do_not_match';
+    }
+    return null;
+  }
 }

@@ -1,11 +1,12 @@
 {
   "@@locale": "it",
   "app_title": "Stima",
+
   "login_screen_icon_text": "Stime in campo",
   "login_screen_welcome_back": "Benvenuto",
   "login_screen_sign_in_to_continue": "Accedi per continuare",
   "login_screen_email": "Email",
-  "login_screen_email_hint": "name@example.com",
+  "login_screen_email_hint": "nome@esempio.com",
   "login_screen_password": "Password",
   "login_screen_password_hint": "Inserisci la tua password",
   "login_screen_forgot_password": "Password dimenticata?",
@@ -14,13 +15,35 @@
   "login_screen_login_with_google": "Accedi con Google",
   "login_screen_no_account": "Non hai un account? ",
   "login_screen_sign_up": "Registrati",
+
   "validator_error_empty_email": "L'email non può essere vuota",
   "validator_error_invalid_email": "Per favore inserisci un indirizzo email valido",
   "validator_error_empty_password": "La password non può essere vuota",
   "validator_error_invalid_password": "Almeno {minChar} caratteri con lettere maiuscole, minuscole, numeri e caratteri speciali",
+  "validator_generic_error_empty_field": "Questo campo non può essere vuoto",
+  "validator_error_passwords_do_not_match": "Le password non corrispondono",
   
   "error_dialog_user_not_found_content": "Le credenziali inserite non sono corrette",
   "error_dialog_generic_content": "C'è stato un errore, si prega di riprovare",
   "error_dialog_ok_cta_btn": "Ok",
-  "error_dialog_title": "Attenzione"
+  "error_dialog_title": "Attenzione",
+  "error_dialog_email_already_in_use": "L'indirizzo email è già in uso da un altro account.",
+
+  "registration_screen_icon_text": "Crea un account",
+  "registration_form_name_field_title": "Nome",
+  "registration_form_name_field_hint": "Inserisci il tuo nome",
+  "registration_form_surname_field_title": "Cognome",
+  "registration_form_surname_field_hint": "Inserisci il tuo cognome",
+  "registration_form_email_field_title": "Email",
+  "registration_form_email_field_hint": "name@example.com",
+  "registration_form_password_field_title": "Password",
+  "registration_form_password_field_hint": "Inserisci la tua password",
+  "registration_form_password_field_suggestion": "Almeno {maxChar} caratteri con lettere maiuscole, minuscole, numeri e caratteri speciali",
+  "registration_form_confirm_password_field_title": "Conferma Password",
+  "registration_form_confirm_password_field_hint": "Conferma la tua password",
+  "registration_form_submit_btn": "Registrati",
+  "registration_page_continue_with": "Oppure registrati con",
+  "registration_page_register_with_google": "Registrati con Google",
+  "registration_page_already_have_account": "Hai già un account? ",
+  "registration_page_login_btn": "Accedi"
 }

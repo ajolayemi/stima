@@ -11,7 +11,8 @@ extension FirebaseAuthExceptionsExtension on FirebaseAuthException {
       case 'user-disabled':
       case 'wrong-password':
         return UserNotFoundException(stackTrace: st);
-
+      case 'email-already-in-use':
+        return EmailAlreadyInUseException(stackTrace: st);
       default:
         return null;
     }
@@ -44,6 +45,8 @@ extension ExceptionsExt on AppException {
     final loc = context.loc;
     if (this is UserNotFoundException) {
       return loc.error_dialog_user_not_found_content;
+    } else if (this is EmailAlreadyInUseException) {
+      return loc.error_dialog_email_already_in_use;
     }
 
     return loc.error_dialog_generic_content;
