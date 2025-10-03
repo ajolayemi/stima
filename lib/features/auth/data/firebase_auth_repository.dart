@@ -83,7 +83,6 @@ class FirebaseAuthRepository implements AuthRepository {
     required String email,
     required String password,
   }) async {
-    await Future.delayed(const Duration(seconds: 3));
     try {
       final credential = await _auth.signInWithEmailAndPassword(
         email: email,
@@ -112,4 +111,5 @@ class FirebaseAuthRepository implements AuthRepository {
   Future<void> refreshUserToken() async {
     await _firebaseUser?.getIdTokenResult(true);
   }
+
 }
