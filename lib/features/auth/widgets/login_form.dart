@@ -1,22 +1,20 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
+
 import 'package:stima/config/theme/app_theme.dart';
-import 'package:stima/features/auth/pages/login_controller.dart';
-import 'package:stima/features/auth/providers/auth_providers.dart';
-import 'package:stima/gen/assets.gen.dart';
-import 'package:stima/shared/constants/app_constants.dart';
-import 'package:stima/shared/constants/app_sizes.dart';
-import 'package:stima/shared/widgets/buttons/app_primary_button.dart';
-import 'package:stima/shared/widgets/buttons/app_secondary_button.dart';
-import 'package:stima/shared/widgets/buttons/app_text_button.dart';
-import 'package:stima/shared/widgets/buttons/visibility_icon_button.dart';
-import 'package:stima/shared/widgets/form/form_title_and_field.dart';
-import 'package:stima/shared/widgets/or_with_widget.dart';
-import 'package:stima/shared/widgets/progress/app_circular_loader.dart';
 import 'package:stima/core/utils/extensions/app_form_errors_extension.dart';
 import 'package:stima/core/utils/extensions/context_extensions.dart';
 import 'package:stima/core/utils/keyboard/app_keyboard_utils.dart';
 import 'package:stima/core/utils/validators/app_form_validator_mixin.dart';
+import 'package:stima/features/auth/pages/login_controller.dart';
+import 'package:stima/features/auth/providers/auth_providers.dart';
+import 'package:stima/features/auth/widgets/auth_form_buttons_section.dart';
+import 'package:stima/gen/assets.gen.dart';
+import 'package:stima/shared/constants/app_constants.dart';
+import 'package:stima/shared/constants/app_sizes.dart';
+import 'package:stima/shared/widgets/buttons/visibility_icon_button.dart';
+import 'package:stima/shared/widgets/form/auth_form_card.dart';
+import 'package:stima/shared/widgets/form/form_title_and_field.dart';
 
 class LoginForm extends ConsumerStatefulWidget {
   const LoginForm({super.key, this.isLoading = false});
@@ -147,13 +145,7 @@ class _LoginFormState extends ConsumerState<LoginForm>
       onTap: _node.unfocus,
       child: FocusScope(
         node: _node,
-        child: Container(
-          width: context.screenWidth,
-          padding: EdgeInsets.only(left: AppSizes.p24, right: AppSizes.p24),
-          decoration: BoxDecoration(
-            color: AppColors.white,
-            borderRadius: const BorderRadius.all(Radius.circular(AppSizes.p24)),
-          ),
+        child: AuthFormCard(
           child: Column(
             children: [
               gapH48,
@@ -237,13 +229,17 @@ class _LoginFormState extends ConsumerState<LoginForm>
               Consumer(
                 builder: (context, ref, child) {
                   final btnEnabled = ref.watch(loginButtonEnabledProvider);
-                  return _LoginFormButtonSection(
+                  return AuthFormButtonsSection(
                     isLoading: widget.isLoading,
-                    loginButtonEnabled: btnEnabled,
+                    authCtaKey: loginButtonKey,
+                    authButtonEnabled: btnEnabled,
+                    onAuthButtonPressed: _login,
+                    onAuthWithGooglePressed: _loginWithGoogle,
                     onForgotPasswordPressed: _forgotPassword,
-                    onLoginPressed: _login,
-                    onLoginWithGooglePressed: _loginWithGoogle,
-                    loginButtonKey: loginButtonKey,
+                    orWithText: loc.login_screen_continue_with,
+                    authButtonLabel: loc.login_screen_sign_in_btn,
+                    authWithGoogleLabel: loc.login_screen_login_with_google,
+                    forgotPasswordLabel: loc.login_screen_forgot_password,
                   );
                 },
               ),
@@ -254,63 +250,5 @@ class _LoginFormState extends ConsumerState<LoginForm>
         ),
       ),
     );
-  }
-}
-
-class _LoginFormButtonSection extends StatelessWidget {
-  const _LoginFormButtonSection({
-    this.isLoading = false,
-    this.loginButtonEnabled = false,
-    this.onForgotPasswordPressed,
-    this.onLoginPressed,
-    this.onLoginWithGooglePressed,
-    this.loginButtonKey,
-  });
-
-  final bool isLoading;
-  final bool loginButtonEnabled;
-  final VoidCallback? onForgotPasswordPressed;
-  final VoidCallback? onLoginPressed;
-  final VoidCallback? onLoginWithGooglePressed;
-  final Key? loginButtonKey;
-
-  @override
-  Widget build(BuildContext context) {
-    final loc = context.loc;
-    return isLoading
-        ? const AppCircularLoader()
-        : Column(
-            children: [
-              // Forgot password button
-              Align(
-                alignment: Alignment.bottomRight,
-                child: AppTextButton(
-                  label: loc.login_screen_forgot_password,
-                  onPressed: onForgotPasswordPressed,
-                ),
-              ),
-
-              gapH12,
-
-              // Submit button
-              AppPrimaryButton(
-                label: loc.login_screen_sign_in_btn,
-                onPressed: loginButtonEnabled ? onLoginPressed : null,
-                key: loginButtonKey,
-              ),
-
-              gapH32,
-
-              OrWithWidget(orText: loc.login_screen_continue_with),
-
-              gapH32,
-
-              AppSecondaryButton(
-                label: loc.login_screen_login_with_google,
-                onPressed: onLoginWithGooglePressed,
-                icon: Assets.icons.google.svg(fit: BoxFit.scaleDown),
-              ),
-            ],
-          );
   }
 }
