@@ -95,7 +95,6 @@ build/
 .flutter-plugins-dependencies
 .packages
 .metadata
-pubspec.lock
 
 # iOS specific
 ios/Flutter/flutter_export_environment.sh
