@@ -1,0 +1,5 @@
+secret:
+  ignored_matches:
+  - match: 18d25a113e5d0fb6a7a28343136b428bbc1d830a4733504530a8f11e54790b4c
+    name: Company Email Password - lib/l10n/app_it.arb:l.52
+version: 2
