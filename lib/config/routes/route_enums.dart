@@ -4,7 +4,8 @@ enum AppRoute {
   login('/log-in'),
   forgotPassword('forgot-password'),
   forgotPasswordSuccess('success/:email'),
-  resetPassword('reset-password'),
+  resetPassword('reset-password/:code'),
+  resetPasswordSuccess('resetSuccess'),
   register('/register'),
   home('/home');
 

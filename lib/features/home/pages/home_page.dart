@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
-import 'package:stima/features/auth/pages/login_controller.dart';
+import 'package:stima/features/auth/controller/login_controller.dart';
 import 'package:stima/shared/widgets/buttons/app_primary_button.dart';
 
 class HomePage extends ConsumerWidget {

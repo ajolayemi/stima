@@ -27,6 +27,10 @@ extension RouterPathExtensions on String {
     return contains('/log-in/forgot-password/success/');
   }
 
+  bool get isResetPasswordPage {
+    return contains('/log-in/reset-password');
+  }
+
   bool get isLoginOrRegister {
     return isLogin || isRegister;
   }
@@ -36,7 +40,8 @@ extension RouterPathExtensions on String {
         isRegister ||
         isForgotPassword ||
         isResetPassword ||
-        isForgotPasswordSuccessPage;
+        isForgotPasswordSuccessPage ||
+        isResetPasswordPage;
   }
 }
 
@@ -49,5 +54,11 @@ extension GoRouterStateX on GoRouterState {
   /// Retrieves the email field from path parameters
   String get emailFromPath {
     return toPathParams().email ?? '';
+  }
+
+  /// Retrieves the code field from path parameters
+  /// Used for example for password reset verification flow
+  String get codeFromPath {
+    return toPathParams().passwordResetConfirmationCode ?? '';
   }
 }

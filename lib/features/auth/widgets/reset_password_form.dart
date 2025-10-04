@@ -1,11 +1,13 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
+import 'package:go_router/go_router.dart';
+import 'package:stima/config/routes/route_enums.dart';
 import 'package:stima/config/theme/app_theme.dart';
+import 'package:stima/core/models/path_parameters.dart';
 import 'package:stima/core/utils/extensions/app_form_errors_extension.dart';
 import 'package:stima/core/utils/extensions/context_extensions.dart';
-import 'package:stima/core/utils/keyboard/app_keyboard_utils.dart';
 import 'package:stima/core/utils/validators/app_form_mixin.dart';
-import 'package:stima/features/auth/controller/registration_controller.dart';
+import 'package:stima/features/auth/controller/new_password_controller.dart';
 import 'package:stima/features/auth/providers/auth_providers.dart';
 import 'package:stima/features/auth/widgets/auth_form_buttons_section.dart';
 import 'package:stima/gen/assets.gen.dart';
@@ -15,91 +17,53 @@ import 'package:stima/shared/widgets/buttons/visibility_icon_button.dart';
 import 'package:stima/shared/widgets/form/auth_form_card.dart';
 import 'package:stima/shared/widgets/form/form_title_and_field.dart';
 
-class RegistrationForm extends ConsumerStatefulWidget {
-  const RegistrationForm({super.key, this.isLoading = false});
+class ResetPasswordForm extends ConsumerStatefulWidget {
+  const ResetPasswordForm({
+    super.key,
+    required this.confirmationCode,
+    this.isLoading = false,
+  });
 
   final bool isLoading;
+  final String confirmationCode;
 
   @override
   ConsumerState<ConsumerStatefulWidget> createState() =>
-      _RegistrationFormState();
+      _ResetPasswordFormState();
 }
 
-class _RegistrationFormState extends ConsumerState<RegistrationForm>
+class _ResetPasswordFormState extends ConsumerState<ResetPasswordForm>
     with AppFormMixin {
   final _formKey = GlobalKey<FormState>();
   final _node = FocusScopeNode();
 
   // * Form field controllers
-  final _nameController = TextEditingController();
-  final _surnameController = TextEditingController();
-  final _emailController = TextEditingController();
   final _passwordController = TextEditingController();
   final _confirmPasswordController = TextEditingController();
 
   // * Form field controllers value getters
-  String get _email => _emailController.text;
   String get _password => _passwordController.text;
   String get _confirmPassword => _confirmPasswordController.text;
-  String get _name => _nameController.text;
-  String get _surname => _surnameController.text;
 
   // * Keys for eventual widget texts
-  static const emailFieldKey = Key('register_email_field');
-  static const passwordFieldKey = Key('register_password_field');
-  static const confirmPasswordFieldKey = Key('register_confirm_password_field');
-  static const nameFieldKey = Key('register_name_field');
-  static const surnameFieldKey = Key('register_surname_field');
-  static const submitButtonKey = Key('register_submit_button');
+  static const passwordFieldKey = Key('reset_password_field');
+  static const confirmPasswordFieldKey = Key('reset_confirm_password_field');
+  static const submitButtonKey = Key('reset_submit_button');
 
   bool _formSubmitted = false;
 
   @override
   void dispose() {
     _node.dispose();
-    _emailController.dispose();
     _passwordController.dispose();
     _confirmPasswordController.dispose();
-    _nameController.dispose();
-    _surnameController.dispose();
     super.dispose();
-  }
-
-  void _unfocus() {
-    _node.unfocus();
-    AppKeyboardUtils.hideKeyboard();
   }
 
   void _toggleFormSubmitted(bool? value) {
     setState(() {
       _formSubmitted = value ?? !_formSubmitted;
     });
-  }
-
-  void _nonEmptyFieldsEditingComplete(String value) {
-    if (canSubmitNonEmptyFields(value: value)) {
-      _node.nextFocus();
-    }
-  }
-
-  String? _nonEmptyFieldsErrorText(String value) {
-    if (!_formSubmitted) return null;
-    return context.getLocalizedFormErrorText(
-      errorKey: getNonEmptyFieldsErrorKey(value: value),
-    );
-  }
-
-  void _emailEditingComplete() {
-    if (canSubmitEmail(email: _email)) {
-      _node.nextFocus();
-    }
-  }
-
-  String? _emailErrorText() {
-    if (!_formSubmitted) return null;
-    return context.getLocalizedFormErrorText(
-      errorKey: getEmailErrorKey(email: _email),
-    );
   }
 
   void _passwordEditingComplete() {
@@ -125,8 +89,8 @@ class _RegistrationFormState extends ConsumerState<RegistrationForm>
 
   void _passwordConfirmEditingComplete() {
     if (doFieldsMatch(value1: _password, value2: _confirmPassword)) {
-      _unfocus();
-      _register();
+      unfocus(_node);
+      _resetPassword();
     }
   }
 
@@ -140,32 +104,27 @@ class _RegistrationFormState extends ConsumerState<RegistrationForm>
     );
   }
 
-  void _resetForm() {
-    _formKey.currentState?.reset();
-    _emailController.clear();
-    _passwordController.clear();
-    _confirmPasswordController.clear();
-    _nameController.clear();
-    _surnameController.clear();
-    _toggleFormSubmitted(false);
-  }
-
-  Future<void> _register() async {
+  Future<void> _resetPassword() async {
     _toggleFormSubmitted(true);
     final valid = _formKey.currentState?.validate() ?? false;
     if (!valid) return;
-    _unfocus();
-    await ref
-        .read(registrationControllerProvider.notifier)
-        .registerWithEmailAndPassword(email: _email, password: _password);
-  }
-
-  Future<void> _registerWithGoogle() async {
-    _unfocus();
-    _resetForm();
-    await ref
-        .read(registrationControllerProvider.notifier)
-        .registerWithGoogle();
+    unfocus(_node);
+    final reset = await ref
+        .read(newPasswordControllerProvider.notifier)
+        .createNewPassword(
+          newPassword: _password,
+          confirmationCode: widget.confirmationCode,
+        );
+    if (reset && mounted) {
+      context.pushReplacementNamed(
+        AppRoute.resetPasswordSuccess.name,
+        pathParameters: PathParameters(
+          passwordResetConfirmationCode: widget.confirmationCode,
+        ).toJson(),
+      );
+      _formKey.currentState?.reset();
+      _toggleFormSubmitted(false);
+    }
   }
 
   @override
@@ -187,60 +146,7 @@ class _RegistrationFormState extends ConsumerState<RegistrationForm>
                 child: Column(
                   crossAxisAlignment: CrossAxisAlignment.stretch,
                   children: [
-                    gapH32,
-
-                    // Name field
-                    FormTitleAndField(
-                      fieldKey: nameFieldKey,
-                      fieldTitle: loc.registration_form_name_field_title,
-                      fieldHintText: loc.registration_form_name_field_hint,
-                      fieldController: _nameController,
-                      textInputAction: TextInputAction.next,
-                      keyboardType: TextInputType.name,
-                      onEditingComplete: () {
-                        _nonEmptyFieldsEditingComplete(_name);
-                      },
-                      validator: (val) => _nonEmptyFieldsErrorText(val ?? ''),
-                      enabled: !widget.isLoading,
-                      prefixIcon: Assets.icons.person.svg(
-                        fit: BoxFit.scaleDown,
-                      ),
-                    ),
-                    gapH20,
-
-                    // Surname field
-                    FormTitleAndField(
-                      fieldKey: surnameFieldKey,
-                      fieldTitle: loc.registration_form_surname_field_title,
-                      fieldHintText: loc.registration_form_surname_field_hint,
-                      fieldController: _surnameController,
-                      textInputAction: TextInputAction.next,
-                      keyboardType: TextInputType.name,
-                      onEditingComplete: () {
-                        _nonEmptyFieldsEditingComplete(_surname);
-                      },
-                      validator: (val) => _nonEmptyFieldsErrorText(val ?? ''),
-                      enabled: !widget.isLoading,
-                      prefixIcon: Assets.icons.person.svg(
-                        fit: BoxFit.scaleDown,
-                      ),
-                    ),
-                    gapH20,
-
-                    // Email field
-                    FormTitleAndField(
-                      fieldKey: emailFieldKey,
-                      fieldTitle: loc.registration_form_email_field_title,
-                      fieldHintText: loc.registration_form_email_field_hint,
-                      fieldController: _emailController,
-                      textInputAction: TextInputAction.next,
-                      keyboardType: TextInputType.emailAddress,
-                      onEditingComplete: _emailEditingComplete,
-                      validator: (_) => _emailErrorText(),
-                      enabled: !widget.isLoading,
-                      prefixIcon: Assets.icons.email.svg(fit: BoxFit.scaleDown),
-                    ),
-                    gapH20,
+                    gapH12,
 
                     // Password field
                     Consumer(
@@ -248,10 +154,10 @@ class _RegistrationFormState extends ConsumerState<RegistrationForm>
                         final obscure = !ref.watch(showPasswordProvider);
                         return FormTitleAndField(
                           fieldKey: passwordFieldKey,
-                          fieldTitle:
-                              loc.registration_form_password_field_title,
-                          fieldHintText:
-                              loc.registration_form_password_field_hint,
+                          fieldTitle: loc
+                              .forgot_password_reset_page_new_password_field_title,
+                          fieldHintText: loc
+                              .forgot_password_reset_page_new_password_field_hint,
                           fieldController: _passwordController,
                           textInputAction: TextInputAction.next,
                           keyboardType: TextInputType.visiblePassword,
@@ -273,7 +179,7 @@ class _RegistrationFormState extends ConsumerState<RegistrationForm>
                     gapH8,
                     // Password suggestion text
                     Text(
-                      loc.registration_form_password_field_suggestion(
+                      loc.forgot_password_reset_page_field_suggestion(
                         AppConstants.minPasswordLength,
                       ),
                       style: textTheme.bodySmall?.copyWith(
@@ -289,9 +195,9 @@ class _RegistrationFormState extends ConsumerState<RegistrationForm>
                         return FormTitleAndField(
                           fieldKey: confirmPasswordFieldKey,
                           fieldTitle: loc
-                              .registration_form_confirm_password_field_title,
-                          fieldHintText:
-                              loc.registration_form_confirm_password_field_hint,
+                              .forgot_password_reset_page_confirm_new_password_field_title,
+                          fieldHintText: loc
+                              .forgot_password_reset_page_confirm_new_password_field_hint,
                           fieldController: _confirmPasswordController,
                           textInputAction: TextInputAction.done,
                           keyboardType: TextInputType.visiblePassword,
@@ -317,20 +223,14 @@ class _RegistrationFormState extends ConsumerState<RegistrationForm>
                 ),
               ),
               gapH12,
-              Consumer(
-                builder: (context, ref, child) {
-                  return AuthFormButtonsSection(
-                    orWithText: loc.registration_page_continue_with,
-                    authCtaKey: submitButtonKey,
-                    authButtonLabel: loc.registration_form_submit_btn,
-                    authButtonEnabled: true,
-                    onAuthButtonPressed: _register,
-                    isLoading: widget.isLoading,
-                    authWithGoogleLabel:
-                        loc.registration_page_register_with_google,
-                    onAuthWithGooglePressed: _registerWithGoogle,
-                  );
-                },
+
+              AuthFormButtonsSection(
+                authCtaKey: submitButtonKey,
+                authButtonLabel: loc
+                    .forgot_password_reset_page_new_password_reset_password_btn,
+                authButtonEnabled: true,
+                onAuthButtonPressed: _resetPassword,
+                isLoading: widget.isLoading,
               ),
               gapH32,
             ],

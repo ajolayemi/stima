@@ -25,27 +25,35 @@ class AppScaffold extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return Scaffold(
-      backgroundColor: bgColor,
-      appBar: !hasAppBar
-          ? null
-          : AppBar(
-              backgroundColor: appBarBgColor,
-              automaticallyImplyLeading: false,
-              leading: IconButton(
-                onPressed: () => onBackPressed != null
-                    ? onBackPressed?.call()
-                    : context.pop(),
-                icon: Assets.icons.back.svg(),
+    return PopScope(
+      onPopInvokedWithResult: (didPop, result) {
+        if (didPop && !hasAppBar) {
+          onBackPressed?.call();
+        }
+      },
+      child: Scaffold(
+        backgroundColor: bgColor,
+        appBar: !hasAppBar
+            ? null
+            : AppBar(
+                backgroundColor: appBarBgColor,
+                automaticallyImplyLeading: false,
+                leading: IconButton(
+                  onPressed: () {
+                    onBackPressed?.call();
+                    context.pop();
+                  },
+                  icon: Assets.icons.back.svg(),
+                ),
               ),
-            ),
-      body: Container(
-        decoration: addGradientBg
-            ? BoxDecoration(
-                gradient: gradientBg ?? AppColors.linearScaffoldGradient,
-              )
-            : null,
-        child: body,
+        body: Container(
+          decoration: addGradientBg
+              ? BoxDecoration(
+                  gradient: gradientBg ?? AppColors.linearScaffoldGradient,
+                )
+              : null,
+          child: body,
+        ),
       ),
     );
   }

@@ -38,8 +38,9 @@ class LoginButtonEnabled extends _$LoginButtonEnabled {
   }
 }
 
+
 @riverpod
-class LoginShowPassword extends _$LoginShowPassword {
+class ShowPassword extends _$ShowPassword {
   @override
   bool build() {
     return false;
@@ -51,20 +52,7 @@ class LoginShowPassword extends _$LoginShowPassword {
 }
 
 @riverpod
-class RegistrationShowPassword extends _$RegistrationShowPassword {
-  @override
-  bool build() {
-    return false;
-  }
-
-  void toggle() {
-    state = !state;
-  }
-}
-
-@riverpod
-class RegistrationShowConfirmPassword
-    extends _$RegistrationShowConfirmPassword {
+class ShowConfirmPassword extends _$ShowConfirmPassword {
   @override
   bool build() {
     return false;

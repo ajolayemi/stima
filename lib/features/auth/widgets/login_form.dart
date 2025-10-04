@@ -6,9 +6,8 @@ import 'package:stima/config/routes/route_enums.dart';
 import 'package:stima/config/theme/app_theme.dart';
 import 'package:stima/core/utils/extensions/app_form_errors_extension.dart';
 import 'package:stima/core/utils/extensions/context_extensions.dart';
-import 'package:stima/core/utils/keyboard/app_keyboard_utils.dart';
 import 'package:stima/core/utils/validators/app_form_mixin.dart';
-import 'package:stima/features/auth/pages/login_controller.dart';
+import 'package:stima/features/auth/controller/login_controller.dart';
 import 'package:stima/features/auth/providers/auth_providers.dart';
 import 'package:stima/features/auth/widgets/auth_form_buttons_section.dart';
 import 'package:stima/gen/assets.gen.dart';
@@ -54,11 +53,6 @@ class _LoginFormState extends ConsumerState<LoginForm> with AppFormMixin {
     super.dispose();
   }
 
-  void _unfocus() {
-    _node.unfocus();
-    AppKeyboardUtils.hideKeyboard();
-  }
-
   void _toggleFormSubmitted(bool? value) {
     setState(() {
       _formSubmitted = value ?? !_formSubmitted;
@@ -88,8 +82,8 @@ class _LoginFormState extends ConsumerState<LoginForm> with AppFormMixin {
       password: _password,
       minLength: AppConstants.minPasswordLength,
     )) {
-      _unfocus();
-      // _node.nextFocus();
+      unfocus(_node);
+
       _login();
       return;
     }
@@ -113,24 +107,25 @@ class _LoginFormState extends ConsumerState<LoginForm> with AppFormMixin {
     _toggleFormSubmitted(false);
   }
 
-  // TODO: [Kehinde] implement logic
   Future<void> _login() async {
     _toggleFormSubmitted(true);
     final valid = _formKey.currentState?.validate() ?? false;
     if (!valid) return;
-    _unfocus();
+    unfocus(_node);
     await ref
         .read(loginControllerProvider.notifier)
         .loginWithEmailAndPassword(email: _email, password: _password);
   }
 
   Future<void> _loginWithGoogle() async {
-    _unfocus();
+    unfocus(_node);
     _resetForm();
     await ref.read(loginControllerProvider.notifier).loginWithGoogle();
   }
 
   void _forgotPassword() {
+    unfocus(_node);
+    _resetForm();
     context.pushNamed(AppRoute.forgotPassword.name);
   }
 
@@ -196,7 +191,7 @@ class _LoginFormState extends ConsumerState<LoginForm> with AppFormMixin {
                     // Password field
                     Consumer(
                       builder: (context, ref, child) {
-                        final obscure = !ref.watch(loginShowPasswordProvider);
+                        final obscure = !ref.watch(showPasswordProvider);
                         return FormTitleAndField(
                           fieldKey: passwordFieldKey,
                           fieldTitle: loc.login_screen_password,
@@ -213,9 +208,7 @@ class _LoginFormState extends ConsumerState<LoginForm> with AppFormMixin {
                           suffixIcon: VisibilityIconButton(
                             isVisible: !obscure,
                             onPressed: () {
-                              ref
-                                  .read(loginShowPasswordProvider.notifier)
-                                  .toggle();
+                              ref.read(showPasswordProvider.notifier).toggle();
                             },
                           ),
                           onChanged: _onFormFieldChanged,

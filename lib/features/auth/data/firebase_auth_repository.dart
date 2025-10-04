@@ -164,4 +164,21 @@ class FirebaseAuthRepository implements AuthRepository {
       rethrow;
     }
   }
+
+  @override
+  Future<void> createNewPassword({
+    required String newPassword,
+    required String confirmationCode,
+  }) async {
+    try {
+      await _auth.confirmPasswordReset(
+        code: confirmationCode,
+        newPassword: newPassword,
+      );
+    } on FirebaseAuthException catch (authException, st) {
+      throw authException.toAppException(st) ?? authException;
+    } catch (e) {
+      rethrow;
+    }
+  }
 }

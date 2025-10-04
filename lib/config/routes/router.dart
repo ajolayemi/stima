@@ -6,11 +6,12 @@ import 'package:stima/config/routes/go_router_refresh_stream.dart';
 import 'package:stima/config/routes/route_enums.dart';
 import 'package:stima/config/routes/router_redirect_service.dart';
 import 'package:stima/core/utils/extensions/router_extensions.dart';
-import 'package:stima/features/auth/pages/forgot_password_mail_sent_screen.dart';
+import 'package:stima/features/auth/pages/forgot_password_success_screen.dart';
 import 'package:stima/features/auth/pages/forgot_password_screen.dart';
 import 'package:stima/features/auth/pages/login_screen.dart';
 import 'package:stima/features/auth/pages/registration_screen.dart';
 import 'package:stima/features/auth/pages/reset_password_screen.dart';
+import 'package:stima/features/auth/pages/reset_password_success_screen.dart';
 import 'package:stima/features/auth/providers/auth_providers.dart';
 import 'package:stima/features/home/pages/home_page.dart';
 import 'package:stima/features/startup/widgets/app_startup_loading_widget.dart';
@@ -59,13 +60,15 @@ GoRouter goRouter(Ref ref) {
               );
             },
             routes: [
-              // The screen displayed after the mail 
+              // The screen displayed after the mail
               GoRoute(
                 path: AppRoute.forgotPasswordSuccess.path,
                 name: AppRoute.forgotPasswordSuccess.name,
                 pageBuilder: (context, state) {
                   return MaterialPage(
-                    child: ForgotPasswordMailSentScreen(email: state.emailFromPath),
+                    child: ForgotPasswordSuccessScreen(
+                      email: state.emailFromPath,
+                    ),
                     fullscreenDialog: true,
                   );
                 },
@@ -79,10 +82,25 @@ GoRouter goRouter(Ref ref) {
             name: AppRoute.resetPassword.name,
             pageBuilder: (context, state) {
               return MaterialPage(
-                child: ResetPasswordScreen(),
+                child: ResetPasswordScreen(
+                  confirmationCode: state.codeFromPath,
+                ),
                 fullscreenDialog: true,
               );
             },
+            routes: [
+              // The screen displayed after password reset is complete
+              GoRoute(
+                path: AppRoute.resetPasswordSuccess.path,
+                name: AppRoute.resetPasswordSuccess.name,
+                pageBuilder: (context, state) {
+                  return MaterialPage(
+                    child: ResetPasswordSuccessScreen(),
+                    fullscreenDialog: true,
+                  );
+                },
+              ),
+            ],
           ),
         ],
       ),

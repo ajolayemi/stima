@@ -76,7 +76,7 @@ class _ForgotPasswordFormState extends ConsumerState<ForgotPasswordForm>
         .sendPasswordRecoveryMail(_email);
 
     if (emailSent && mounted) {
-      context.goNamed(
+      context.pushReplacementNamed(
         AppRoute.forgotPasswordSuccess.name,
         pathParameters: PathParameters(email: _email).toJson(),
       );

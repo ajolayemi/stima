@@ -3,9 +3,10 @@ import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:go_router/go_router.dart';
 import 'package:stima/config/theme/app_theme.dart';
+import 'package:stima/core/utils/app_utils.dart';
 import 'package:stima/core/utils/extensions/async_value_extension.dart';
 import 'package:stima/core/utils/extensions/context_extensions.dart';
-import 'package:stima/features/auth/pages/registration_controller.dart';
+import 'package:stima/features/auth/controller/registration_controller.dart';
 import 'package:stima/features/auth/widgets/registration_form.dart';
 import 'package:stima/shared/constants/app_sizes.dart';
 import 'package:stima/shared/widgets/app_logo_with_texts.dart';
@@ -31,6 +32,9 @@ class RegistrationScreen extends ConsumerWidget {
       addGradientBg: true,
       hasAppBar: true,
       appBarBgColor: AppColors.green50,
+      onBackPressed: () {
+        AppUtils.resetPasswordVisibilityProviders(ref);
+      },
       body: PaddedSafeArea(
         padding: EdgeInsets.only(left: AppSizes.p24, right: AppSizes.p24),
         child: ResponsiveScrollable(

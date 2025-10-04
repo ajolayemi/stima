@@ -25,4 +25,9 @@ abstract class AuthRepository {
   Future<AppRole?> getUserRole({bool forceRefreshToken = true});
 
   Future<bool> sendPasswordResetLink(String email);
+
+  Future<void> createNewPassword({
+    required String newPassword,
+    required String confirmationCode,
+  });
 }

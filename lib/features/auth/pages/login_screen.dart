@@ -4,8 +4,9 @@ import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:go_router/go_router.dart';
 import 'package:stima/config/routes/route_enums.dart';
 import 'package:stima/config/theme/app_theme.dart';
+import 'package:stima/core/utils/app_utils.dart';
 import 'package:stima/core/utils/extensions/async_value_extension.dart';
-import 'package:stima/features/auth/pages/login_controller.dart';
+import 'package:stima/features/auth/controller/login_controller.dart';
 import 'package:stima/features/auth/widgets/login_form.dart';
 import 'package:stima/shared/constants/app_sizes.dart';
 import 'package:stima/shared/widgets/app_logo_with_texts.dart';
@@ -29,6 +30,9 @@ class LoginScreen extends ConsumerWidget {
     final textTheme = context.textTheme;
     return AppScaffold(
       addGradientBg: true,
+      onBackPressed: () {
+        AppUtils.resetPasswordVisibilityProviders(ref);
+      },
       body: PaddedSafeArea(
         padding: EdgeInsets.only(left: AppSizes.p24, right: AppSizes.p24),
         child: ResponsiveScrollable(
