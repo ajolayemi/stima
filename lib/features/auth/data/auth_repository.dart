@@ -23,4 +23,6 @@ abstract class AuthRepository {
   AppUser? get currentUser;
 
   Future<AppRole?> getUserRole({bool forceRefreshToken = true});
+
+  Future<bool> sendPasswordResetLink(String email);
 }

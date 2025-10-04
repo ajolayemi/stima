@@ -7,8 +7,9 @@ import 'package:stima/core/utils/extensions/async_value_extension.dart';
 import 'package:stima/core/utils/extensions/context_extensions.dart';
 import 'package:stima/features/auth/pages/registration_controller.dart';
 import 'package:stima/features/auth/widgets/registration_form.dart';
-import 'package:stima/gen/assets.gen.dart';
 import 'package:stima/shared/constants/app_sizes.dart';
+import 'package:stima/shared/widgets/app_logo_with_texts.dart';
+import 'package:stima/shared/widgets/app_scaffold.dart';
 import 'package:stima/shared/widgets/padded_safe_area.dart';
 import 'package:stima/shared/widgets/responsive_widgets/responsive_scrollable_widget.dart';
 import 'package:stima/shared/widgets/texts/scaled_rich_text.dart';
@@ -26,16 +27,10 @@ class RegistrationScreen extends ConsumerWidget {
     final isLoading = ref.watch(registrationControllerProvider).isLoading;
 
     final textTheme = context.textTheme;
-    return Scaffold(
-      backgroundColor: AppColors.green50,
-      appBar: AppBar(
-        backgroundColor: AppColors.green50,
-        automaticallyImplyLeading: false,
-        leading: IconButton(
-          onPressed: context.pop,
-          icon: Assets.icons.back.svg(),
-        ),
-      ),
+    return AppScaffold(
+      addGradientBg: true,
+      hasAppBar: true,
+      appBarBgColor: AppColors.green50,
       body: PaddedSafeArea(
         padding: EdgeInsets.only(left: AppSizes.p24, right: AppSizes.p24),
         child: ResponsiveScrollable(
@@ -43,12 +38,8 @@ class RegistrationScreen extends ConsumerWidget {
             mainAxisAlignment: MainAxisAlignment.center,
             crossAxisAlignment: CrossAxisAlignment.center,
             children: [
-              Center(child: Assets.icons.appIcon.svg()),
-              gapH12,
-              Text(
-                loc.registration_screen_icon_text,
-                style: textTheme.titleLarge,
-              ),
+              gapH48,
+              AppLogoWithTexts(title: loc.registration_screen_icon_text),
               gapH48,
               RegistrationForm(isLoading: isLoading),
               gapH32,

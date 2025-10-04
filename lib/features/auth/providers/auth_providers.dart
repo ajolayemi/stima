@@ -1,9 +1,10 @@
 import 'package:riverpod_annotation/riverpod_annotation.dart';
 import 'package:stima/core/enums/app_role.dart';
+import 'package:stima/core/providers/app_device_info_provider.dart';
 import 'package:stima/features/auth/data/auth_repository.dart';
 import 'package:stima/features/auth/data/firebase_auth_repository.dart';
-import 'package:stima/shared/providers/firebase_providers.dart';
-import 'package:stima/shared/providers/google_auth_providers.dart';
+import 'package:stima/core/providers/firebase_providers.dart';
+import 'package:stima/core/providers/google_auth_providers.dart';
 
 part 'auth_providers.g.dart';
 
@@ -11,7 +12,8 @@ part 'auth_providers.g.dart';
 AuthRepository authRepository(Ref ref) {
   final firebaseAuth = ref.read(firebaseAuthProvider);
   final googleSignIn = ref.read(googleSignInProvider);
-  return FirebaseAuthRepository(firebaseAuth, googleSignIn);
+  final deviceInfo = ref.watch(appDeviceInfoProvider).value;
+  return FirebaseAuthRepository(firebaseAuth, googleSignIn, deviceInfo);
 }
 
 @Riverpod(keepAlive: true)

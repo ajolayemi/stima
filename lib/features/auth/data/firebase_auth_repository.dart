@@ -1,18 +1,22 @@
 import 'dart:async';
+import 'dart:io';
 
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:google_sign_in/google_sign_in.dart';
+import 'package:stima/config/flavor_configs.dart';
 import 'package:stima/core/enums/app_role.dart';
+import 'package:stima/core/models/app_device_info.dart';
 import 'package:stima/core/utils/extensions/exceptions_extension.dart';
 import 'package:stima/features/auth/data/auth_repository.dart';
 import 'package:stima/features/auth/models/app_user.dart';
 import 'package:stima/features/auth/models/firebase_app_user.dart';
 
 class FirebaseAuthRepository implements AuthRepository {
-  FirebaseAuthRepository(this._auth, this._googleSignIn);
+  FirebaseAuthRepository(this._auth, this._googleSignIn, this._deviceInfo);
 
   final FirebaseAuth _auth;
   final GoogleSignIn _googleSignIn;
+  final AppDeviceInfo? _deviceInfo;
 
   User? get _firebaseUser => _auth.currentUser;
 
@@ -108,7 +112,6 @@ class FirebaseAuthRepository implements AuthRepository {
     required String email,
     required String password,
   }) async {
-    await Future.delayed(const Duration(seconds: 3));
     try {
       final credential = await _auth.createUserWithEmailAndPassword(
         email: email,
@@ -136,5 +139,29 @@ class FirebaseAuthRepository implements AuthRepository {
   @override
   Future<void> refreshUserToken() async {
     await _firebaseUser?.getIdTokenResult(true);
+  }
+
+  @override
+  Future<bool> sendPasswordResetLink(String email) async {
+    try {
+      final firebaseHostUrl = FlavorConfig.firebaseHostUrl;
+      final isAndroid = Platform.isAndroid;
+      final isIos = Platform.isIOS;
+      final actionSettings = ActionCodeSettings(
+        url: '$firebaseHostUrl/verify?email=$email',
+        iOSBundleId: isIos ? _deviceInfo?.appPackageName : null,
+        androidPackageName: isAndroid ? _deviceInfo?.appPackageName : null,
+        handleCodeInApp: true,
+      );
+      await _auth.sendPasswordResetEmail(
+        email: email,
+        actionCodeSettings: actionSettings,
+      );
+      return true;
+    } on FirebaseAuthException catch (authException, st) {
+      throw authException.toAppException(st) ?? authException;
+    } catch (e) {
+      rethrow;
+    }
   }
 }

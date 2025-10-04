@@ -1,11 +1,13 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
+import 'package:go_router/go_router.dart';
+import 'package:stima/config/routes/route_enums.dart';
 
 import 'package:stima/config/theme/app_theme.dart';
 import 'package:stima/core/utils/extensions/app_form_errors_extension.dart';
 import 'package:stima/core/utils/extensions/context_extensions.dart';
 import 'package:stima/core/utils/keyboard/app_keyboard_utils.dart';
-import 'package:stima/core/utils/validators/app_form_validator_mixin.dart';
+import 'package:stima/core/utils/validators/app_form_mixin.dart';
 import 'package:stima/features/auth/pages/login_controller.dart';
 import 'package:stima/features/auth/providers/auth_providers.dart';
 import 'package:stima/features/auth/widgets/auth_form_buttons_section.dart';
@@ -25,8 +27,7 @@ class LoginForm extends ConsumerStatefulWidget {
   ConsumerState<ConsumerStatefulWidget> createState() => _LoginFormState();
 }
 
-class _LoginFormState extends ConsumerState<LoginForm>
-    with AppFormValidatorMixin {
+class _LoginFormState extends ConsumerState<LoginForm> with AppFormMixin {
   final _formKey = GlobalKey<FormState>();
   final _node = FocusScopeNode();
 
@@ -123,15 +124,15 @@ class _LoginFormState extends ConsumerState<LoginForm>
         .loginWithEmailAndPassword(email: _email, password: _password);
   }
 
-  // TODO: [Kehinde] implement logic
   Future<void> _loginWithGoogle() async {
     _unfocus();
     _resetForm();
     await ref.read(loginControllerProvider.notifier).loginWithGoogle();
   }
 
-  // TODO: [Kehinde] implement logic
-  Future<void> _forgotPassword() async {}
+  void _forgotPassword() {
+    context.pushNamed(AppRoute.forgotPassword.name);
+  }
 
   void _onFormFieldChanged(String val) {
     ref.read(loginButtonEnabledProvider.notifier).toggle(_email, _password);

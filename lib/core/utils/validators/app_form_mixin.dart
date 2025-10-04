@@ -1,7 +1,9 @@
+import 'package:flutter/material.dart';
+import 'package:stima/core/utils/keyboard/app_keyboard_utils.dart';
 import 'package:stima/core/utils/validators/validators.dart';
 
 /// Holds onto various form validation utilities
-mixin AppFormValidatorMixin {
+mixin AppFormMixin {
   final _nonEmptyValidator = NonEmptyStringValidator();
 
   // final _numberFieldsValidator = NumberValidators();
@@ -15,6 +17,11 @@ mixin AppFormValidatorMixin {
   final _passwordDigitValidator = PasswordDigitValidator();
 
   final _passwordSpecialCharValidator = PasswordSpecialCharValidator();
+
+  void unfocus(FocusNode node) {
+    node.unfocus();
+    AppKeyboardUtils.hideKeyboard();
+  }
 
   /// Helps in validating email fields from forms
   bool canSubmitEmail({required String email, String? initialValue}) {

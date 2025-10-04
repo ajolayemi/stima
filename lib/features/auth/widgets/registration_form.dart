@@ -4,7 +4,7 @@ import 'package:stima/config/theme/app_theme.dart';
 import 'package:stima/core/utils/extensions/app_form_errors_extension.dart';
 import 'package:stima/core/utils/extensions/context_extensions.dart';
 import 'package:stima/core/utils/keyboard/app_keyboard_utils.dart';
-import 'package:stima/core/utils/validators/app_form_validator_mixin.dart';
+import 'package:stima/core/utils/validators/app_form_mixin.dart';
 import 'package:stima/features/auth/pages/registration_controller.dart';
 import 'package:stima/features/auth/providers/auth_providers.dart';
 import 'package:stima/features/auth/widgets/auth_form_buttons_section.dart';
@@ -26,7 +26,7 @@ class RegistrationForm extends ConsumerStatefulWidget {
 }
 
 class _RegistrationFormState extends ConsumerState<RegistrationForm>
-    with AppFormValidatorMixin {
+    with AppFormMixin {
   final _formKey = GlobalKey<FormState>();
   final _node = FocusScopeNode();
 
@@ -167,7 +167,6 @@ class _RegistrationFormState extends ConsumerState<RegistrationForm>
         .read(registrationControllerProvider.notifier)
         .registerWithGoogle();
   }
-
 
   @override
   Widget build(BuildContext context) {

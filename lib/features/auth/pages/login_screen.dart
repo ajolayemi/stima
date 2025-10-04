@@ -7,8 +7,9 @@ import 'package:stima/config/theme/app_theme.dart';
 import 'package:stima/core/utils/extensions/async_value_extension.dart';
 import 'package:stima/features/auth/pages/login_controller.dart';
 import 'package:stima/features/auth/widgets/login_form.dart';
-import 'package:stima/gen/assets.gen.dart';
 import 'package:stima/shared/constants/app_sizes.dart';
+import 'package:stima/shared/widgets/app_logo_with_texts.dart';
+import 'package:stima/shared/widgets/app_scaffold.dart';
 import 'package:stima/shared/widgets/padded_safe_area.dart';
 import 'package:stima/shared/widgets/responsive_widgets/responsive_scrollable_widget.dart';
 import 'package:stima/shared/widgets/texts/scaled_rich_text.dart';
@@ -26,9 +27,8 @@ class LoginScreen extends ConsumerWidget {
     final isLoading = ref.watch(loginControllerProvider).isLoading;
 
     final textTheme = context.textTheme;
-    return Scaffold(
-      backgroundColor: AppColors.green50,
-      // appBar: AppBar(),
+    return AppScaffold(
+      addGradientBg: true,
       body: PaddedSafeArea(
         padding: EdgeInsets.only(left: AppSizes.p24, right: AppSizes.p24),
         child: ResponsiveScrollable(
@@ -36,10 +36,8 @@ class LoginScreen extends ConsumerWidget {
             mainAxisAlignment: MainAxisAlignment.center,
             crossAxisAlignment: CrossAxisAlignment.center,
             children: [
-              // SizedBox(height: context.screenTopPadding + AppSizes.p24),
-              Center(child: Assets.icons.appIcon.svg()),
-              gapH12,
-              Text(loc.login_screen_icon_text, style: textTheme.titleLarge),
+              gapH48,
+              AppLogoWithTexts(title: loc.login_screen_icon_text),
               gapH48,
               LoginForm(isLoading: isLoading),
               gapH32,

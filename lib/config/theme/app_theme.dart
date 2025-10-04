@@ -7,6 +7,11 @@ class AppColors {
   static const green100 = Color(0xFFDCFCE7);
   static const green600 = Color(0xFF16A34A);
   static const green700 = Color(0xFF15803D);
+  static const linearScaffoldGradient = LinearGradient(
+    begin: Alignment.topCenter,
+    end: Alignment.bottomCenter,
+    colors: [green50, white],
+  );
 
   // Neutral
   static const white = Color(0xFFFFFFFF);

@@ -29,14 +29,14 @@ class RouterRedirectService {
       // No need to redirect, let the user continue to the intended page
       return null;
     }
-    // A non-logged in user trying to access a protected route should be
-    // redirected to the login page
-    if (!currentPath.isLoginOrRegister) {
-      return AppRoute.login.path;
+    // A non-logged in user trying to access a non protected route should be
+    // allowed to access it
+    if (currentPath.isNotProtectedRoute) {
+      return null;
     }
 
     // No need to redirect, let the user continue to the intended page
-    return null;
+    return AppRoute.login.path;
   }
 }
 
