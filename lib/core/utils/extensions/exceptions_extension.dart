@@ -10,6 +10,7 @@ extension FirebaseAuthExceptionsExtension on FirebaseAuthException {
       case 'user-not-found':
       case 'user-disabled':
       case 'wrong-password':
+      case 'invalid-credential':
         return UserNotFoundException(stackTrace: st);
       case 'email-already-in-use':
         return EmailAlreadyInUseException(stackTrace: st);
