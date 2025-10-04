@@ -107,7 +107,7 @@ class _RegistrationFormState extends ConsumerState<RegistrationForm>
       password: _password,
       minLength: AppConstants.minPasswordLength,
     )) {
-      _unfocus();
+      _node.nextFocus();
       return;
     }
   }
