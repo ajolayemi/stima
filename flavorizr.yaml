@@ -6,6 +6,13 @@ flavors:
 
     android:
       applicationId: "com.incampagna.stima.dev"
+      resValues:
+        firebase_web_app_host:
+          type: "string"
+          value: "stime-dev-473921.web.app"
+        firebase_app_host:
+          type: "string"
+          value: "stime-dev-473921.firebaseapp.com"
     ios:
       bundleId: "com.incampagna.stima.dev"
       variables:

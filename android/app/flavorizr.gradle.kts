@@ -10,6 +10,8 @@ android.apply {
             dimension = "flavor-type"
             applicationId = "com.incampagna.stima.dev"
             resValue(type = "string", name = "app_name", value = "Stime in campo DEV")
+            resValue(type = "string", name = "firebase_web_app_host", value = "stime-dev-473921.web.app")
+            resValue(type = "string", name = "firebase_app_host", value = "stime-dev-473921.firebaseapp.com")
         }
         create("stg") {
             dimension = "flavor-type"
