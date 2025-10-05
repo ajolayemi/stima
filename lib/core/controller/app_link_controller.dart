@@ -1,5 +1,6 @@
 import 'dart:async';
 
+import 'package:flutter/material.dart';
 import 'package:go_router/go_router.dart';
 import 'package:riverpod_annotation/riverpod_annotation.dart';
 
@@ -22,18 +23,11 @@ class AppLinkController extends _$AppLinkController {
     if (!appInitialized) {
       return;
     }
-    // final router = ref.watch(goRouterProvider);
     _subscription = AppLinks().uriLinkStream.listen((uri) {
+      debugPrint('Received URI: $uri');
       final path = uri.path;
       final queryParams = uri.queryParameters;
-      if (path == '/verify') {
-        _router.goNamed(
-          AppRoute.resetPassword.name,
-          pathParameters: PathParameters(
-            passwordResetConfirmationCode: 'abcd',
-          ).toJson(),
-        );
-      } else if (path == '/__/auth/links') {
+      if (path == '/__/auth/links') {
         final link = queryParams['link'];
         if (link == null || link.isEmpty) {
           return;
@@ -49,10 +43,8 @@ class AppLinkController extends _$AppLinkController {
               _processPasswordResetLink(continueUrl, oobCode);
             }
           }
-          print(parsedLinkQueryParams);
         }
       }
-      print('AppLinkIntercepted: $uri');
     });
 
     ref.onDispose(() {
