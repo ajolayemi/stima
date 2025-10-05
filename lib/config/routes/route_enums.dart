@@ -1,6 +1,6 @@
 /// All supported routes in the application.
 enum AppRoute {
-  startup('app-startup'),
+  splashScreen('/'),
   login('/log-in'),
   forgotPassword('forgot-password'),
   forgotPasswordSuccess('success/:email'),

@@ -8,7 +8,11 @@ import 'package:stima/core/utils/extensions/exceptions_extension.dart';
 extension AsyncValueExtension on AsyncValue {
   /// show an alert dialog if the current [AsyncValue] is an error and the
   /// state isn't loading
-  void showAlertDialogOnError(BuildContext context) {
+  void showAlertDialogOnError(
+    BuildContext context, {
+    VoidCallback? onConfirmActionPressed,
+    VoidCallback? onCancelActionPressed,
+  }) {
     if (!isLoading && hasError) {
       if (error is SilentException) {
         return;
@@ -17,6 +21,13 @@ extension AsyncValueExtension on AsyncValue {
         context: context,
         title: _errorDialogTitle(error, context: context),
         message: _errorDialogMessage(error, context: context),
+        cancelActionLabel: _errorDialogCloseButtonLabel(
+          error, 
+          context: context, 
+        ),
+        confirmActionLabel: _errorDialogMainCtaLabel(error, context: context),
+        onCancelActionPressed: onCancelActionPressed,
+        onConfirmActionPressed: onConfirmActionPressed,
       );
     }
   }
@@ -35,5 +46,26 @@ extension AsyncValueExtension on AsyncValue {
       return error.getDialogContent(context);
     }
     return loc.error_dialog_generic_content;
+  }
+
+  String? _errorDialogCloseButtonLabel(
+    Object? error, {
+    required BuildContext context,
+  }) {
+    if (error is AppException) {
+      return error.getDialogCloseButtonLabel(context);
+    }
+    return null;
+  }
+
+  String _errorDialogMainCtaLabel(
+    Object? error, {
+    required BuildContext context,
+  }) {
+    final loc = context.loc;
+    if (error is AppException) {
+      return error.getDialogMainCtaLabel(context);
+    }
+    return loc.error_dialog_ok_cta_btn;
   }
 }

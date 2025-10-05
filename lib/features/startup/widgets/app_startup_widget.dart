@@ -1,9 +1,9 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:stima/core/controller/app_link_controller.dart';
+import 'package:stima/features/startup/pages/app_splash_screen.dart';
 import 'package:stima/features/startup/providers/app_startup_provider.dart';
 import 'package:stima/features/startup/widgets/app_startup_error_widget.dart';
-import 'package:stima/features/startup/widgets/app_startup_loading_widget.dart';
 
 class AppStartupWidget extends ConsumerStatefulWidget {
   const AppStartupWidget({super.key, required this.onLoaded});
@@ -32,7 +32,7 @@ class _AppStartupWidgetState extends ConsumerState<AppStartupWidget> {
         message: e.toString(),
         onRetry: () => ref.invalidate(appStartupProvider),
       ),
-      loading: () => const AppStartupLoadingWidget(),
+      loading: () => const AppSplashScreen(),
     );
   }
 }

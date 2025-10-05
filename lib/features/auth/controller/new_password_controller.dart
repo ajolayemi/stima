@@ -18,12 +18,18 @@ class NewPasswordController extends _$NewPasswordController {
   }) async {
     state = const AsyncLoading();
 
-    state = await AsyncValue.guard(
+    final res = await AsyncValue.guard(
       () async => await _authRepository.createNewPassword(
         newPassword: newPassword,
         confirmationCode: confirmationCode,
       ),
     );
+
+    if (!res.hasError && ref.mounted) {
+      state = AsyncData(null);
+    } else if (res.hasError && ref.mounted) {
+      state = AsyncError(res.error!, StackTrace.current);
+    }
 
     return !state.hasError;
   }

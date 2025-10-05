@@ -14,7 +14,7 @@ import 'package:stima/features/auth/pages/reset_password_screen.dart';
 import 'package:stima/features/auth/pages/reset_password_success_screen.dart';
 import 'package:stima/features/auth/providers/auth_providers.dart';
 import 'package:stima/features/home/pages/home_page.dart';
-import 'package:stima/features/startup/widgets/app_startup_loading_widget.dart';
+import 'package:stima/features/startup/pages/app_splash_screen.dart';
 
 part 'router.g.dart';
 
@@ -25,7 +25,7 @@ GoRouter goRouter(Ref ref) {
   final redirectService = ref.watch(routerRedirectServiceProvider);
   final authRepo = ref.watch(authRepositoryProvider);
   return GoRouter(
-    initialLocation: AppRoute.login.path,
+    initialLocation: AppRoute.splashScreen.path,
     debugLogDiagnostics: kDebugMode,
     // redirect logic based on auth state
     redirect: redirectService.redirect,
@@ -33,13 +33,10 @@ GoRouter goRouter(Ref ref) {
     refreshListenable: GoRouterRefreshStream(authRepo.authStateChanges()),
     routes: [
       GoRoute(
-        path: AppRoute.startup.path,
-        name: AppRoute.startup.name,
+        path: AppRoute.splashScreen.path,
+        name: AppRoute.splashScreen.name,
         pageBuilder: (context, state) {
-          return MaterialPage(
-            child: AppStartupLoadingWidget(),
-            fullscreenDialog: true,
-          );
+          return MaterialPage(child: AppSplashScreen(), fullscreenDialog: true);
         },
       ),
       GoRoute(

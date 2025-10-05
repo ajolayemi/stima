@@ -18,6 +18,10 @@ class $AssetsIconsGen {
   /// File path: assets/icons/app_icon.svg
   SvgGenImage get appIcon => const SvgGenImage('assets/icons/app_icon.svg');
 
+  /// File path: assets/icons/app_logo_white.svg
+  SvgGenImage get appLogoWhite =>
+      const SvgGenImage('assets/icons/app_logo_white.svg');
+
   /// File path: assets/icons/back.svg
   SvgGenImage get back => const SvgGenImage('assets/icons/back.svg');
 
@@ -48,6 +52,7 @@ class $AssetsIconsGen {
   /// List of all assets
   List<SvgGenImage> get values => [
     appIcon,
+    appLogoWhite,
     back,
     confirmMark,
     email,

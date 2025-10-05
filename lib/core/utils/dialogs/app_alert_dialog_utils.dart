@@ -15,15 +15,15 @@ class AppAlertDialogUtils {
     required BuildContext context,
     required String title,
     String? content,
-    String? cancelActionText,
-    String defaultActionText = 'OK',
+    String? cancelActionLabel,
+    String confirmActionLabel = 'OK',
     VoidCallback? onDefaultActionPressed,
     VoidCallback? onCancelActionPressed,
   }) async {
     return showAdaptiveDialog(
       context: context,
       // * Only make the dialog dismissible if there is a cancel button
-      barrierDismissible: cancelActionText != null,
+      barrierDismissible: cancelActionLabel != null,
       // * AlertDialog.adaptive was added in Flutter 3.13
       builder: (context) => AlertDialog.adaptive(
         title: Text(title),
@@ -31,9 +31,9 @@ class AppAlertDialogUtils {
         // * Use [TextButton] or [CupertinoDialogAction] depending on the platform
         actions: kIsWeb || !Platform.isIOS
             ? <Widget>[
-                if (cancelActionText != null)
+                if (cancelActionLabel != null)
                   TextButton(
-                    child: Text(cancelActionText),
+                    child: Text(cancelActionLabel),
                     onPressed: () {
                       onCancelActionPressed?.call();
                       Navigator.of(context).pop(false);
@@ -41,7 +41,7 @@ class AppAlertDialogUtils {
                   ),
                 TextButton(
                   key: kDialogDefaultKey,
-                  child: Text(defaultActionText),
+                  child: Text(confirmActionLabel),
                   onPressed: () {
                     onDefaultActionPressed?.call();
                     Navigator.of(context).pop(true);
@@ -49,9 +49,9 @@ class AppAlertDialogUtils {
                 ),
               ]
             : <Widget>[
-                if (cancelActionText != null)
+                if (cancelActionLabel != null)
                   CupertinoDialogAction(
-                    child: Text(cancelActionText),
+                    child: Text(cancelActionLabel),
                     onPressed: () {
                       onCancelActionPressed?.call();
                       Navigator.of(context).pop(false);
@@ -59,7 +59,7 @@ class AppAlertDialogUtils {
                   ),
                 CupertinoDialogAction(
                   key: kDialogDefaultKey,
-                  child: Text(defaultActionText),
+                  child: Text(confirmActionLabel),
                   onPressed: () {
                     onDefaultActionPressed?.call();
                     Navigator.of(context).pop(true);
@@ -75,20 +75,20 @@ class AppAlertDialogUtils {
     required BuildContext context,
     required String title,
     required String message,
-    VoidCallback? onDefaultActionPressed,
+    VoidCallback? onConfirmActionPressed,
     VoidCallback? onCancelActionPressed,
-    String? defaultActionText,
-    String? cancelActionText,
+    String? confirmActionLabel,
+    String? cancelActionLabel,
   }) {
     final loc = context.loc;
     return showAlertDialog(
       context: context,
       title: title,
       content: message,
-      defaultActionText: defaultActionText ?? loc.error_dialog_ok_cta_btn,
-      cancelActionText: cancelActionText,
+      confirmActionLabel: confirmActionLabel ?? loc.error_dialog_ok_cta_btn,
+      cancelActionLabel: cancelActionLabel,
       onCancelActionPressed: onCancelActionPressed,
-      onDefaultActionPressed: onDefaultActionPressed,
+      onDefaultActionPressed: onConfirmActionPressed,
     );
   }
 

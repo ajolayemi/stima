@@ -14,9 +14,14 @@ class ForgotPasswordController extends _$ForgotPasswordController {
 
   Future<bool> sendPasswordRecoveryMail(String email) async {
     state = const AsyncLoading();
-    state = await AsyncValue.guard(
+    final res = await AsyncValue.guard(
       () async => await _authRepository.sendPasswordResetLink(email),
     );
+    if (!res.hasError && ref.mounted) {
+      state = AsyncData(null);
+    } else if (res.hasError && ref.mounted) {
+      state = AsyncError(res.error!, StackTrace.current);
+    }
     return !state.hasError;
   }
 }

@@ -1,7 +1,10 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
+import 'package:go_router/go_router.dart';
+import 'package:stima/config/routes/route_enums.dart';
 import 'package:stima/config/theme/app_theme.dart';
 import 'package:stima/core/utils/app_utils.dart';
+import 'package:stima/core/utils/extensions/async_value_extension.dart';
 import 'package:stima/core/utils/extensions/context_extensions.dart';
 import 'package:stima/features/auth/controller/new_password_controller.dart';
 import 'package:stima/features/auth/widgets/reset_password_form.dart';
@@ -18,6 +21,15 @@ class ResetPasswordScreen extends ConsumerWidget {
 
   @override
   Widget build(BuildContext context, WidgetRef ref) {
+    ref.listen(newPasswordControllerProvider, (_, state) {
+      state.showAlertDialogOnError(
+        context,
+        onConfirmActionPressed: () {
+          context.goNamed(AppRoute.forgotPassword.name);
+          AppUtils.resetPasswordVisibilityProviders(ref);
+        },
+      );
+    });
     final loc = context.loc;
     final isLoading = ref.watch(newPasswordControllerProvider).isLoading;
     return AppScaffold(

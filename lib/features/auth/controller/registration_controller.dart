@@ -17,18 +17,28 @@ class RegistrationController extends _$RegistrationController {
     required String password,
   }) async {
     state = const AsyncValue.loading();
-    state = await AsyncValue.guard(
+    final res = await AsyncValue.guard(
       () async => await _authRepository.createUserWithEmailAndPassword(
         email: email,
         password: password,
       ),
     );
+    if (!res.hasError && ref.mounted) {
+      state = AsyncData(null);
+    } else if (res.hasError && ref.mounted) {
+      state = AsyncError(res.error!, StackTrace.current);
+    }
   }
 
   Future<void> registerWithGoogle() async {
     state = const AsyncValue.loading();
-    state = await AsyncValue.guard(
+    final res = await AsyncValue.guard(
       () async => await _authRepository.loginWithGoogle(),
     );
+    if (!res.hasError && ref.mounted) {
+      state = AsyncData(null);
+    } else if (res.hasError && ref.mounted) {
+      state = AsyncError(res.error!, StackTrace.current);
+    }
   }
 }

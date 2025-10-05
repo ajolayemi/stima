@@ -59,8 +59,14 @@ class SilentException extends AppException {
 /// For example, during google auth flow, should user cancel the flow, they're not told about that as they interrupted it themselves
 class GenericException extends AppException {
   GenericException({super.stackTrace})
+    : super(code: 'app/generic-error', message: 'A generic error occurred');
+}
+
+class ResetPasswordCodeExpiredException extends AppException {
+  ResetPasswordCodeExpiredException({super.stackTrace})
     : super(
-        code: 'app/generic-error',
-        message: 'A generic error occurred',
+        code: 'app/reset-password-code-expired',
+        message:
+            'The provided confirmation code for password reset is invalid or has expired',
       );
 }

@@ -171,6 +171,7 @@ class FirebaseAuthRepository implements AuthRepository {
     required String confirmationCode,
   }) async {
     try {
+      await _auth.verifyPasswordResetCode(confirmationCode);
       await _auth.confirmPasswordReset(
         code: confirmationCode,
         newPassword: newPassword,

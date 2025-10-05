@@ -14,6 +14,9 @@ extension FirebaseAuthExceptionsExtension on FirebaseAuthException {
         return UserNotFoundException(stackTrace: st);
       case 'email-already-in-use':
         return EmailAlreadyInUseException(stackTrace: st);
+      case 'expired-action-code':
+      case 'invalid-action-code':
+        return ResetPasswordCodeExpiredException(stackTrace: st);
       default:
         return null;
     }
@@ -48,8 +51,28 @@ extension ExceptionsExt on AppException {
       return loc.error_dialog_user_not_found_content;
     } else if (this is EmailAlreadyInUseException) {
       return loc.error_dialog_email_already_in_use;
+    } else if (this is ResetPasswordCodeExpiredException) {
+      return loc.forgot_password_confirmation_code_invalid_error_text;
     }
 
     return loc.error_dialog_generic_content;
+  }
+
+  String? getDialogCloseButtonLabel(BuildContext context) {
+    final loc = context.loc;
+
+    if (this is ResetPasswordCodeExpiredException) {
+      return loc.forgot_password_confirmation_code_invalid_error_close_btn;
+    }
+    return null;
+  }
+
+  String getDialogMainCtaLabel(BuildContext context) {
+    final loc = context.loc;
+
+    if (this is ResetPasswordCodeExpiredException) {
+      return loc.forgot_password_confirmation_code_invalid_error_request_cta;
+    }
+    return loc.error_dialog_ok_cta_btn;
   }
 }

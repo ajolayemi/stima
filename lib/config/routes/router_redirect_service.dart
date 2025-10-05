@@ -15,10 +15,12 @@ class RouterRedirectService {
 
   AuthRepository get _authRepository => _ref.read(authRepositoryProvider);
 
-  FutureOr<String?> redirect(BuildContext context, GoRouterState state) async {
+  String? redirect(BuildContext context, GoRouterState state) {
     final currentUser = _authRepository.currentUser;
 
     final currentPath = state.uri.path;
+
+    debugPrint('GoRouterRedirect: current path is $currentPath');
 
     if (currentUser != null && currentUser.uid.isNotEmpty) {
       // An already logged in user trying to access the login or register page

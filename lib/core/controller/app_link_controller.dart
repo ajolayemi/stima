@@ -7,6 +7,7 @@ import 'package:app_links/app_links.dart';
 import 'package:stima/config/routes/route_enums.dart';
 import 'package:stima/config/routes/router.dart';
 import 'package:stima/core/models/path_parameters.dart';
+import 'package:stima/features/startup/providers/app_startup_provider.dart';
 part 'app_link_controller.g.dart';
 
 @Riverpod(keepAlive: true)
@@ -16,6 +17,11 @@ class AppLinkController extends _$AppLinkController {
   GoRouter get _router => ref.read(goRouterProvider);
   @override
   FutureOr<void> build() async {
+    final appInitialized = await ref.watch(appStartupProvider.future);
+
+    if (!appInitialized) {
+      return;
+    }
     // final router = ref.watch(goRouterProvider);
     _subscription = AppLinks().uriLinkStream.listen((uri) {
       final path = uri.path;
