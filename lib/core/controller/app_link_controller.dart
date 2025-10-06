@@ -56,7 +56,7 @@ class AppLinkController extends _$AppLinkController {
   void _processPasswordResetLink(String link, String verificationCode) {
     final parsedLink = Uri.parse(link);
     final parsedLinkPath = parsedLink.path;
-    if (parsedLinkPath == '/verify') {
+    if (parsedLinkPath == '/log-in/reset-password') {
       _router.goNamed(
         AppRoute.resetPassword.name,
         pathParameters: PathParameters(

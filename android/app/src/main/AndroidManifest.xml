@@ -25,7 +25,7 @@
           from others in case of conflicting scheme name -->
         <data android:scheme="https" />
         <data android:host="@string/firebase_web_app_host" />
-        <data android:path="/verify" />
+        <data android:path="/log-in/reset-password" />
 
         <data android:scheme="https" />
         <data android:host="@string/firebase_app_host" />

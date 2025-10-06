@@ -148,7 +148,7 @@ class FirebaseAuthRepository implements AuthRepository {
       final isAndroid = Platform.isAndroid;
       final isIos = Platform.isIOS;
       final actionSettings = ActionCodeSettings(
-        url: '$firebaseHostUrl/verify?email=$email',
+        url: '$firebaseHostUrl/log-in/reset-password?email=$email',
         iOSBundleId: isIos ? _deviceInfo?.appPackageName : null,
         androidPackageName: isAndroid ? _deviceInfo?.appPackageName : null,
         handleCodeInApp: true,
