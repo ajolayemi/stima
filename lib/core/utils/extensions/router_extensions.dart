@@ -3,6 +3,10 @@ import 'package:stima/config/routes/route_enums.dart';
 import 'package:stima/core/models/path_parameters.dart';
 
 extension RouterPathExtensions on String {
+  bool get isSplashScreen {
+    return this == AppRoute.splashScreen.path;
+  }
+
   bool get isHome {
     return this == AppRoute.home.path;
   }
