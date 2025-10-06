@@ -25,7 +25,7 @@ class RouterRedirectService {
     if (currentUser != null && currentUser.uid.isNotEmpty) {
       // An already logged in user trying to access the login or register page
       // should be directed to home page
-      if (currentPath.isLoginOrRegister) {
+      if (currentPath.isLoginOrRegister || currentPath.isSplashScreen) {
         return AppRoute.home.path;
       }
       // No need to redirect, let the user continue to the intended page
