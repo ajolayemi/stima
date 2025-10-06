@@ -20,6 +20,9 @@ class FirebaseRemoteConfigRepository implements ConfigRepository {
     );
 
     final configActivated = await _configInstance.fetchAndActivate();
+    await _configInstance.setDefaults({
+      ConfigKeys.versionUpdateConfig.key: "{}",
+    });
     // TODO: add correct logger here
     debugPrint(
       'FirebaseRemoteConfigRepository: config activated - $configActivated',
