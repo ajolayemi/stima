@@ -18,9 +18,9 @@ class AppLinkController extends _$AppLinkController {
   GoRouter get _router => ref.read(goRouterProvider);
   @override
   FutureOr<void> build() async {
-    final appInitialized = await ref.watch(appStartupProvider.future);
+    final appInitResult = await ref.watch(appStartupProvider.future);
 
-    if (!appInitialized) {
+    if (!appInitResult.startupCompleted || appInitResult.updateRequired) {
       return;
     }
     _subscription = AppLinks().uriLinkStream.listen((uri) {

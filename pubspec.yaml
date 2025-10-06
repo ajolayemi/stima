@@ -25,6 +25,9 @@ dependencies:
   device_info_plus: ^12.1.0
   json_annotation: ^4.9.0
   app_links: ^6.4.1
+  firebase_remote_config: ^6.0.2
+  url_launcher: ^6.3.2
+  version: ^3.0.2
 
 dev_dependencies:
   flutter_test:

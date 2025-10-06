@@ -1,5 +1,9 @@
+import 'dart:io';
+
 import 'package:flutter_riverpod/flutter_riverpod.dart';
+import 'package:stima/config/flavor_configs.dart';
 import 'package:stima/features/auth/providers/auth_providers.dart';
+import 'package:version/version.dart';
 
 class AppUtils {
   const AppUtils._();
@@ -22,5 +26,32 @@ class AppUtils {
   static void resetPasswordVisibilityProviders(WidgetRef ref) {
     ref.invalidate(showPasswordProvider);
     ref.invalidate(showConfirmPasswordProvider);
+  }
+
+  static String getStoreRedirectUri({String? androidPackageName}) {
+    if (Platform.isAndroid &&
+        androidPackageName != null &&
+        androidPackageName.isNotEmpty) {
+      return 'https://play.google.com/store/apps/details?id=$androidPackageName';
+    } else if (Platform.isIOS) {
+      return 'https://apps.apple.com/app/${FlavorConfig.iosStoreId}';
+    }
+    return '';
+  }
+
+  static bool needsToUpdateApp({
+    String? currentVersion,
+    String? requiredVersion,
+  }) {
+    if (currentVersion == null ||
+        currentVersion.isEmpty ||
+        requiredVersion == null ||
+        requiredVersion.isEmpty) {
+      return false;
+    }
+
+    final parsedCurrentVersion = Version.parse(currentVersion);
+    final parsedRequired = Version.parse(requiredVersion);
+    return parsedRequired > parsedCurrentVersion;
   }
 }

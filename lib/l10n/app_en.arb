@@ -95,6 +95,9 @@
 
   "password_reset_success_dialog_title": "Password Reset!",
   "password_reset_success_dialog_content": "Your password has been successfully reset.\nYou can now log in with your new password.",
-  "password_reset_success_go_to_login": "Go to Login"
+  "password_reset_success_go_to_login": "Go to Login",
+
+  "force_update_content": "A new version of the app is available. Please update to continue using the app.",
+  "force_update_update_btn": "Update"
 
 }

@@ -13,6 +13,7 @@ class AppScaffold extends StatelessWidget {
     this.body,
     this.addGradientBg = false,
     this.gradientBg,
+    this.canPop = true,
   });
 
   final Color? bgColor;
@@ -22,10 +23,12 @@ class AppScaffold extends StatelessWidget {
   final Widget? body;
   final bool addGradientBg;
   final Gradient? gradientBg;
+  final bool canPop;
 
   @override
   Widget build(BuildContext context) {
     return PopScope(
+      canPop: canPop,
       onPopInvokedWithResult: (didPop, result) {
         if (didPop && !hasAppBar) {
           onBackPressed?.call();

@@ -12,4 +12,16 @@ class FlavorConfig {
         return "https://myapp.web.app";
     }
   }
+
+  // TODO: complete implementation if necessary
+  static String get iosStoreId {
+    switch (F.appFlavor) {
+      case Flavor.dev:
+        return "id";
+      case Flavor.stg:
+        return "id";
+      case Flavor.prod:
+        return "id";
+    }
+  }
 }

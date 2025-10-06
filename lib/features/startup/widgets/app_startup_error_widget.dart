@@ -1,6 +1,8 @@
 import 'package:flutter/material.dart';
+import 'package:stima/shared/widgets/app_scaffold.dart';
+import 'package:stima/shared/widgets/responsive_widgets/responsive_center_widget.dart';
 
-// TODO: [Kehinde] - finish implementation
+// TODO: complete implementation
 /// Widget to show if app initialization fails
 class AppStartupErrorWidget extends StatelessWidget {
   const AppStartupErrorWidget({
@@ -14,19 +16,17 @@ class AppStartupErrorWidget extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return Scaffold(
-      appBar: AppBar(),
-      body: Center(
+    return AppScaffold(
+      hasAppBar: false,
+      body: ResponsiveCenter(
         child: Column(
+          mainAxisAlignment: MainAxisAlignment.center,
+          crossAxisAlignment: CrossAxisAlignment.center,
           mainAxisSize: MainAxisSize.min,
           children: [
             Text('Si è verificato un errore durante l\'avvio dell\'app'),
             // ErrorMessageWidget(message),
-            // CTAButton(
-            //   text: 'Riprova',
-            //   buttonType: ButtonType.primary,
-            //   onPressed: onRetry,
-            // ),
+            // AppPrimaryButton(label: 'Riprova', onPressed: onRetry),
           ],
         ),
       ),

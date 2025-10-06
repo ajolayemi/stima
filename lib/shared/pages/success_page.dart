@@ -3,6 +3,7 @@ import 'package:stima/shared/constants/app_sizes.dart';
 import 'package:stima/shared/widgets/app_scaffold.dart';
 import 'package:stima/shared/widgets/buttons/app_primary_button.dart';
 import 'package:stima/shared/widgets/padded_safe_area.dart';
+import 'package:stima/shared/widgets/responsive_widgets/responsive_center_widget.dart';
 import 'package:stima/shared/widgets/success_page_container_icon.dart';
 
 class SuccessPage extends StatelessWidget {
@@ -30,7 +31,7 @@ class SuccessPage extends StatelessWidget {
       onBackPressed: onBackPressed,
       body: PaddedSafeArea(
         padding: const EdgeInsets.only(left: AppSizes.p24, right: AppSizes.p24),
-        child: Center(
+        child: ResponsiveCenter(
           child: Column(
             mainAxisAlignment: MainAxisAlignment.center,
             crossAxisAlignment: CrossAxisAlignment.center,

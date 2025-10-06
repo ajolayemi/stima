@@ -74,5 +74,8 @@
 
   "password_reset_success_dialog_title": "Password Reimpostata!",
   "password_reset_success_dialog_content": "La tua password è stata reimposta con successo.\nOra puoi accedere al tuo account con la nuova password",
-  "password_reset_success_go_to_login": "Torna al Login"
+  "password_reset_success_go_to_login": "Torna al Login",
+
+  "force_update_content": "È disponibile una nuova versione dell'app. Aggiorna per continuare a utilizzare l'app.",
+  "force_update_update_btn": "Aggiorna"
 }
