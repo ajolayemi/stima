@@ -8,6 +8,7 @@ class AppDeviceInfo {
   final String model;
   final String appBuildNumber;
   final String appPackageName;
+  final String? versionStringForUi;
   const AppDeviceInfo({
     required this.idDevice,
     required this.appVersion,
@@ -17,5 +18,6 @@ class AppDeviceInfo {
     required this.model,
     required this.appBuildNumber,
     required this.appPackageName,
+    required this.versionStringForUi,
   });
 }

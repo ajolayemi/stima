@@ -22,6 +22,14 @@ class $AssetsIconsGen {
   SvgGenImage get appLogoWhite =>
       const SvgGenImage('assets/icons/app_logo_white.svg');
 
+  /// File path: assets/icons/arrow-right-red.svg
+  SvgGenImage get arrowRightRed =>
+      const SvgGenImage('assets/icons/arrow-right-red.svg');
+
+  /// File path: assets/icons/arrow-right.svg
+  SvgGenImage get arrowRight =>
+      const SvgGenImage('assets/icons/arrow-right.svg');
+
   /// File path: assets/icons/back.svg
   SvgGenImage get back => const SvgGenImage('assets/icons/back.svg');
 
@@ -62,6 +70,9 @@ class $AssetsIconsGen {
   /// File path: assets/icons/lock.svg
   SvgGenImage get lock => const SvgGenImage('assets/icons/lock.svg');
 
+  /// File path: assets/icons/logout.svg
+  SvgGenImage get logout => const SvgGenImage('assets/icons/logout.svg');
+
   /// File path: assets/icons/person.svg
   SvgGenImage get person => const SvgGenImage('assets/icons/person.svg');
 
@@ -72,6 +83,9 @@ class $AssetsIconsGen {
   /// File path: assets/icons/profile_menu_unselected.svg
   SvgGenImage get profileMenuUnselected =>
       const SvgGenImage('assets/icons/profile_menu_unselected.svg');
+
+  /// File path: assets/icons/settings.svg
+  SvgGenImage get settings => const SvgGenImage('assets/icons/settings.svg');
 
   /// File path: assets/icons/visibility-off.svg
   SvgGenImage get visibilityOff =>
@@ -85,6 +99,8 @@ class $AssetsIconsGen {
   List<SvgGenImage> get values => [
     appIcon,
     appLogoWhite,
+    arrowRightRed,
+    arrowRight,
     back,
     companyMenuSelected,
     companyMenuUnselected,
@@ -96,9 +112,11 @@ class $AssetsIconsGen {
     homeMenuSelected,
     homeMenuUnselected,
     lock,
+    logout,
     person,
     profileMenuSelected,
     profileMenuUnselected,
+    settings,
     visibilityOff,
     visibilityOn,
   ];

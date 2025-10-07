@@ -1,7 +1,5 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
-import 'package:stima/features/auth/controller/login_controller.dart';
-import 'package:stima/shared/widgets/buttons/app_primary_button.dart';
 
 class HomePage extends ConsumerWidget {
   const HomePage({super.key});
@@ -15,13 +13,13 @@ class HomePage extends ConsumerWidget {
           mainAxisSize: MainAxisSize.min,
           children: [
             Text('Welcome to the Home Page!'),
-            SizedBox(height: 16),
-            AppPrimaryButton(
-              label: 'logout',
-              onPressed: () {
-                ref.read(loginControllerProvider.notifier).logout();
-              },
-            ),
+            // SizedBox(height: 16),
+            // AppPrimaryButton(
+            //   label: 'logout',
+            //   onPressed: () {
+            //     ref.read(loginControllerProvider.notifier).logout();
+            //   },
+            // ),
           ],
         ),
       ),

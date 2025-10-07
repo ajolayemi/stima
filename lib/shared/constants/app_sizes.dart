@@ -8,7 +8,9 @@ class AppSizes {
   static const p20 = 20.0;
   static const p24 = 24.0;
   static const p32 = 32.0;
+  static const p40 = 40.0;
   static const p48 = 48.0;
+  static const p50 = 50.0;
   static const p64 = 64.0;
   static const p100 = 100.0;
 }

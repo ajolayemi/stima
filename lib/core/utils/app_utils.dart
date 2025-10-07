@@ -1,7 +1,10 @@
 import 'dart:io';
 
+import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
+import 'package:go_router/go_router.dart';
 import 'package:stima/config/flavor_configs.dart';
+import 'package:stima/core/models/app_device_info.dart';
 import 'package:stima/features/auth/providers/auth_providers.dart';
 import 'package:version/version.dart';
 
@@ -53,5 +56,25 @@ class AppUtils {
     final parsedCurrentVersion = Version.parse(currentVersion);
     final parsedRequired = Version.parse(requiredVersion);
     return parsedRequired > parsedCurrentVersion;
+  }
+
+  static bool pageCanPop(BuildContext context) {
+    final currentConfig = GoRouter.of(
+      context,
+    ).routerDelegate.currentConfiguration;
+    final lastMatch = currentConfig.matches.isEmpty ? null : currentConfig.last;
+    final location = lastMatch is ImperativeRouteMatch
+        ? lastMatch.matches.uri
+        : currentConfig.uri;
+
+    return location.pathSegments.length > 1;
+  }
+
+  static String buildAppVersionForUi(AppDeviceInfo? deviceInfo) {
+    if (deviceInfo == null) {
+      return '';
+    }
+
+    return '';
   }
 }

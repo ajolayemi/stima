@@ -13,6 +13,8 @@ class AppDeviceInfoService {
 
   Future<AppDeviceInfo> getAppDeviceInfo() async {
     final platformInfo = await getPlatformInfo();
+    final versionString =
+        '${platformInfo.version} (${platformInfo.buildNumber})';
 
     if (Platform.isAndroid) {
       final androidInfo = await DeviceInfoPlugin().androidInfo;
@@ -25,6 +27,7 @@ class AppDeviceInfoService {
         model: androidInfo.model,
         appBuildNumber: platformInfo.buildNumber,
         appPackageName: platformInfo.packageName,
+        versionStringForUi: versionString,
       );
     }
 
@@ -38,6 +41,7 @@ class AppDeviceInfoService {
       model: iosInfo.utsname.machine,
       appBuildNumber: platformInfo.buildNumber,
       appPackageName: platformInfo.packageName,
+      versionStringForUi: versionString,
     );
   }
 }
