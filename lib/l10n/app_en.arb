@@ -98,6 +98,14 @@
   "password_reset_success_go_to_login": "Go to Login",
 
   "force_update_content": "A new version of the app is available. Please update to continue using the app.",
-  "force_update_update_btn": "Update"
+  "force_update_update_btn": "Update",
+
+  "home_page_menu_title": "Surveys",
+  
+  "survey_draft_page_menu_title": "Drafts",
+
+  "companies_list_page_menu_title": "Companies",
+
+  "user_profile_page_menu_title": "Profile"
 
 }

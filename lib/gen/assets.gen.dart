@@ -25,9 +25,25 @@ class $AssetsIconsGen {
   /// File path: assets/icons/back.svg
   SvgGenImage get back => const SvgGenImage('assets/icons/back.svg');
 
+  /// File path: assets/icons/company_menu_selected.svg
+  SvgGenImage get companyMenuSelected =>
+      const SvgGenImage('assets/icons/company_menu_selected.svg');
+
+  /// File path: assets/icons/company_menu_unselected.svg
+  SvgGenImage get companyMenuUnselected =>
+      const SvgGenImage('assets/icons/company_menu_unselected.svg');
+
   /// File path: assets/icons/confirm-mark.svg
   SvgGenImage get confirmMark =>
       const SvgGenImage('assets/icons/confirm-mark.svg');
+
+  /// File path: assets/icons/draft_menu_selected.svg
+  SvgGenImage get draftMenuSelected =>
+      const SvgGenImage('assets/icons/draft_menu_selected.svg');
+
+  /// File path: assets/icons/draft_menu_unselected.svg
+  SvgGenImage get draftMenuUnselected =>
+      const SvgGenImage('assets/icons/draft_menu_unselected.svg');
 
   /// File path: assets/icons/email.svg
   SvgGenImage get email => const SvgGenImage('assets/icons/email.svg');
@@ -35,11 +51,27 @@ class $AssetsIconsGen {
   /// File path: assets/icons/google.svg
   SvgGenImage get google => const SvgGenImage('assets/icons/google.svg');
 
+  /// File path: assets/icons/home_menu_selected.svg
+  SvgGenImage get homeMenuSelected =>
+      const SvgGenImage('assets/icons/home_menu_selected.svg');
+
+  /// File path: assets/icons/home_menu_unselected.svg
+  SvgGenImage get homeMenuUnselected =>
+      const SvgGenImage('assets/icons/home_menu_unselected.svg');
+
   /// File path: assets/icons/lock.svg
   SvgGenImage get lock => const SvgGenImage('assets/icons/lock.svg');
 
   /// File path: assets/icons/person.svg
   SvgGenImage get person => const SvgGenImage('assets/icons/person.svg');
+
+  /// File path: assets/icons/profile_menu_selected.svg
+  SvgGenImage get profileMenuSelected =>
+      const SvgGenImage('assets/icons/profile_menu_selected.svg');
+
+  /// File path: assets/icons/profile_menu_unselected.svg
+  SvgGenImage get profileMenuUnselected =>
+      const SvgGenImage('assets/icons/profile_menu_unselected.svg');
 
   /// File path: assets/icons/visibility-off.svg
   SvgGenImage get visibilityOff =>
@@ -54,11 +86,19 @@ class $AssetsIconsGen {
     appIcon,
     appLogoWhite,
     back,
+    companyMenuSelected,
+    companyMenuUnselected,
     confirmMark,
+    draftMenuSelected,
+    draftMenuUnselected,
     email,
     google,
+    homeMenuSelected,
+    homeMenuUnselected,
     lock,
     person,
+    profileMenuSelected,
+    profileMenuUnselected,
     visibilityOff,
     visibilityOn,
   ];

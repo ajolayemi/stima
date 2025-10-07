@@ -14,6 +14,7 @@ class AppScaffold extends StatelessWidget {
     this.addGradientBg = false,
     this.gradientBg,
     this.canPop = true,
+    this.bottomNavigationBar,
   });
 
   final Color? bgColor;
@@ -24,6 +25,7 @@ class AppScaffold extends StatelessWidget {
   final bool addGradientBg;
   final Gradient? gradientBg;
   final bool canPop;
+  final Widget? bottomNavigationBar;
 
   @override
   Widget build(BuildContext context) {
@@ -57,6 +59,7 @@ class AppScaffold extends StatelessWidget {
               : null,
           child: body,
         ),
+        bottomNavigationBar: bottomNavigationBar,
       ),
     );
   }

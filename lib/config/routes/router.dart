@@ -13,12 +13,29 @@ import 'package:stima/features/auth/pages/registration_screen.dart';
 import 'package:stima/features/auth/pages/reset_password_screen.dart';
 import 'package:stima/features/auth/pages/reset_password_success_screen.dart';
 import 'package:stima/features/auth/providers/auth_providers.dart';
+import 'package:stima/features/companies/pages/companies_list_page.dart';
+import 'package:stima/features/draft_survey/pages/draft_survey_page.dart';
 import 'package:stima/features/home/pages/home_page.dart';
+import 'package:stima/features/main/widgets/app_navigation_bar.dart';
+import 'package:stima/features/profile/pages/profile_page.dart';
 import 'package:stima/features/startup/pages/app_splash_screen.dart';
 
 part 'router.g.dart';
 
 final _rootNavigatorKey = GlobalKey<NavigatorState>();
+final _homeShellNavigatorKey = GlobalKey<NavigatorState>(
+  debugLabel: 'HomePage',
+);
+final _draftsShellNavigatorKey = GlobalKey<NavigatorState>(
+  debugLabel: 'Draft surveys',
+);
+
+final _companyShellNavigatorKey = GlobalKey<NavigatorState>(
+  debugLabel: 'Companies list',
+);
+final _profileShellNavigatorKey = GlobalKey<NavigatorState>(
+  debugLabel: 'ProfilePage',
+);
 
 @Riverpod(keepAlive: true)
 GoRouter goRouter(Ref ref) {
@@ -114,12 +131,81 @@ GoRouter goRouter(Ref ref) {
         },
       ),
 
-      // The app home page
-      GoRoute(
-        path: AppRoute.home.path,
-        name: AppRoute.home.name,
-        pageBuilder: (context, state) {
-          return MaterialPage(child: HomePage(), fullscreenDialog: true);
+      // Stateful navigation based on:
+      // https://github.com/flutter/packages/blob/main/packages/go_router/example/lib/stateful_shell_route.dart
+      StatefulShellRoute.indexedStack(
+        branches: [
+          // The app home page
+          StatefulShellBranch(
+            navigatorKey: _homeShellNavigatorKey,
+            routes: [
+              // The app home page
+              GoRoute(
+                path: AppRoute.home.path,
+                name: AppRoute.home.name,
+                pageBuilder: (context, state) {
+                  return MaterialPage(
+                    child: HomePage(),
+                    fullscreenDialog: true,
+                  );
+                },
+              ),
+            ],
+          ),
+
+          // The draft surveys page
+          StatefulShellBranch(
+            navigatorKey: _draftsShellNavigatorKey,
+            routes: [
+              GoRoute(
+                path: AppRoute.draftSurvey.path,
+                name: AppRoute.draftSurvey.name,
+                pageBuilder: (context, state) {
+                  return MaterialPage(
+                    child: DraftSurveyPage(),
+                    fullscreenDialog: true,
+                  );
+                },
+              ),
+            ],
+          ),
+
+          // The companies list page
+          StatefulShellBranch(
+            navigatorKey: _companyShellNavigatorKey,
+            routes: [
+              GoRoute(
+                path: AppRoute.companies.path,
+                name: AppRoute.companies.name,
+                pageBuilder: (context, state) {
+                  return MaterialPage(
+                    child: CompaniesListPage(),
+                    fullscreenDialog: true,
+                  );
+                },
+              ),
+            ],
+          ),
+
+          // The user profile page
+          StatefulShellBranch(
+            navigatorKey: _profileShellNavigatorKey,
+            routes: [
+              GoRoute(
+                path: AppRoute.profile.path,
+                name: AppRoute.profile.name,
+                pageBuilder: (context, state) {
+                  return MaterialPage(
+                    child: ProfilePage(),
+                    fullscreenDialog: true,
+                  );
+                },
+              ),
+            ],
+          ),
+        ],
+        builder: (context, state, navigationShell) {
+          return AppNavigationBar(navigationShell: navigationShell);
         },
       ),
     ],

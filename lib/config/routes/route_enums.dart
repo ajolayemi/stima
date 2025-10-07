@@ -7,7 +7,10 @@ enum AppRoute {
   resetPassword('reset-password/:code'),
   resetPasswordSuccess('resetSuccess'),
   register('/register'),
-  home('/home');
+  home('/home'),
+  draftSurvey('/draft-survey'),
+  companies('/companies'),
+  profile('/profile');
 
   /// The path associated with the route.
   final String path;

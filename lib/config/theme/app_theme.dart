@@ -165,6 +165,23 @@ class AppTheme {
       titleMedium: AppTextStyles.h3,
       titleSmall: AppTextStyles.h4,
     ),
+    navigationBarTheme: NavigationBarThemeData(
+      backgroundColor: AppColors.white,
+      elevation: 0,
+
+      iconTheme: WidgetStateProperty.resolveWith<IconThemeData>((states) {
+        if (states.contains(WidgetState.selected)) {
+          return const IconThemeData(color: AppColors.blue600, size: 24);
+        }
+        return const IconThemeData(color: AppColors.gray500, size: 24);
+      }),
+      labelTextStyle: WidgetStateProperty.resolveWith<TextStyle>((states) {
+        if (states.contains(WidgetState.selected)) {
+          return AppTextStyles.small.copyWith(color: AppColors.blue600);
+        }
+        return AppTextStyles.tiny.copyWith(color: AppColors.textSecondary);
+      }),
+    ),
 
     appBarTheme: const AppBarTheme(
       backgroundColor: AppColors.white,

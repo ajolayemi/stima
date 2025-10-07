@@ -77,5 +77,13 @@
   "password_reset_success_go_to_login": "Torna al Login",
 
   "force_update_content": "È disponibile una nuova versione dell'app. Aggiorna per continuare a utilizzare l'app.",
-  "force_update_update_btn": "Aggiorna"
+  "force_update_update_btn": "Aggiorna",
+
+  "home_page_menu_title": "Stime",
+
+  "survey_draft_page_menu_title": "Bozze",
+
+  "companies_list_page_menu_title": "Aziende",
+
+  "user_profile_page_menu_title": "Io"
 }
