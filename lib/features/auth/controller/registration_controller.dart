@@ -15,12 +15,16 @@ class RegistrationController extends _$RegistrationController {
   Future<void> registerWithEmailAndPassword({
     required String email,
     required String password,
+    required String name,
+    required String surname,
   }) async {
     state = const AsyncValue.loading();
     final res = await AsyncValue.guard(
       () async => await _authRepository.createUserWithEmailAndPassword(
         email: email,
         password: password,
+        name: name,
+        surname: surname,
       ),
     );
     if (!res.hasError && ref.mounted) {

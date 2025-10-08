@@ -107,15 +107,21 @@
   "companies_list_page_menu_title": "Companies",
 
   "user_profile_page_menu_title": "Me",
-  "user_profile_page_title": "My Profile",
+  "user_profile_page_title": "Profile",
   "user_profile_email_label": "Email",
   "user_profile_settings_menu_title": "Settings",
   "user_profile_logout_menu_title": "Logout",
-  "user_profile_app_version_info_label": "Version {version}",
+  "user_profile_app_version_info_label": "version {version}",
   "@user_profile_app_version_info_label": {
     "placeholders": {
       "version": {
         "type": "String"
       } 
-    }}
+    }},
+
+
+    "app_role_admin": "Admin",
+    "app_role_user": "User",
+    "app_role_editor": "Editor",
+    "app_role_viewer": "Viewer"
 }

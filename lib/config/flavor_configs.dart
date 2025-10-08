@@ -24,4 +24,15 @@ class FlavorConfig {
         return "id";
     }
   }
+
+  static String get flavorStringForVersion {
+    switch (F.appFlavor) {
+      case Flavor.dev:
+        return "DEV";
+      case Flavor.stg:
+        return "STG";
+      case Flavor.prod:
+        return "";
+    }
+  }
 }

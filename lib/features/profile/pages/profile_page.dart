@@ -1,12 +1,16 @@
+import 'package:cached_network_image/cached_network_image.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:stima/config/theme/app_theme.dart';
+import 'package:stima/core/enums/app_role.dart';
 import 'package:stima/core/providers/app_device_info_provider.dart';
 import 'package:stima/core/utils/extensions/context_extensions.dart';
 import 'package:stima/features/auth/providers/auth_providers.dart';
 import 'package:stima/gen/assets.gen.dart';
 import 'package:stima/shared/constants/app_sizes.dart';
+import 'package:stima/shared/widgets/app_card.dart';
 import 'package:stima/shared/widgets/app_circle_avatar.dart';
+import 'package:stima/shared/widgets/app_divider.dart';
 import 'package:stima/shared/widgets/app_list_tile.dart';
 import 'package:stima/shared/widgets/app_scaffold.dart';
 import 'package:stima/shared/widgets/padded_safe_area.dart';
@@ -24,18 +28,118 @@ class ProfilePage extends ConsumerWidget {
       appBarTitle: Text(loc.user_profile_page_title),
       body: ResponsiveScrollable(
         child: PaddedSafeArea(
-          padding: const EdgeInsets.symmetric(
-            horizontal: AppSizes.p24,
-            vertical: AppSizes.p24,
+          padding: const EdgeInsets.only(
+            right: AppSizes.p24,
+            left: AppSizes.p24,
           ),
           child: Column(
             mainAxisSize: MainAxisSize.min,
+            crossAxisAlignment: CrossAxisAlignment.center,
+            mainAxisAlignment: MainAxisAlignment.center,
             children: [
-              gapH24,
-              Text('User info card goes here'),
-              SizedBox(height: 200),
               gapH12,
+              AppCard(
+                child: Padding(
+                  padding: const EdgeInsets.all(AppSizes.p16),
+                  child: Consumer(
+                    builder: (context, ref, child) {
+                      final user = ref.watch(authStateChangesProvider).value;
+                      final hasImgUrl = user?.hasImgUrl == true;
 
+                      return Column(
+                        mainAxisSize: MainAxisSize.min,
+                        crossAxisAlignment: CrossAxisAlignment.start,
+                        mainAxisAlignment: MainAxisAlignment.start,
+                        children: [
+                          Row(
+                            mainAxisSize: MainAxisSize.min,
+                            mainAxisAlignment: MainAxisAlignment.start,
+                            crossAxisAlignment: CrossAxisAlignment.center,
+                            spacing: AppSizes.p16,
+                            children: [
+                              Container(
+                                width: AppSizes.p100,
+                                height: AppSizes.p100,
+                                decoration: BoxDecoration(
+                                  shape: BoxShape.circle,
+                                  color: hasImgUrl ? Colors.transparent : null,
+                                  gradient: !hasImgUrl
+                                      ? AppColors.profileAvatarGradient
+                                      : null,
+                                ),
+                                child: CircleAvatar(
+                                  backgroundColor: !hasImgUrl
+                                      ? Colors.transparent
+                                      : null,
+                                  backgroundImage: hasImgUrl
+                                      ? CachedNetworkImageProvider(
+                                          user?.imgUrl ?? '',
+                                          errorListener: (_) =>
+                                              const SizedBox.shrink(),
+                                        )
+                                      : null,
+                                  child: !hasImgUrl
+                                      ? Text(user?.getInitials ?? '')
+                                      : null,
+                                ),
+                              ),
+
+                              Column(
+                                mainAxisSize: MainAxisSize.min,
+                                crossAxisAlignment: CrossAxisAlignment.start,
+                                children: [
+                                  Flexible(
+                                    child: Text(
+                                      user?.displayName ?? '',
+                                      style: textTheme.titleLarge,
+                                      maxLines: 1,
+                                      overflow: TextOverflow.ellipsis,
+                                    ),
+                                  ),
+
+                                  gapH4,
+                                  Consumer(
+                                    builder: (context, ref, child) {
+                                      final userRole = ref
+                                          .watch(userRoleProvider)
+                                          .value;
+                                      return Text(userRole.uiLabel(context));
+                                    },
+                                  ),
+                                ],
+                              ),
+                            ],
+                          ),
+
+                          gapH24,
+                          const AppDivider(),
+                          gapH4,
+                          ListTile(
+                            contentPadding: const EdgeInsets.all(0),
+                            leading: AppCircleAvatar(
+                              child: Assets.icons.personBold.svg(
+                                fit: BoxFit.scaleDown,
+                              ),
+                            ),
+                            title: Text(
+                              loc.user_profile_email_label,
+                              style: textTheme.bodyLarge?.copyWith(
+                                color: AppColors.textSecondary,
+                              ),
+                            ),
+                            subtitle: Text(
+                              user?.email ?? '',
+                              style: textTheme.bodyLarge,
+                            ),
+                          ),
+                        ],
+                      );
+                    },
+                  ),
+                ),
+              ),
+
+              gapH12,
               AppListTile(
                 leading: AppCircleAvatar(
                   child: Assets.icons.settings.svg(fit: BoxFit.scaleDown),
@@ -49,6 +153,7 @@ class ProfilePage extends ConsumerWidget {
                   print('Settings pressed');
                 },
               ),
+
               gapH12,
               AppListTile(
                 leading: AppCircleAvatar(
@@ -64,8 +169,9 @@ class ProfilePage extends ConsumerWidget {
                   ref.read(authRepositoryProvider).logOut();
                 },
               ),
-              gapH12,
-              Divider(color: AppColors.gray200),
+              gapH32,
+              const AppDivider(),
+              gapH8,
               Consumer(
                 builder: (context, ref, child) {
                   final appVersion = ref
@@ -73,9 +179,12 @@ class ProfilePage extends ConsumerWidget {
                       .value
                       ?.versionStringForUi;
 
-                  return Text(loc.user_profile_app_version_info_label(appVersion ?? ''));
+                  return Text(
+                    loc.user_profile_app_version_info_label(appVersion ?? ''),
+                  );
                 },
               ),
+              gapH100,
             ],
           ),
         ),

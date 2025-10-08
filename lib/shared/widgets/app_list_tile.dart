@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:stima/config/theme/app_theme.dart';
 import 'package:stima/shared/constants/app_sizes.dart';
+import 'package:stima/shared/widgets/app_card.dart';
 
 class AppListTile extends StatelessWidget {
   const AppListTile({
@@ -12,6 +13,7 @@ class AppListTile extends StatelessWidget {
     this.contentPadding,
     this.color,
     this.decoration,
+    this.elevation,
   });
 
   final Widget? leading;
@@ -20,25 +22,16 @@ class AppListTile extends StatelessWidget {
   final VoidCallback? onTap;
   final EdgeInsetsGeometry? contentPadding;
   final Color? color;
+  final double? elevation;
   final BoxDecoration? decoration;
 
   @override
   Widget build(BuildContext context) {
     return GestureDetector(
       onTap: onTap,
-      child: Container(
-        decoration:
-            decoration ??
-            BoxDecoration(
-              color: color ?? AppColors.white,
-              borderRadius: BorderRadius.circular(14),
-              boxShadow: [
-                BoxShadow(
-                  color: AppColors.black.withValues(alpha: 0.1),
-                  blurRadius: AppSizes.p8,
-                ),
-              ],
-            ),
+      child: AppCard(
+        color: color ?? AppColors.white,
+        elevation: elevation,
         child: ListTile(
           contentPadding: const EdgeInsets.all(AppSizes.p16),
           leading: leading,

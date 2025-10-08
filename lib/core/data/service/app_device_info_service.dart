@@ -2,6 +2,7 @@ import 'dart:io';
 
 import 'package:device_info_plus/device_info_plus.dart';
 import 'package:package_info_plus/package_info_plus.dart';
+import 'package:stima/config/flavor_configs.dart';
 import 'package:stima/core/models/app_device_info.dart';
 
 class AppDeviceInfoService {
@@ -13,8 +14,11 @@ class AppDeviceInfoService {
 
   Future<AppDeviceInfo> getAppDeviceInfo() async {
     final platformInfo = await getPlatformInfo();
+    final env = FlavorConfig.flavorStringForVersion.isEmpty
+        ? ""
+        : ' - ${FlavorConfig.flavorStringForVersion}';
     final versionString =
-        '${platformInfo.version} (${platformInfo.buildNumber})';
+        '${platformInfo.version} (${platformInfo.buildNumber})$env';
 
     if (Platform.isAndroid) {
       final androidInfo = await DeviceInfoPlugin().androidInfo;

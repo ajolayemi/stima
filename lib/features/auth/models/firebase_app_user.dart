@@ -7,7 +7,9 @@ class FirebaseAppUser extends AppUser {
     : super(
         email: firebaseUser.email ?? '',
         uid: firebaseUser.uid,
-        name: firebaseUser.displayName ?? '',
+        name: '',
         surname: '',
+        displayName: firebaseUser.displayName,
+        imgUrl: firebaseUser.photoURL,
       );
 }

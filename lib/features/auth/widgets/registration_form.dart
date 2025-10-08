@@ -157,7 +157,12 @@ class _RegistrationFormState extends ConsumerState<RegistrationForm>
     _unfocus();
     await ref
         .read(registrationControllerProvider.notifier)
-        .registerWithEmailAndPassword(email: _email, password: _password);
+        .registerWithEmailAndPassword(
+          email: _email,
+          password: _password,
+          name: _name,
+          surname: _surname,
+        );
   }
 
   Future<void> _registerWithGoogle() async {

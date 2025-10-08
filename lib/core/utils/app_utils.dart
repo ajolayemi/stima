@@ -4,7 +4,6 @@ import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:go_router/go_router.dart';
 import 'package:stima/config/flavor_configs.dart';
-import 'package:stima/core/models/app_device_info.dart';
 import 'package:stima/features/auth/providers/auth_providers.dart';
 import 'package:version/version.dart';
 
@@ -70,11 +69,4 @@ class AppUtils {
     return location.pathSegments.length > 1;
   }
 
-  static String buildAppVersionForUi(AppDeviceInfo? deviceInfo) {
-    if (deviceInfo == null) {
-      return '';
-    }
-
-    return '';
-  }
 }

@@ -111,6 +111,8 @@ class FirebaseAuthRepository implements AuthRepository {
   Future<AppUser?> createUserWithEmailAndPassword({
     required String email,
     required String password,
+    required String name,
+    required String surname,
   }) async {
     try {
       final credential = await _auth.createUserWithEmailAndPassword(
@@ -119,10 +121,16 @@ class FirebaseAuthRepository implements AuthRepository {
       );
 
       final user = credential.user;
-      if (user == null) {
+
+      await user?.updateDisplayName('$name $surname');
+
+      await refreshUserToken();
+
+      final newUser = _auth.currentUser;
+      if (newUser == null) {
         return null;
       }
-      return FirebaseAppUser(firebaseUser: user);
+      return FirebaseAppUser(firebaseUser: newUser);
     } on FirebaseAuthException catch (authException, st) {
       throw authException.toAppException(st) ?? authException;
     } catch (e) {

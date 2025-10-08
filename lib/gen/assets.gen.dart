@@ -73,6 +73,10 @@ class $AssetsIconsGen {
   /// File path: assets/icons/logout.svg
   SvgGenImage get logout => const SvgGenImage('assets/icons/logout.svg');
 
+  /// File path: assets/icons/person-bold.svg
+  SvgGenImage get personBold =>
+      const SvgGenImage('assets/icons/person-bold.svg');
+
   /// File path: assets/icons/person.svg
   SvgGenImage get person => const SvgGenImage('assets/icons/person.svg');
 
@@ -113,6 +117,7 @@ class $AssetsIconsGen {
     homeMenuUnselected,
     lock,
     logout,
+    personBold,
     person,
     profileMenuSelected,
     profileMenuUnselected,

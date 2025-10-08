@@ -13,6 +13,12 @@ class AppColors {
     colors: [green50, white],
   );
 
+  static const profileAvatarGradient = LinearGradient(
+    colors: [Color(0xFF00C950), Color(0xFF00A63E)],
+    begin: Alignment.topLeft,
+    end: Alignment.bottomRight,
+  );
+
   // Neutral
   static const white = Color(0xFFFFFFFF);
   static const gray50 = Color(0xFFF9FAFB);
