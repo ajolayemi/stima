@@ -1,7 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:go_router/go_router.dart';
 import 'package:stima/config/theme/app_theme.dart';
-import 'package:stima/core/utils/app_utils.dart';
 import 'package:stima/gen/assets.gen.dart';
 
 class AppScaffold extends StatelessWidget {
@@ -14,7 +13,7 @@ class AppScaffold extends StatelessWidget {
     this.body,
     this.addGradientBg = false,
     this.gradientBg,
-    this.canPop,
+    this.canPop = true,
     this.bottomNavigationBar,
     this.appBarTitle,
   });
@@ -26,16 +25,14 @@ class AppScaffold extends StatelessWidget {
   final Widget? body;
   final bool addGradientBg;
   final Gradient? gradientBg;
-  final bool? canPop;
+  final bool canPop;
   final Widget? bottomNavigationBar;
   final Widget? appBarTitle;
 
   @override
   Widget build(BuildContext context) {
-    // TODO: FIX THIS!! it shoudn't be hardcoded
-    final pageCanPop = canPop ?? false;
     return PopScope(
-      canPop: pageCanPop,
+      canPop: canPop,
       onPopInvokedWithResult: (didPop, result) {
         if (didPop && !hasAppBar) {
           onBackPressed?.call();
@@ -49,7 +46,7 @@ class AppScaffold extends StatelessWidget {
                 backgroundColor: appBarBgColor,
                 automaticallyImplyLeading: false,
                 title: appBarTitle,
-                leading: !pageCanPop
+                leading: !canPop
                     ? null
                     : IconButton(
                         onPressed: () {

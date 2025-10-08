@@ -4,6 +4,7 @@ import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:stima/config/theme/app_theme.dart';
 import 'package:stima/core/enums/app_role.dart';
 import 'package:stima/core/providers/app_device_info_provider.dart';
+import 'package:stima/core/utils/app_utils.dart';
 import 'package:stima/core/utils/extensions/context_extensions.dart';
 import 'package:stima/features/auth/providers/auth_providers.dart';
 import 'package:stima/gen/assets.gen.dart';
@@ -26,6 +27,7 @@ class ProfilePage extends ConsumerWidget {
     return AppScaffold(
       hasAppBar: true,
       appBarTitle: Text(loc.user_profile_page_title),
+      canPop: AppUtils.pageCanPop(context),
       body: ResponsiveScrollable(
         child: PaddedSafeArea(
           padding: const EdgeInsets.only(

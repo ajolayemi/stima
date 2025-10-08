@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
+import 'package:stima/core/utils/app_utils.dart';
 import 'package:stima/shared/widgets/app_scaffold.dart';
 import 'package:stima/shared/widgets/padded_safe_area.dart';
 import 'package:stima/shared/widgets/responsive_widgets/responsive_scrollable_widget.dart';
@@ -10,6 +11,8 @@ class CompaniesListPage extends ConsumerWidget {
   @override
   Widget build(BuildContext context, WidgetRef ref) {
     return AppScaffold(
+      canPop: AppUtils.pageCanPop(context),
+      hasAppBar: true,
       body: ResponsiveScrollable(
         child: PaddedSafeArea(
           child: Column(
