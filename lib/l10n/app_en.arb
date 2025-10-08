@@ -109,6 +109,7 @@
   "user_profile_page_menu_title": "Me",
   "user_profile_page_title": "Profile",
   "user_profile_email_label": "Email",
+  "user_profile_account_section_title": "Account",
   "user_profile_settings_menu_title": "Settings",
   "user_profile_logout_menu_title": "Logout",
   "user_profile_app_version_info_label": "version {version}",

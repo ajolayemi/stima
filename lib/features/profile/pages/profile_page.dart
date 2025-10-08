@@ -36,7 +36,7 @@ class ProfilePage extends ConsumerWidget {
           ),
           child: Column(
             mainAxisSize: MainAxisSize.min,
-            crossAxisAlignment: CrossAxisAlignment.center,
+            crossAxisAlignment: CrossAxisAlignment.start,
             mainAxisAlignment: MainAxisAlignment.center,
             children: [
               gapH12,
@@ -142,6 +142,12 @@ class ProfilePage extends ConsumerWidget {
               ),
 
               gapH12,
+
+              Text(
+                loc.user_profile_account_section_title,
+                style: textTheme.bodyLarge,
+              ),
+              gapH12,
               AppListTile(
                 leading: AppCircleAvatar(
                   child: Assets.icons.settings.svg(fit: BoxFit.scaleDown),
@@ -174,17 +180,19 @@ class ProfilePage extends ConsumerWidget {
               gapH32,
               const AppDivider(),
               gapH8,
-              Consumer(
-                builder: (context, ref, child) {
-                  final appVersion = ref
-                      .watch(appDeviceInfoProvider)
-                      .value
-                      ?.versionStringForUi;
+              Center(
+                child: Consumer(
+                  builder: (context, ref, child) {
+                    final appVersion = ref
+                        .watch(appDeviceInfoProvider)
+                        .value
+                        ?.versionStringForUi;
 
-                  return Text(
-                    loc.user_profile_app_version_info_label(appVersion ?? ''),
-                  );
-                },
+                    return Text(
+                      loc.user_profile_app_version_info_label(appVersion ?? ''),
+                    );
+                  },
+                ),
               ),
               gapH100,
             ],
