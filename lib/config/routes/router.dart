@@ -13,6 +13,8 @@ import 'package:stima/features/auth/pages/registration_screen.dart';
 import 'package:stima/features/auth/pages/reset_password_screen.dart';
 import 'package:stima/features/auth/pages/reset_password_success_screen.dart';
 import 'package:stima/features/auth/providers/auth_providers.dart';
+import 'package:stima/features/companies/pages/add_new_company_step_one_page.dart';
+import 'package:stima/features/companies/pages/add_new_company_step_two_page.dart';
 import 'package:stima/features/companies/pages/companies_list_page.dart';
 import 'package:stima/features/draft_survey/pages/draft_survey_page.dart';
 import 'package:stima/features/home/pages/home_page.dart';
@@ -183,6 +185,8 @@ GoRouter goRouter(Ref ref) {
                     fullscreenDialog: true,
                   );
                 },
+
+                routes: [],
               ),
             ],
           ),
@@ -206,6 +210,30 @@ GoRouter goRouter(Ref ref) {
         ],
         builder: (context, state, navigationShell) {
           return AppNavigationBar(navigationShell: navigationShell);
+        },
+      ),
+
+      // Page for adding new company [step one]
+      GoRoute(
+        path: AppRoute.addCompanyStepOne.path,
+        name: AppRoute.addCompanyStepOne.name,
+        pageBuilder: (context, state) {
+          return MaterialPage(
+            child: AddNewCompanyStepOnePage(),
+            fullscreenDialog: true,
+          );
+        },
+      ),
+
+      // Page for adding new company [step two]
+      GoRoute(
+        path: AppRoute.addCompanyStepTwo.path,
+        name: AppRoute.addCompanyStepTwo.name,
+        pageBuilder: (context, state) {
+          return NoTransitionPage(
+            child: AddNewCompanyStepTwoPage(),
+            // fullscreenDialog: true,
+          );
         },
       ),
     ],

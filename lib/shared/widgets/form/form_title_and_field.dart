@@ -8,7 +8,7 @@ class FormTitleAndField extends StatelessWidget {
   const FormTitleAndField({
     super.key,
     required this.fieldKey,
-    required this.fieldTitle,
+    this.fieldTitle,
     this.fieldController,
     this.fieldHintText,
     this.autovalidateMode = AutovalidateMode.onUserInteraction,
@@ -29,10 +29,11 @@ class FormTitleAndField extends StatelessWidget {
     this.maxLength,
     this.prefixIcon,
     this.onChanged,
+    this.inputDecorationFillColor,
   });
 
   final Key fieldKey;
-  final String fieldTitle;
+  final String? fieldTitle;
   final TextEditingController? fieldController;
   final String? fieldHintText;
   final AutovalidateMode? autovalidateMode;
@@ -53,18 +54,23 @@ class FormTitleAndField extends StatelessWidget {
   final String? errorText;
   final int? maxLength;
   final void Function(String value)? onChanged;
+  final Color? inputDecorationFillColor;
+
+
   @override
   Widget build(BuildContext context) {
     return Column(
       crossAxisAlignment: CrossAxisAlignment.start,
       children: [
-        Text(
-          fieldTitle,
-          style: context.textTheme.bodyMedium?.copyWith(
-            color: AppColors.textPrimary,
+        if (fieldTitle != null) ...[
+          Text(
+            fieldTitle ?? '',
+            style: context.textTheme.bodyMedium?.copyWith(
+              color: AppColors.textPrimary,
+            ),
           ),
-        ),
-        gapH8,
+          gapH8,
+        ],
         IgnorePointer(
           ignoring: !enabled,
           child: TextFormField(
@@ -79,6 +85,7 @@ class FormTitleAndField extends StatelessWidget {
               suffixIcon: suffixIcon,
               errorText: errorText,
               prefixIcon: prefixIcon,
+              fillColor: inputDecorationFillColor,
             ),
             autovalidateMode: autovalidateMode,
             validator: validator,

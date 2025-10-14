@@ -10,6 +10,9 @@ enum AppRoute {
   home('/home'),
   draftSurvey('/draft-survey'),
   companies('/companies'),
+  addCompanyStepOne('/companies/new/step-1'),
+  addCompanyStepTwo('/companies/new/step-2'),
+  updateCompany('update/:id'),
   profile('/profile');
 
   /// The path associated with the route.

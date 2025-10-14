@@ -84,6 +84,31 @@
   "survey_draft_page_menu_title": "Bozze",
 
   "companies_list_page_menu_title": "Aziende",
+  "companies_list_page_title": "Aziende",
+  "companies_list_page_search_field_hint": "Cerca azienda",
+  "add_new_company_page_title": "Nuova azienda",
+  "add_new_company_form_name_field_title": "Nome azienda*",
+  "add_new_company_form_name_field_hint": "Inserisci il nome dell'azienda",
+  "add_new_company_form_contact_person_field_title": "Referente*",
+  "add_new_company_form_contact_person_field_hint": "Inserisci il nome del referente",
+  "add_new_company_form_phone_number_field_title": "Telefono*",
+  "add_new_company_form_phone_number_field_hint": "Inserisci il numero di telefono",
+  "add_new_company_form_email_field_title": "Email",
+  "add_new_company_form_email_field_hint": "nome@esempio.com",
+  "add_new_company_form_address_field_title": "Indirizzo",
+  "add_new_company_form_address_field_hint": "Inserisci l'indirizzo",
+  "add_new_company_form_cancel_dialog_confirmation_title": "Annulla modifiche?",
+  "add_new_company_form_cancel_dialog_confirmation_content": "I dati inseriti andranno persi se decidi di annullare le modifiche.",
+  "add_new_company_form_cancel_dialog_confirmation_cancel_btn": "Cancella",
+  "add_new_company_form_cancel_dialog_confirmation_confirm_btn": "Conferma",
+  "add_new_company_step_two_section_title": "File KML poligoni",
+  "add_new_company_step_two_section_subtitle": "Carica un file .kml contenente i poligoni dell'azienda. Questo passaggio è opzionale.",
+  "add_new_company_step_two_upload_btn": "Seleziona file KML",
+  "add_new_company_uploaded_file_data_found_section_title": "Dati estratti dal file:",
+  "add_new_company_uploaded_file_production_areas_data_title": "Stacchi produttivi",
+  "add_new_company_uploaded_file_production_areas_data_subtitle": "Appezzamenti trovati",
+  "add_new_company_uploaded_file_accesses_data_title": "Accessi",
+  "add_new_company_uploaded_file_accesses_data_subtitle": "Punti di accesso trovati",
 
   "user_profile_page_menu_title": "Io",
   "user_profile_page_title": "Profilo",
@@ -103,6 +128,10 @@
   "app_role_admin": "Admin",
   "app_role_user": "Utente",
   "app_role_editor": "Editor",
-  "app_role_viewer": "Visualizzatore"
+  "app_role_viewer": "Visualizzatore",
 
+  "form_stepper_indicator_label": "{currentStep} di {totalSteps}",
+
+  "continue_cta_button": "Continua",
+  "save_cta_button": "Salva"
 }

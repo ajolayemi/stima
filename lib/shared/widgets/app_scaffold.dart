@@ -16,6 +16,9 @@ class AppScaffold extends StatelessWidget {
     this.canPop = true,
     this.bottomNavigationBar,
     this.appBarTitle,
+    this.hasFAB = false,
+    this.onFABPressed,
+    this.appBarActionWidgets = const [],
   });
 
   final Color? bgColor;
@@ -28,6 +31,9 @@ class AppScaffold extends StatelessWidget {
   final bool canPop;
   final Widget? bottomNavigationBar;
   final Widget? appBarTitle;
+  final bool hasFAB;
+  final VoidCallback? onFABPressed;
+  final List<Widget> appBarActionWidgets;
 
   @override
   Widget build(BuildContext context) {
@@ -46,6 +52,7 @@ class AppScaffold extends StatelessWidget {
                 backgroundColor: appBarBgColor,
                 automaticallyImplyLeading: false,
                 title: appBarTitle,
+                actions: appBarActionWidgets,
                 leading: !canPop
                     ? null
                     : IconButton(
@@ -65,6 +72,12 @@ class AppScaffold extends StatelessWidget {
           child: body,
         ),
         bottomNavigationBar: bottomNavigationBar,
+        floatingActionButton: hasFAB
+            ? FloatingActionButton(
+                onPressed: onFABPressed,
+                child: Assets.icons.addIconWhite.svg(),
+              )
+            : null,
       ),
     );
   }

@@ -15,6 +15,14 @@ import 'package:vector_graphics/vector_graphics.dart' as _vg;
 class $AssetsIconsGen {
   const $AssetsIconsGen();
 
+  /// File path: assets/icons/access_point.svg
+  SvgGenImage get accessPoint =>
+      const SvgGenImage('assets/icons/access_point.svg');
+
+  /// File path: assets/icons/add-icon-white.svg
+  SvgGenImage get addIconWhite =>
+      const SvgGenImage('assets/icons/add-icon-white.svg');
+
   /// File path: assets/icons/app_icon.svg
   SvgGenImage get appIcon => const SvgGenImage('assets/icons/app_icon.svg');
 
@@ -33,6 +41,13 @@ class $AssetsIconsGen {
   /// File path: assets/icons/back.svg
   SvgGenImage get back => const SvgGenImage('assets/icons/back.svg');
 
+  /// File path: assets/icons/close.svg
+  SvgGenImage get close => const SvgGenImage('assets/icons/close.svg');
+
+  /// File path: assets/icons/close_small.svg
+  SvgGenImage get closeSmall =>
+      const SvgGenImage('assets/icons/close_small.svg');
+
   /// File path: assets/icons/company_menu_selected.svg
   SvgGenImage get companyMenuSelected =>
       const SvgGenImage('assets/icons/company_menu_selected.svg');
@@ -45,6 +60,9 @@ class $AssetsIconsGen {
   SvgGenImage get confirmMark =>
       const SvgGenImage('assets/icons/confirm-mark.svg');
 
+  /// File path: assets/icons/delete.svg
+  SvgGenImage get delete => const SvgGenImage('assets/icons/delete.svg');
+
   /// File path: assets/icons/draft_menu_selected.svg
   SvgGenImage get draftMenuSelected =>
       const SvgGenImage('assets/icons/draft_menu_selected.svg');
@@ -55,6 +73,9 @@ class $AssetsIconsGen {
 
   /// File path: assets/icons/email.svg
   SvgGenImage get email => const SvgGenImage('assets/icons/email.svg');
+
+  /// File path: assets/icons/file.svg
+  SvgGenImage get file => const SvgGenImage('assets/icons/file.svg');
 
   /// File path: assets/icons/google.svg
   SvgGenImage get google => const SvgGenImage('assets/icons/google.svg');
@@ -88,8 +109,18 @@ class $AssetsIconsGen {
   SvgGenImage get profileMenuUnselected =>
       const SvgGenImage('assets/icons/profile_menu_unselected.svg');
 
+  /// File path: assets/icons/search.svg
+  SvgGenImage get search => const SvgGenImage('assets/icons/search.svg');
+
   /// File path: assets/icons/settings.svg
   SvgGenImage get settings => const SvgGenImage('assets/icons/settings.svg');
+
+  /// File path: assets/icons/stacchi_produttivi.svg
+  SvgGenImage get stacchiProduttivi =>
+      const SvgGenImage('assets/icons/stacchi_produttivi.svg');
+
+  /// File path: assets/icons/upload.svg
+  SvgGenImage get upload => const SvgGenImage('assets/icons/upload.svg');
 
   /// File path: assets/icons/visibility-off.svg
   SvgGenImage get visibilityOff =>
@@ -101,17 +132,23 @@ class $AssetsIconsGen {
 
   /// List of all assets
   List<SvgGenImage> get values => [
+    accessPoint,
+    addIconWhite,
     appIcon,
     appLogoWhite,
     arrowRightRed,
     arrowRight,
     back,
+    close,
+    closeSmall,
     companyMenuSelected,
     companyMenuUnselected,
     confirmMark,
+    delete,
     draftMenuSelected,
     draftMenuUnselected,
     email,
+    file,
     google,
     homeMenuSelected,
     homeMenuUnselected,
@@ -121,7 +158,10 @@ class $AssetsIconsGen {
     person,
     profileMenuSelected,
     profileMenuUnselected,
+    search,
     settings,
+    stacchiProduttivi,
+    upload,
     visibilityOff,
     visibilityOn,
   ];

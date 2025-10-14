@@ -105,6 +105,32 @@
   "survey_draft_page_menu_title": "Drafts",
 
   "companies_list_page_menu_title": "Companies",
+  "companies_list_page_title": "Companies",
+  "companies_list_page_search_field_hint": "Search company",
+  "add_new_company_page_title": "New company",
+  "add_new_company_form_name_field_title": "Company Name*",
+  "add_new_company_form_name_field_hint": "Enter the company name",
+  "add_new_company_form_contact_person_field_title": "Contact Person*",
+  "add_new_company_form_contact_person_field_hint": "Enter the contact person's name",
+  "add_new_company_form_phone_number_field_title": "Phone Number*",
+  "add_new_company_form_phone_number_field_hint": "Enter the phone number",
+  "add_new_company_form_email_field_title": "Email",
+  "add_new_company_form_email_field_hint": "name@example.com",
+  "add_new_company_form_address_field_title": "Address",
+  "add_new_company_form_address_field_hint": "Enter the address",
+  "add_new_company_form_cancel_dialog_confirmation_title": "Discard changes?",
+  "add_new_company_form_cancel_dialog_confirmation_content": "The data entered will be lost if you decide to discard the changes.",
+  "add_new_company_form_cancel_dialog_confirmation_cancel_btn": "Cancel",
+  "add_new_company_form_cancel_dialog_confirmation_confirm_btn": "Confirm",
+  "add_new_company_step_two_section_title": "Polygons KML file",
+  "add_new_company_step_two_section_subtitle": "(Optional) Upload the KML file containing the polygons of the company's locations.",
+  "add_new_company_step_two_upload_btn": "Select KML file",
+  "add_new_company_uploaded_file_data_found_section_title": "Data extracted from file:",
+  "add_new_company_uploaded_file_production_areas_data_title": "Production areas",
+  "add_new_company_uploaded_file_production_areas_data_subtitle": "Areas found",
+  "add_new_company_uploaded_file_accesses_data_title": "Accesses",
+  "add_new_company_uploaded_file_accesses_data_subtitle": "Access points found",
+
 
   "user_profile_page_menu_title": "Me",
   "user_profile_page_title": "Profile",
@@ -121,8 +147,23 @@
     }},
 
 
-    "app_role_admin": "Admin",
-    "app_role_user": "User",
-    "app_role_editor": "Editor",
-    "app_role_viewer": "Viewer"
+  "app_role_admin": "Admin",
+  "app_role_user": "User",
+  "app_role_editor": "Editor",
+  "app_role_viewer": "Viewer",
+
+  "form_stepper_indicator_label": "{currentStep} of {totalSteps}",
+  "@form_stepper_indicator_label": {
+    "placeholders": {
+      "currentStep": {
+        "type": "int"
+      },
+      "totalSteps": {
+        "type": "int"
+      }
+    }
+  },
+
+  "continue_cta_button": "Continue",
+  "save_cta_button": "Save"
 }
