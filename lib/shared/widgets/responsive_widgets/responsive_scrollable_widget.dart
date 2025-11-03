@@ -9,12 +9,18 @@ class ResponsiveScrollable extends StatelessWidget {
     super.key,
     required this.child,
     this.maxContentWidth,
+    this.scrollController,
+    this.scrollPhysics,
   });
   final Widget child;
   final double? maxContentWidth;
+  final ScrollController? scrollController;
+  final ScrollPhysics? scrollPhysics;
   @override
   Widget build(BuildContext context) {
     return SingleChildScrollView(
+      controller: scrollController,
+      physics: scrollPhysics,
       child: ResponsiveCenter(
         maxContentWidth: maxContentWidth ?? Breakpoint.tablet,
         child: child,

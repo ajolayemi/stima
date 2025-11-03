@@ -36,6 +36,8 @@
   "error_dialog_title": "Attention",
   "error_dialog_email_already_in_use": "The email address is already in use by another account.",
   "error_dialog_close_btn": "Close",
+  "error_dialog_network_403_content": "You do not have permission to access this resource. Please contact support if you believe this is an error.",
+  "error_dialog_invalid_company_kml_file": "Please check that the selected KML file contains the necessary data and try again.",
 
   "registration_screen_icon_text": "Create an account",
   "registration_form_name_field_title": "Name",
@@ -107,6 +109,8 @@
   "companies_list_page_menu_title": "Companies",
   "companies_list_page_title": "Companies",
   "companies_list_page_search_field_hint": "Search company",
+  "companies_list_page_empty_state_title": "No companies available",
+  "companies_list_page_add_company_cta": "Add",
   "add_new_company_page_title": "New company",
   "add_new_company_form_name_field_title": "Company Name*",
   "add_new_company_form_name_field_hint": "Enter the company name",

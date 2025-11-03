@@ -1,5 +1,6 @@
 import 'dart:io';
 
+import 'package:logging/logging.dart';
 import 'package:stima/core/models/app_lat_lng.dart';
 import 'package:stima/features/companies/enums/kml_folder_type.dart';
 import 'package:stima/features/companies/models/placemark_from_kml.dart';
@@ -8,9 +9,58 @@ import 'package:xml/xml.dart';
 class XmlFileParserUtils {
   const XmlFileParserUtils._();
 
+  static final _logger = Logger('XmlFileParserUtils');
+
+  /// Processes the provided KML [file] to extract the NetworkLink href
+  static Future<String?> processCompanyKmlWithLink(File? file) async {
+    _logger.fine('Starting to process company KML file for link extraction');
+    final fileContent = _readXmlFileContents(file);
+
+    if (fileContent == null) {
+      return Future.value(null);
+    }
+
+    final xmlDocument = XmlDocument.parse(fileContent);
+
+    // Access the xml's root element
+    final rootElement = xmlDocument.rootElement;
+
+    // Get the "Document" child element of the xml document
+    final documentElement = rootElement.getElement('Document');
+
+    if (documentElement == null) {
+      _logger.fine('Exiting because no document element was found');
+      return Future.value(null);
+    }
+
+    // Access the "NetworkLink" child element of the document element
+    final networkLinkElement = documentElement.getElement('NetworkLink');
+
+    if (networkLinkElement == null) {
+      _logger.fine('Exiting because no network link element was found');
+      return Future.value(null);
+    }
+
+    // Access the "Link" child element of the network link element
+    final linkElement = networkLinkElement.getElement('Link');
+    if (linkElement == null) {
+      _logger.fine('Exiting because no link element was found');
+      return Future.value(null);
+    }
+
+    // Access the "href" child element of the link element
+    final hrefElement = linkElement.getElement('href');
+
+    _logger.fine('href element inner text is: ${hrefElement?.innerText}');
+
+    return hrefElement?.innerText;
+  }
+
+  /// Processes the provided KML [file] to extract placemarks categorized by folder types
   static Future<Map<String, List<PlacemarkFromKml>>?> processCompanyKml(
     File? file,
   ) async {
+    _logger.fine('Starting to process company KML file');
     Map<String, List<PlacemarkFromKml>> processResult = {};
 
     final fileContent = _readXmlFileContents(file);
@@ -21,18 +71,13 @@ class XmlFileParserUtils {
 
     final xmlDocument = XmlDocument.parse(fileContent);
 
-    // parseEvents(fileContent).
-
     // Access the xml's root element
     final rootElement = xmlDocument.rootElement;
-    // _logDebug('root element is: $rootElement');
 
     // Get the "Document" child element of the xml document
     final documentElement = rootElement.getElement('Document');
-    // _logDebug('document element is: $documentElement');
 
     if (documentElement == null) {
-      // _logDebug('Exiting because no document element was found');
       return Future.value(null);
     }
 
@@ -47,7 +92,7 @@ class XmlFileParserUtils {
     // Start looping over the predefined list that holds the name of the folders that will be accessed
     //
     for (final item in KmlFolderType.values) {
-      _logDebug('folder name being searched for: ${item.folderName}');
+      _logger.fine('folder name being searched for: ${item.folderName}');
       // from the list of retrieved foldersElements, get all elements matching
       // the current [folderEl]'s name
       final matchingFolders = _filterXmlFolderByName(
@@ -77,7 +122,7 @@ class XmlFileParserUtils {
     // Loop over each folder and access it's "Placemark" children
     for (final folder in folders) {
       final folderPlacemarks = folder.findElements(
-        "Placemark",
+        'Placemark',
         namespace: folder.namespaceUri,
       );
 
@@ -111,7 +156,7 @@ class XmlFileParserUtils {
       if (placemarkName == null || placemarkName.isEmpty) {
         continue;
       }
-      _logDebug('placemark name: $placemarkName');
+      _logger.info('placemark name: $placemarkName');
 
       // Get the <styleUrl> child element of the current placemark
       final placemarkStyle =
@@ -155,7 +200,7 @@ class XmlFileParserUtils {
           hexColorCode: placemarkHexColor,
         ),
       );
-      _logDebug('marker centroid coordinates: $centerCoordinates');
+      _logger.info('marker centroid coordinates: $centerCoordinates');
     }
 
     return res;
@@ -177,14 +222,14 @@ class XmlFileParserUtils {
             .getElement('coordinates', namespace: namespace)
             ?.innerText
             .trim()
-            .split(" ")
+            .split(' ')
             .where((coordinate) => coordinate.isNotEmpty)
             .toList();
         // _logDebug('found points coordinates: $pointCoordinates');
         return _convertXmlCoordinates(coordinates: pointCoordinates);
       case false:
         final polygonOuterBoundaryElement = polygonOrPointElement.getElement(
-          "outerBoundaryIs",
+          'outerBoundaryIs',
           namespace: namespace,
         );
 
@@ -204,7 +249,7 @@ class XmlFileParserUtils {
             )
             ?.innerText
             .trim()
-            .split(" ")
+            .split(' ')
             .where((coordinates) => coordinates.isNotEmpty)
             .toList();
         // _logDebug('found polygon coordinates: $polygonCoordinates');
@@ -218,7 +263,7 @@ class XmlFileParserUtils {
     }
     List<AppLatLng> res = [];
     for (final coordinate in coordinates) {
-      final data = coordinate.split(",");
+      final data = coordinate.split(',');
       if (data.length <= 1) continue;
 
       final lat = double.tryParse(data[1]);
@@ -266,9 +311,5 @@ class XmlFileParserUtils {
     }
 
     return file.readAsStringSync();
-  }
-
-  static void _logDebug(String additionalString) {
-    // debugPrint('XmlFileParserUtils: $additionalString');
   }
 }
