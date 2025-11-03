@@ -2,9 +2,11 @@ import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:go_router/go_router.dart';
 import 'package:stima/config/routes/route_enums.dart';
-import 'package:stima/core/utils/dialogs/app_alert_dialog_utils.dart';
+import 'package:stima/core/utils/extensions/async_value_extension.dart';
 import 'package:stima/core/utils/extensions/context_extensions.dart';
 import 'package:stima/features/companies/controller/add_company_controller.dart';
+import 'package:stima/features/companies/providers/company_data_providers.dart';
+import 'package:stima/features/companies/utils/company_utils.dart';
 import 'package:stima/features/companies/widgets/company_file_uploader_widget.dart';
 import 'package:stima/features/companies/widgets/company_uploaded_file_widget.dart';
 import 'package:stima/gen/assets.gen.dart';
@@ -19,38 +21,37 @@ import 'package:stima/shared/widgets/responsive_widgets/responsive_scrollable_wi
 class AddNewCompanyStepTwoPage extends ConsumerWidget {
   const AddNewCompanyStepTwoPage({super.key});
 
-  Future<void> _closePage(BuildContext context) async {
-    final loc = context.loc;
-    // Ask for confirmation before closing the page
-    await AppAlertDialogUtils.showAlertDialog(
-      context: context,
-      title: loc.add_new_company_form_cancel_dialog_confirmation_title,
-      content: loc.add_new_company_form_cancel_dialog_confirmation_content,
-      cancelActionLabel:
-          loc.add_new_company_form_cancel_dialog_confirmation_cancel_btn,
-      confirmActionLabel:
-          loc.add_new_company_form_cancel_dialog_confirmation_confirm_btn,
-      onDefaultActionPressed: () {
-        context.goNamed(AppRoute.companies.name);
-      },
-    );
+  void _saveCompany(BuildContext context, WidgetRef ref) async {
+    await ref.read(addCompanyControllerProvider.notifier).addCompany();
+
+    if (context.mounted) {
+      ref.invalidate(companiesFutureProvider);
+      context.goNamed(AppRoute.companies.name);
+    }
   }
 
   @override
   Widget build(BuildContext context, WidgetRef ref) {
+    ref.listen(addCompanyControllerProvider, (_, state) {
+      state.showAlertDialogOnError(context);
+    });
     final isLoading = ref.watch(addCompanyControllerProvider).isLoading;
     final textTheme = context.textTheme;
     final loc = context.loc;
     return AppScaffold(
       hasAppBar: true,
       appBarActionWidgets: [
-        GestureDetector(
-          onTap: isLoading
+        IconButton(
+          onPressed: isLoading
               ? null
               : () {
-                  _closePage(context);
+                  CompanyUtils.confirmFormExit(
+                    context: context,
+                    ref: ref,
+                    onConfirmed: () => context.goNamed(AppRoute.companies.name),
+                  );
                 },
-          child: Padding(
+          icon: Padding(
             padding: const EdgeInsets.only(right: AppSizes.p12),
             child: Assets.icons.close.svg(fit: BoxFit.scaleDown),
           ),
@@ -68,6 +69,7 @@ class AddNewCompanyStepTwoPage extends ConsumerWidget {
               Expanded(
                 child: ResponsiveScrollable(
                   child: Column(
+                    crossAxisAlignment: CrossAxisAlignment.start,
                     children: [
                       gapH24,
                       FormStepperIndicator(totalSteps: 2, currentStep: 2),
@@ -92,7 +94,7 @@ class AddNewCompanyStepTwoPage extends ConsumerWidget {
               gapH24,
               AppPrimaryButton(
                 label: loc.save_cta_button,
-                onPressed: isLoading ? null : () {},
+                onPressed: isLoading ? null : () => _saveCompany(context, ref),
               ),
               SizedBox(height: context.screenBottomPadding + AppSizes.p16),
             ],

@@ -53,6 +53,14 @@ extension ExceptionsExt on AppException {
       return loc.error_dialog_email_already_in_use;
     } else if (this is ResetPasswordCodeExpiredException) {
       return loc.forgot_password_confirmation_code_invalid_error_text;
+    } else if (this is NetworkException) {
+      final exception = this as NetworkException;
+      if (exception.statusCode == 403) {
+        return loc.error_dialog_network_403_content;
+      }
+      return loc.error_dialog_generic_content;
+    } else if (this is InvalidKmlFileException) {
+      return loc.error_dialog_invalid_company_kml_file;
     }
 
     return loc.error_dialog_generic_content;

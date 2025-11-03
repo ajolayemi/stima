@@ -1,4 +1,6 @@
 // ignore_for_file: public_member_api_docs, sort_constructors_first
+import 'package:dio/dio.dart';
+
 sealed class AppException implements Exception {
   final String code;
   final String? message;
@@ -69,4 +71,31 @@ class ResetPasswordCodeExpiredException extends AppException {
         message:
             'The provided confirmation code for password reset is invalid or has expired',
       );
+}
+
+/// Exception raised during company creation flow when KML file is invalid or doesn't contain
+/// the expected data
+/// For example, when the expected NetworkLink element is not found in the KML file
+class InvalidKmlFileException extends AppException {
+  InvalidKmlFileException({super.stackTrace})
+    : super(
+        code: 'app/invalid-kml-file',
+        message:
+            'The provided KML file is invalid or does not contain expected data',
+      );
+}
+
+/// Standardized network exception returned by NetworkRequests
+class NetworkException extends AppException {
+  final int? statusCode;
+  final dynamic data;
+  final DioException? original;
+
+  NetworkException({this.statusCode, this.data, this.original, super.message})
+    : super(code: 'network/error', stackTrace: original?.stackTrace);
+
+  @override
+  String toString() {
+    return 'NetworkException(status: $statusCode, message: $message, data: $data)';
+  }
 }

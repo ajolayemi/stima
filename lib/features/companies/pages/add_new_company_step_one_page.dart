@@ -3,10 +3,11 @@ import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:go_router/go_router.dart';
 import 'package:stima/config/routes/route_enums.dart';
 import 'package:stima/config/theme/app_theme.dart';
-import 'package:stima/core/utils/dialogs/app_alert_dialog_utils.dart';
 import 'package:stima/core/utils/extensions/app_form_errors_extension.dart';
 import 'package:stima/core/utils/extensions/context_extensions.dart';
 import 'package:stima/core/utils/validators/app_form_mixin.dart';
+import 'package:stima/features/companies/providers/company_form_providers.dart';
+import 'package:stima/features/companies/utils/company_utils.dart';
 import 'package:stima/gen/assets.gen.dart';
 import 'package:stima/shared/constants/app_sizes.dart';
 import 'package:stima/shared/widgets/app_scaffold.dart';
@@ -110,38 +111,35 @@ class _AddNewCompanyStepOnePageState
     if (!isValid) return;
 
     unfocus(_node);
+    // Update the form data in the provider
+    ref
+        .read(companyFormDataProvider.notifier)
+        .updateGeneralInfo(
+          companyName: _companyName,
+          contactPersonName: _contactPersonName,
+          phoneNumber: _phoneNumber,
+          email: _email,
+          address: _address,
+        );
     context.pushNamed(AppRoute.addCompanyStepTwo.name);
-  }
-
-  Future<void> _closePage(BuildContext context) async {
-    // Ask for confirmation before closing the page
-    await AppAlertDialogUtils.showAlertDialog(
-      context: context,
-      title: context.loc.add_new_company_form_cancel_dialog_confirmation_title,
-      content:
-          context.loc.add_new_company_form_cancel_dialog_confirmation_content,
-      cancelActionLabel: context
-          .loc
-          .add_new_company_form_cancel_dialog_confirmation_cancel_btn,
-      confirmActionLabel: context
-          .loc
-          .add_new_company_form_cancel_dialog_confirmation_confirm_btn,
-      onDefaultActionPressed: () => context.pop(),
-    );
   }
 
   @override
   Widget build(BuildContext context) {
     final bottomPadding = context.screenBottomPadding;
     final loc = context.loc;
-    // final notifierValue = ref.watch(companyFormDataProvider);
-    // print('Notifier data: $notifierValue');
     return AppScaffold(
       hasAppBar: true,
       appBarActionWidgets: [
-        GestureDetector(
-          onTap: () => _closePage(context),
-          child: Padding(
+        IconButton(
+          onPressed: () {
+            CompanyUtils.confirmFormExit(
+              context: context,
+              onConfirmed: context.pop,
+              ref: ref,
+            );
+          },
+          icon: Padding(
             padding: const EdgeInsets.only(right: AppSizes.p12),
             child: Assets.icons.close.svg(fit: BoxFit.scaleDown),
           ),

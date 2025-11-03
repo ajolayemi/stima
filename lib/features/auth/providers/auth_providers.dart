@@ -23,9 +23,11 @@ Stream<AppUser?> authStateChanges(Ref ref) {
   return ref.watch(authRepositoryProvider).authStateChanges();
 }
 
-@Riverpod(keepAlive: true)
+@riverpod
 FutureOr<AppRole?> userRole(Ref ref) async {
-  return await ref.read(authRepositoryProvider).getUserRole();
+  return await ref
+      .read(authRepositoryProvider)
+      .getUserRole(forceRefreshToken: false);
 }
 
 @riverpod
@@ -39,7 +41,6 @@ class LoginButtonEnabled extends _$LoginButtonEnabled {
     state = email.isNotEmpty && pswd.isNotEmpty;
   }
 }
-
 
 @riverpod
 class ShowPassword extends _$ShowPassword {

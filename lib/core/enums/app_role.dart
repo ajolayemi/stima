@@ -5,22 +5,27 @@ import 'package:stima/core/utils/extensions/context_extensions.dart';
 enum AppRole {
   /// The most basic role, those with this role are allowed to login to the app
   /// but without being able to view it's content
-  viewer,
+  viewer(canView: false, canEdit: false),
 
   /// Those with this role are allowed to do all that the [viewer] is allowed to do and
   /// view the app's contents. They aren't allow to update the app's contents such as add new surveys,
   /// update existing ones and so on
-  user,
+  user(canView: true, canEdit: false),
 
   /// Those with this role are allowed to do what both [user] and [viewer] can do and can update / add
   /// contents such as new survey, update existing survey and so on
-  editor,
+  editor(canView: true, canEdit: true),
 
   /// The upmost role with the possibility of doing what [user], [viewer] and [editor] can do.
   /// They're also able to:
   /// 1. Add new users
   /// 2. Update existing user role
-  admin,
+  admin(canView: true, canEdit: true);
+
+  final bool canEdit;
+  final bool canView;
+
+  const AppRole({this.canEdit = false, this.canView = false});
 }
 
 extension AppRolesFromString on String? {

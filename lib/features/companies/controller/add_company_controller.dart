@@ -18,4 +18,12 @@ class AddCompanyController extends _$AddCompanyController {
       () async => await _companyService.pickCompanyKmlFile(),
     );
   }
+
+  Future<void> addCompany() async {
+    state = const AsyncLoading();
+
+    state = await AsyncValue.guard(
+      () async => await _companyService.addCompany(),
+    );
+  }
 }
