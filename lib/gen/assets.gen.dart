@@ -94,12 +94,18 @@ class $AssetsIconsGen {
   /// File path: assets/icons/logout.svg
   SvgGenImage get logout => const SvgGenImage('assets/icons/logout.svg');
 
+  /// File path: assets/icons/map.svg
+  SvgGenImage get map => const SvgGenImage('assets/icons/map.svg');
+
   /// File path: assets/icons/person-bold.svg
   SvgGenImage get personBold =>
       const SvgGenImage('assets/icons/person-bold.svg');
 
   /// File path: assets/icons/person.svg
   SvgGenImage get person => const SvgGenImage('assets/icons/person.svg');
+
+  /// File path: assets/icons/phone.svg
+  SvgGenImage get phone => const SvgGenImage('assets/icons/phone.svg');
 
   /// File path: assets/icons/profile_menu_selected.svg
   SvgGenImage get profileMenuSelected =>
@@ -154,8 +160,10 @@ class $AssetsIconsGen {
     homeMenuUnselected,
     lock,
     logout,
+    map,
     personBold,
     person,
+    phone,
     profileMenuSelected,
     profileMenuUnselected,
     search,

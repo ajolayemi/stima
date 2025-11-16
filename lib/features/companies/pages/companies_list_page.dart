@@ -8,6 +8,7 @@ import 'package:stima/core/utils/extensions/context_extensions.dart';
 import 'package:stima/core/utils/validators/app_form_mixin.dart';
 import 'package:stima/features/auth/providers/auth_providers.dart';
 import 'package:stima/features/companies/providers/company_data_providers.dart';
+import 'package:stima/features/companies/widgets/companies_list_item.dart';
 import 'package:stima/gen/assets.gen.dart';
 import 'package:stima/shared/constants/app_sizes.dart';
 import 'package:stima/shared/widgets/app_scaffold.dart';
@@ -62,7 +63,7 @@ class _CompaniesListPageState extends ConsumerState<CompaniesListPage>
     );
     final userRole = ref.watch(userRoleProvider).value;
     final canEdit = userRole?.canEdit == true;
-    
+
     final loc = context.loc;
 
     return companiesSearchController.when(
@@ -135,12 +136,15 @@ class _CompaniesListPageState extends ConsumerState<CompaniesListPage>
                               ),
                             ),
                             gapH24,
-                            ListView.builder(
+                            ListView.separated(
                               controller: _scrollController,
                               shrinkWrap: true,
                               itemCount: data.length,
+                              separatorBuilder: (context, index) {
+                                return gapH16;
+                              },
                               itemBuilder: (context, index) {
-                                return Text('this is current index: $index');
+                                return CompaniesListItem(company: data[index]);
                               },
                             ),
                             gapH100,

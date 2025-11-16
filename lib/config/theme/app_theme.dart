@@ -148,7 +148,7 @@ class AppTheme {
 
   static ThemeData light = ThemeData(
     useMaterial3: true,
-    fontFamily: "Roboto",
+    fontFamily: 'Roboto',
     scaffoldBackgroundColor: AppColors.backgroundPage,
     colorScheme: const ColorScheme.light(
       primary: AppColors.green600,
@@ -156,9 +156,7 @@ class AppTheme {
       secondary: AppColors.blue600,
       onSecondary: AppColors.white,
       error: AppColors.red600,
-      // background: AppColors.backgroundPage,
       surface: AppColors.white,
-      // onBackground: AppColors.textPrimary,
       onSurface: AppColors.textPrimary,
       onError: AppColors.white,
     ),
@@ -240,6 +238,14 @@ class AppTheme {
       ),
     ),
 
+    textButtonTheme: TextButtonThemeData(
+      style: TextButton.styleFrom(
+        padding: EdgeInsets.zero,
+        foregroundColor: AppColors.green600,
+        textStyle: AppTextStyles.small.copyWith(),
+      ),
+    ),
+
     inputDecorationTheme: InputDecorationTheme(
       filled: true,
       fillColor: AppColors.backgroundInput,
@@ -258,17 +264,6 @@ class AppTheme {
       ),
       hintStyle: const TextStyle(color: AppColors.textTertiary),
     ),
-
-    // cardTheme: CardTheme(
-    //   color: AppColors.white,
-    //   margin: const EdgeInsets.all(AppSpacing.sm),
-    //   shape: RoundedRectangleBorder(
-    //     borderRadius: BorderRadius.circular(AppRadius.xxxl),
-    //     side: const BorderSide(color: AppColors.gray100),
-    //   ),
-    //   elevation: 2,
-    //   shadowColor: Colors.black.withOpacity(0.1),
-    // ),
     bottomNavigationBarTheme: const BottomNavigationBarThemeData(
       backgroundColor: AppColors.white,
       selectedItemColor: AppColors.green600,

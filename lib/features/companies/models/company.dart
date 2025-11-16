@@ -82,4 +82,6 @@ abstract class Company with _$Company {
 
   factory Company.fromJson(Map<String, dynamic> json) =>
       _$CompanyFromJson(json);
+
+  bool get hasPhoneNumber => phoneNumber != null && phoneNumber!.isNotEmpty;
 }
