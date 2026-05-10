@@ -9,7 +9,10 @@ import 'package:stima/core/exceptions/error_logger.dart';
 
 class AppBootstrap {
   Future<ProviderContainer> createProviderContainer() async {
-    return ProviderContainer(observers: [AsyncErrorLoggerObserver()]);
+    return ProviderContainer(
+      observers: [AsyncErrorLoggerObserver()],
+      retry: (_, _) => null,
+    );
   }
 
   /// Create the root widget that should be passed to [runApp]
