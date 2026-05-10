@@ -700,6 +700,8 @@
 			isa = XCBuildConfiguration;
 			baseConfigurationReference = 94EC4EDD1A39935BAC4B5DB7 /* stgDebug.xcconfig */;
 			buildSettings = {
+				BUNDLE_DISPLAY_NAME = "Stime STG";
+				BUNDLE_NAME = "Stime STG";
 				PRODUCT_NAME = "$(TARGET_NAME)";
 			};
 			name = "Debug-stg";
@@ -903,6 +905,8 @@
 			isa = XCBuildConfiguration;
 			baseConfigurationReference = D64AD2808EC276063F85A58F /* stgRelease.xcconfig */;
 			buildSettings = {
+				BUNDLE_DISPLAY_NAME = "Stime STG";
+				BUNDLE_NAME = "Stime STG";
 				PRODUCT_NAME = "$(TARGET_NAME)";
 			};
 			name = "Release-stg";
@@ -981,6 +985,8 @@
 			isa = XCBuildConfiguration;
 			baseConfigurationReference = 6DFB9B71CE826CAF665DFED9 /* prodRelease.xcconfig */;
 			buildSettings = {
+				BUNDLE_DISPLAY_NAME = Stime;
+				BUNDLE_NAME = Stime;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 			};
 			name = "Release-prod";
@@ -1061,6 +1067,8 @@
 			isa = XCBuildConfiguration;
 			baseConfigurationReference = 70101E987B06E115DC42B1E9 /* devDebug.xcconfig */;
 			buildSettings = {
+				BUNDLE_DISPLAY_NAME = "Stime DEV";
+				BUNDLE_NAME = "Stime DEV";
 				PRODUCT_NAME = "$(TARGET_NAME)";
 			};
 			name = "Debug-dev";
@@ -1069,6 +1077,8 @@
 			isa = XCBuildConfiguration;
 			baseConfigurationReference = 39E198D57D05DB51948247A1 /* prodDebug.xcconfig */;
 			buildSettings = {
+				BUNDLE_DISPLAY_NAME = Stime;
+				BUNDLE_NAME = Stime;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 			};
 			name = "Debug-prod";
@@ -1450,6 +1460,8 @@
 			isa = XCBuildConfiguration;
 			baseConfigurationReference = FDA19DDD534D2E3412E59790 /* stgProfile.xcconfig */;
 			buildSettings = {
+				BUNDLE_DISPLAY_NAME = "Stime STG";
+				BUNDLE_NAME = "Stime STG";
 				PRODUCT_NAME = "$(TARGET_NAME)";
 			};
 			name = "Profile-stg";
@@ -1458,6 +1470,8 @@
 			isa = XCBuildConfiguration;
 			baseConfigurationReference = 04F527C0BA1BD56AD36B4C89 /* devProfile.xcconfig */;
 			buildSettings = {
+				BUNDLE_DISPLAY_NAME = "Stime DEV";
+				BUNDLE_NAME = "Stime DEV";
 				PRODUCT_NAME = "$(TARGET_NAME)";
 			};
 			name = "Profile-dev";
@@ -1536,6 +1550,8 @@
 			isa = XCBuildConfiguration;
 			baseConfigurationReference = 4741DD122DEF789A1E36B17C /* devRelease.xcconfig */;
 			buildSettings = {
+				BUNDLE_DISPLAY_NAME = "Stime DEV";
+				BUNDLE_NAME = "Stime DEV";
 				PRODUCT_NAME = "$(TARGET_NAME)";
 			};
 			name = "Release-dev";
@@ -1544,6 +1560,8 @@
 			isa = XCBuildConfiguration;
 			baseConfigurationReference = 824A9887B9BC8DCC2F513666 /* prodProfile.xcconfig */;
 			buildSettings = {
+				BUNDLE_DISPLAY_NAME = Stime;
+				BUNDLE_NAME = Stime;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 			};
 			name = "Profile-prod";

@@ -1,9 +1,12 @@
 import 'dart:io';
 
+import 'package:collection/collection.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter/services.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:go_router/go_router.dart';
 import 'package:stima/config/flavor_configs.dart';
+import 'package:stima/core/enums/app_flavors.dart';
 import 'package:stima/features/auth/providers/auth_providers.dart';
 import 'package:version/version.dart';
 
@@ -69,4 +72,20 @@ class AppUtils {
     return location.pathSegments.length > 1;
   }
 
+  static AppFlavor? get appCurrentFlavor {
+    return AppFlavor.values.firstWhereOrNull(
+      (element) => element.name == appFlavor,
+    );
+  }
+
+  static String get title {
+    switch (appCurrentFlavor) {
+      case AppFlavor.dev:
+        return 'Stime in campo DEV';
+      case AppFlavor.stg:
+        return 'Stime in campo STG';
+      case AppFlavor.prod || _:
+        return 'Stime in campo';
+    }
+  }
 }
