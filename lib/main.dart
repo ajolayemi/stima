@@ -3,15 +3,33 @@ import 'package:firebase_core/firebase_core.dart';
 import 'package:flutter/foundation.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
+import 'package:logging/logging.dart';
 import 'package:stima/app_bootstrap.dart';
 import 'package:stima/flavors.dart';
 
-void runMainApp(FirebaseOptions firebaseOptions) async {
+void runMainApp({FirebaseOptions? firebaseOptions}) async {
+  final logger = Logger('AppStima');
   WidgetsFlutterBinding.ensureInitialized();
   F.appFlavor = Flavor.values.firstWhere(
     (element) => element.name == appFlavor,
   );
-  await Firebase.initializeApp(options: firebaseOptions);
+
+  if (kDebugMode) {
+    Logger.root.level = Level.ALL;
+    Logger.root.onRecord.listen((record) {
+      if (record.loggerName == 'GoRouter') {
+        return;
+      }
+      debugPrint(
+        '[${record.level.name}]: ${record.time}: ${record.loggerName}: ${record.message}',
+      );
+    });
+  }
+  final firebaseApp = await Firebase.initializeApp();
+  final options = firebaseApp.options;
+  logger.info(
+    'Firebase initialized for app id: ${options.appId} and project id: ${options.projectId}',
+  );
 
   if (F.appFlavor == Flavor.dev && kDebugMode) {
     await FirebaseAuth.instance.useAuthEmulator('localhost', 9099);
