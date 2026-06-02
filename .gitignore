@@ -188,3 +188,9 @@ WARP.md
 lib/l10n/gen/
 
 dart-defines/
+
+dataconnect/.dataconnect/pgliteData
+lib/dataconnect_generated/.guides
+lib/dataconnect_generated/README.md
+.firebaserc
+.firebase/
