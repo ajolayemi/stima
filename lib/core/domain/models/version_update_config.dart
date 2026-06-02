@@ -9,8 +9,8 @@ class VersionUpdateConfig {
   final String? requiredVersion;
   VersionUpdateConfig({this.requiredVersion});
 
-  factory VersionUpdateConfig.fromJson(json) =>
+  factory VersionUpdateConfig.fromJson(Map<String, dynamic> json) =>
       _$VersionUpdateConfigFromJson(json);
 
-  Map<String,dynamic> toJson() => _$VersionUpdateConfigToJson(this);
+  Map<String, dynamic> toJson() => _$VersionUpdateConfigToJson(this);
 }
