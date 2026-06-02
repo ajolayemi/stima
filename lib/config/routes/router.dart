@@ -1,4 +1,3 @@
-import 'package:flutter/foundation.dart';
 import 'package:flutter/material.dart';
 import 'package:go_router/go_router.dart';
 import 'package:riverpod_annotation/riverpod_annotation.dart';
@@ -45,7 +44,7 @@ GoRouter goRouter(Ref ref) {
   final authRepo = ref.watch(authRepositoryProvider);
   return GoRouter(
     initialLocation: AppRoute.splashScreen.path,
-    debugLogDiagnostics: kDebugMode,
+    // debugLogDiagnostics: kDebugMode,
     // redirect logic based on auth state
     redirect: redirectService.redirect,
     navigatorKey: _rootNavigatorKey,

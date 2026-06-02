@@ -6,23 +6,28 @@ import 'package:firebase_auth/firebase_auth.dart';
 import 'package:firebase_core/firebase_core.dart';
 import 'package:flutter/foundation.dart';
 import 'package:flutter/material.dart';
-import 'package:flutter/services.dart';
 import 'package:logging/logging.dart';
 import 'package:stima/app_bootstrap.dart';
-import 'package:stima/flavors.dart';
 
-void runMainApp(FirebaseOptions firebaseOptions) async {
+void main() {
+  runMainApp();
+}
+
+void runMainApp({FirebaseOptions? firebaseOptions}) async {
+  final logger = Logger('AppStima');
   WidgetsFlutterBinding.ensureInitialized();
-  F.appFlavor = Flavor.values.firstWhere(
-    (element) => element.name == appFlavor,
-  );
-  await Firebase.initializeApp(options: firebaseOptions);
 
-  if (F.appFlavor != Flavor.prod && kDebugMode) {
+  if (kDebugMode) {
     Logger.root.level = Level.ALL;
+    Logger.root.onRecord.listen((record) {
+      if (record.loggerName == 'GoRouter') {
+        return;
+      }
+      debugPrint(
+        '[${record.level.name}]: ${record.time}: ${record.loggerName}: ${record.message}',
+      );
+    });
 
-    Logger.root.onRecord.listen((record) {});
-    // android special host - 10.0.2.2
     final host = Platform.isAndroid ? '10.0.2.2' : 'localhost';
     await FirebaseAuth.instance.useAuthEmulator(host, 9099);
     final firestore = FirebaseFirestore.instance;
@@ -30,6 +35,11 @@ void runMainApp(FirebaseOptions firebaseOptions) async {
     firestore.settings = Settings(persistenceEnabled: false);
     FirebaseFunctions.instance.useFunctionsEmulator(host, 5001);
   }
+  final firebaseApp = await Firebase.initializeApp();
+  final options = firebaseApp.options;
+  logger.info(
+    'Firebase initialized for app id: ${options.appId} and project id: ${options.projectId}',
+  );
 
   final appBootstrap = AppBootstrap();
   final container = await appBootstrap.createProviderContainer();

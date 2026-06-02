@@ -19,7 +19,7 @@ FutureOr<AppStartupResult> appStartup(Ref ref) async {
     startupCompleted: true,
     updateRequired: AppUtils.needsToUpdateApp(
       currentVersion: deviceInfo.appVersion,
-      requiredVersion: remoteConfig.requiredVersion,
+      requiredVersion: remoteConfig?.requiredVersion,
     ),
     androidPackageName: deviceInfo.appPackageName,
   );

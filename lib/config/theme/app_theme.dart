@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:stima/gen/fonts.gen.dart';
 
 /// 🎨 Centralized Color Palette
 class AppColors {
@@ -58,29 +59,38 @@ class AppColors {
 
 /// 🔠 Text Styles (Typography)
 class AppTextStyles {
+  // static const fontFamily = 'Roboto';
+  // static const regularFontFamily = 'RobotoRegular';
+  // static const mediumFontFamily = 'RobotoMedium';
+  // static const boldFontFamily = 'RobotoBold';
+
   static const h1 = TextStyle(
     fontSize: 24,
     fontWeight: FontWeight.w500,
     height: 1.5,
     color: AppColors.textPrimary,
+    fontFamily:FontFamily.robotoMedium,
   );
   static const h2 = TextStyle(
     fontSize: 20,
     fontWeight: FontWeight.w500,
     height: 1.5,
     color: AppColors.textPrimary,
+    fontFamily:FontFamily.robotoMedium,
   );
   static const h3 = TextStyle(
     fontSize: 18,
     fontWeight: FontWeight.w500,
     height: 1.5,
     color: AppColors.textPrimary,
+    fontFamily:FontFamily.robotoMedium,
   );
   static const h4 = TextStyle(
     fontSize: 16,
     fontWeight: FontWeight.w500,
     height: 1.5,
     color: AppColors.textPrimary,
+    fontFamily:FontFamily.robotoMedium,
   );
 
   static const body = TextStyle(
@@ -88,34 +98,40 @@ class AppTextStyles {
     fontWeight: FontWeight.w400,
     height: 1.5,
     color: AppColors.textPrimary,
+    fontFamily:FontFamily.robotoRegular,
   );
   static const small = TextStyle(
     fontSize: 14,
     fontWeight: FontWeight.w400,
     height: 1.5,
     color: AppColors.textSecondary,
+    fontFamily: FontFamily.robotoRegular,
   );
   static const tiny = TextStyle(
     fontSize: 12,
     fontWeight: FontWeight.w400,
     height: 1.5,
     color: AppColors.textTertiary,
+    fontFamily: FontFamily.robotoRegular,
   );
 
   static const button = TextStyle(
     fontSize: 16,
     fontWeight: FontWeight.w500,
     color: AppColors.white,
+    fontFamily: FontFamily.robotoMedium,
   );
   static const label = TextStyle(
     fontSize: 16,
     fontWeight: FontWeight.w500,
     color: AppColors.textPrimary,
+    fontFamily: FontFamily.robotoMedium,
   );
   static const input = TextStyle(
     fontSize: 16,
     fontWeight: FontWeight.w400,
     color: AppColors.textPrimary,
+    fontFamily: FontFamily.robotoRegular,
   );
 }
 
@@ -150,16 +166,32 @@ class AppTheme {
     useMaterial3: true,
     fontFamily: 'Roboto',
     scaffoldBackgroundColor: AppColors.backgroundPage,
-    colorScheme: const ColorScheme.light(
-      primary: AppColors.green600,
-      onPrimary: AppColors.white,
-      secondary: AppColors.blue600,
-      onSecondary: AppColors.white,
-      error: AppColors.red600,
-      surface: AppColors.white,
-      onSurface: AppColors.textPrimary,
-      onError: AppColors.white,
-    ),
+    // colorScheme: const ColorScheme.light(
+    //   primary: AppColors.green600,
+    //   onPrimary: AppColors.white,
+    //   secondary: AppColors.blue600,
+    //   onSecondary: AppColors.white,
+    //   error: AppColors.red600,
+    //   // background: AppColors.backgroundPage,
+    //   surface: AppColors.white,
+    //   // onBackground: AppColors.textPrimary,
+    //   onSurface: AppColors.textPrimary,
+    //   onError: AppColors.white,
+    // ),
+    // colorScheme: ColorScheme.fromSeed(
+    //   seedColor: AppColors.green600,
+    //   primary: AppColors.green600,
+    //   // onPrimary: AppColors.white,
+    //   // secondary: AppColors.blue600,
+    //   // onSecondary: AppColors.white,
+    //   // error: AppColors.red600,
+    //   // // background: AppColors.backgroundPage,
+    //   // surface: AppColors.white,
+    //   // // onBackground: AppColors.textPrimary,
+    //   // onSurface: AppColors.textPrimary,
+    //   // onError: AppColors.white,
+    // ),
+    colorScheme: ColorScheme.light(primary: AppColors.green600),
     textTheme: const TextTheme(
       displayLarge: AppTextStyles.h1,
       displayMedium: AppTextStyles.h2,

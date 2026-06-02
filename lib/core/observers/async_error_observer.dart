@@ -1,8 +1,11 @@
 import 'package:flutter_riverpod/flutter_riverpod.dart';
+import 'package:logging/logging.dart';
+import 'package:stima/core/exceptions/error_logger.dart';
 
 /// Error logger class to keep track of all AsyncError states that are set
 /// by the controllers in the app
 final class AsyncErrorLoggerObserver extends ProviderObserver {
+  static final _logger  = Logger('AsyncErrorLoggerObserver');
   @override
   void didUpdateProvider(
     ProviderObserverContext context,
@@ -39,8 +42,8 @@ final class AsyncErrorLoggerObserver extends ProviderObserver {
     Object error,
     StackTrace stackTrace,
   ) {
-    // TODO: implemente crashlytics log
-    print('''"providerFailed": "${context.provider}, er: ${error.toString()}"''');
+    context.container.read(errorLoggerProvider).logError(error, stackTrace);
+    _logger.severe('Provider failed: ${context.provider}', error, stackTrace);
     super.providerDidFail(context, error, stackTrace);
   }
 }
