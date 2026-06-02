@@ -4,6 +4,10 @@ import 'package:flutter/material.dart';
 import 'package:logging/logging.dart';
 import 'package:stima/app_bootstrap.dart';
 
+void main() {
+  runMainApp();
+}
+
 void runMainApp({FirebaseOptions? firebaseOptions}) async {
   final logger = Logger('AppStima');
   WidgetsFlutterBinding.ensureInitialized();
