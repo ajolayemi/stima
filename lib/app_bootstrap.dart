@@ -4,6 +4,7 @@ import 'dart:ui';
 import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:stima/app.dart';
+import 'package:stima/core/di/service_locator.dart';
 import 'package:stima/core/observers/async_error_observer.dart';
 import 'package:stima/core/exceptions/error_logger.dart';
 
@@ -24,7 +25,7 @@ class AppBootstrap {
 
     // * Register error handlers. For more info, see:
     // * https://docs.flutter.dev/testing/errors
-    final errorLogger = container.read(errorLoggerProvider);
+    final errorLogger = ServiceLocator.get<ErrorLogger>();
     registerErrorHandlers(errorLogger);
     return UncontrolledProviderScope(
       container: container,

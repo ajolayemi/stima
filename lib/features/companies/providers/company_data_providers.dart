@@ -1,17 +1,20 @@
 import 'package:riverpod_annotation/riverpod_annotation.dart';
+import 'package:stima/core/di/service_locator.dart';
+import 'package:stima/features/companies/data/company_repository.dart';
 import 'package:stima/features/companies/models/company.dart';
-import 'package:stima/features/companies/providers/company_repo_providers.dart';
 
 part 'company_data_providers.g.dart';
 
 @riverpod
 Stream<List<Company>?> companiesStream(Ref ref) {
-  return ref.watch(companyRepositoryProvider).watchCompanies();
+  final repo = ServiceLocator.get<CompanyRepository>();
+  return repo.watchCompanies();
 }
 
 @riverpod
-FutureOr<List<Company>?> companiesFuture(Ref ref) {
-  return ref.watch(companyRepositoryProvider).fetchCompanies();
+FutureOr<List<Company>?> companiesFuture(Ref ref) async {
+  final repo = ServiceLocator.get<CompanyRepository>();
+  return await repo.fetchCompanies();
 }
 
 @riverpod

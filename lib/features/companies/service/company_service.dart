@@ -4,6 +4,7 @@ import 'package:file_picker/file_picker.dart';
 import 'package:logging/logging.dart';
 import 'package:path_provider/path_provider.dart';
 import 'package:riverpod_annotation/riverpod_annotation.dart';
+import 'package:stima/core/di/service_locator.dart';
 import 'package:stima/core/enums/app_file_type.dart';
 import 'package:stima/core/exceptions/app_exception.dart';
 import 'package:stima/core/network/network_requests.dart';
@@ -13,7 +14,6 @@ import 'package:stima/features/companies/enums/kml_folder_type.dart';
 import 'package:stima/features/companies/models/company.dart';
 import 'package:stima/features/companies/models/company_form_file_info.dart';
 import 'package:stima/features/companies/providers/company_form_providers.dart';
-import 'package:stima/features/companies/providers/company_repo_providers.dart';
 import 'package:stima/features/companies/utils/xml_file_parser_utils.dart';
 
 part 'company_service.g.dart';
@@ -26,7 +26,7 @@ class CompanyService {
   static final _logger = Logger('CompanyService');
 
   CompanyRepository get _companyRepo {
-    return _ref.read(companyRepositoryProvider);
+    return ServiceLocator.get<CompanyRepository>();
   }
 
   Future<void> addCompany() async {

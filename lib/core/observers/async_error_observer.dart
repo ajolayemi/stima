@@ -1,5 +1,6 @@
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:logging/logging.dart';
+import 'package:stima/core/di/service_locator.dart';
 import 'package:stima/core/exceptions/error_logger.dart';
 
 /// Error logger class to keep track of all AsyncError states that are set
@@ -42,7 +43,7 @@ final class AsyncErrorLoggerObserver extends ProviderObserver {
     Object error,
     StackTrace stackTrace,
   ) {
-    context.container.read(errorLoggerProvider).logError(error, stackTrace);
+    ServiceLocator.get<ErrorLogger>().logError(error, stackTrace);
     _logger.severe('Provider failed: ${context.provider}', error, stackTrace);
     super.providerDidFail(context, error, stackTrace);
   }

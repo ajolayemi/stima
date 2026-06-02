@@ -1,8 +1,5 @@
 import 'package:firebase_crashlytics/firebase_crashlytics.dart';
-import 'package:riverpod_annotation/riverpod_annotation.dart';
 import 'package:stima/core/exceptions/app_exception.dart';
-
-part 'error_logger.g.dart';
 
 abstract class ErrorLogger {
   void logError(Object error, StackTrace? stackTrace);
@@ -22,7 +19,3 @@ class FirebaseErrorLogger implements ErrorLogger {
   }
 }
 
-@Riverpod(keepAlive: true)
-ErrorLogger errorLogger(Ref ref) {
-  return FirebaseErrorLogger();
-}
