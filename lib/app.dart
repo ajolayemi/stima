@@ -20,7 +20,7 @@ class SurveyApp extends ConsumerWidget {
       supportedLocales: AppLocalizations.supportedLocales,
       localizationsDelegates: AppLocalizations.localizationsDelegates,
       theme: AppTheme.light,
-      darkTheme: AppTheme.dark,
+      // darkTheme: AppTheme.dark,
       builder: (context, child) {
         return AppStartupWidget(
           onLoaded: GoRouterDelegateListener(child: child!),
