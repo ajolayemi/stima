@@ -1,4 +1,3 @@
-import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:firebase_remote_config/firebase_remote_config.dart';
 import 'package:riverpod_annotation/riverpod_annotation.dart';
@@ -27,7 +26,3 @@ void firebaseRemoteConfigStream(Ref ref) {
   });
 }
 
-@Riverpod(keepAlive: true)
-FirebaseFirestore firebaseFirestore(Ref ref) {
-  return FirebaseFirestore.instance;
-}

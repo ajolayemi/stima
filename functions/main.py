@@ -15,19 +15,6 @@ from firebase_functions.firestore_fn import (
 from shared.config import COMPANY_EMAIL_DOMAIN
 
 
-@on_document_created(document="companies/{id}")
-def on_company_created(event: Event[DocumentSnapshot]) -> None:
-    """ Executed when a company is created.
-    It basically helps in setting the "id" field of the document created. """
-    document_ref = event.data.reference
-    print(f"Event document ref is {document_ref.id}")
-    new_value = event.data.to_dict()
-    print(f'Event data is: {new_value}')
-    new_company_id = read_counter(transaction)
-    print(f"New company id is {new_company_id}")
-    document_ref.update({"id": new_company_id})
-
-
 @identity_fn.before_user_created()
 def intercept_user_creation(event: identity_fn.AuthBlockingEvent) -> identity_fn.BeforeCreateResponse:
     """ Intercepts a user that is about to be created and tries to add / modify some of their info such as:

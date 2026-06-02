@@ -1,0 +1,114 @@
+extend type Mutation {
+  """
+  ✨ Insert a single `Company` into the table and return its key. Columns not specified in `data` will receive defaults (e.g. `null`).
+  """
+  company_insert(
+    """
+    Data object to insert into the table.
+    """
+    data: Company_Data!
+  ): Company_KeyOutput! @fdc_generated(from: "Company", purpose: INSERT_SINGLE)
+  """
+  ✨ Insert `Company` objects into the table and return their keys. Columns not specified in `data` will receive defaults (e.g. `null`).
+  """
+  company_insertMany(
+    """
+    List of data objects to insert into the table.
+    """
+    data: [Company_Data!]!
+  ): [Company_KeyOutput!]! @fdc_generated(from: "Company", purpose: INSERT_MULTIPLE)
+  """
+  ✨ Insert or update a single `Company` into the table, based on the primary key. Returns the key of the newly inserted or existing updated `Company`.
+  """
+  company_upsert(
+    """
+    Data object to insert or update if it already exists.
+    """
+    data: Company_Data!
+  ): Company_KeyOutput! @fdc_generated(from: "Company", purpose: UPSERT_SINGLE)
+  """
+  ✨ Insert or update `Company` objects into the table, based on the primary key. Returns the key of the newly inserted or existing updated `Company`.
+  """
+  company_upsertMany(
+    """
+    List of data objects to insert or update if it already exists.
+    """
+    data: [Company_Data!]!
+  ): [Company_KeyOutput!]! @fdc_generated(from: "Company", purpose: UPSERT_MULTIPLE)
+  """
+  ✨ Update a single `Company` based on `id`, `key` or `first`, setting columns specified in `data`. Returns the key of the updated `Company` or `null` if not found.
+  """
+  company_update(
+    """
+    The unique ID of the object.
+    """
+    id: UUID
+
+    """
+    The key used to identify the object.
+    """
+    key: Company_Key
+
+    """
+    Fetch the first row based on the filters and ordering.
+    """
+    first: Company_FirstRow
+
+    """
+    Data object containing fields to be updated.
+    """
+    data: Company_Data!
+  ): Company_KeyOutput @fdc_generated(from: "Company", purpose: UPDATE_SINGLE)
+  """
+  ✨ Update `Company` objects matching `where` conditions (or `all`, if true) according to `data`. Returns the number of rows updated.
+  """
+  company_updateMany(
+    """
+    Filter condition to specify which rows to update.
+    """
+    where: Company_Filter
+
+    """
+    Set to true to update all rows.
+    """
+    all: Boolean = false
+
+    """
+    Data object containing fields to update.
+    """
+    data: Company_Data!
+  ): Int! @fdc_generated(from: "Company", purpose: UPDATE_MULTIPLE)
+  """
+  ✨ Delete a single `Company` based on `id`, `key` or `first` and return its key (or `null` if not found).
+  """
+  company_delete(
+    """
+    The unique ID of the object.
+    """
+    id: UUID
+
+    """
+    The key used to identify the object.
+    """
+    key: Company_Key
+
+    """
+    Fetch the first row based on the filters and ordering.
+    """
+    first: Company_FirstRow
+  ): Company_KeyOutput @fdc_generated(from: "Company", purpose: DELETE_SINGLE)
+  """
+  ✨ Delete `Company` objects matching `where` conditions (or `all`, if true). Returns the number of rows deleted.
+  """
+  company_deleteMany(
+    """
+    Filter condition to specify which rows to delete.
+    """
+    where: Company_Filter
+
+    """
+    Set to true to delete all rows.
+    """
+    all: Boolean = false
+  ): Int! @fdc_generated(from: "Company", purpose: DELETE_MULTIPLE)
+}

@@ -1,14 +1,20 @@
 import 'dart:io';
 
+import 'package:cloud_functions/cloud_functions.dart';
 import 'package:collection/collection.dart';
+import 'package:firebase_auth/firebase_auth.dart';
+import 'package:flutter/foundation.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:go_router/go_router.dart';
-import 'package:stima/config/flavor_configs.dart';
-import 'package:stima/core/enums/app_flavors.dart';
-import 'package:stima/features/auth/providers/auth_providers.dart';
 import 'package:version/version.dart';
+
+import 'package:stima/config/flavor_configs.dart';
+import 'package:stima/core/data/service/data_connect_service.dart';
+import 'package:stima/core/enums/app_flavors.dart';
+import 'package:stima/core/utils/env_utils.dart';
+import 'package:stima/features/auth/providers/auth_providers.dart';
 
 class AppUtils {
   const AppUtils._();
@@ -86,6 +92,18 @@ class AppUtils {
         return 'Stime in campo STG';
       case AppFlavor.prod || _:
         return 'Stime in campo';
+    }
+  }
+
+  static String get firebaseLocalHost {
+    return Platform.isAndroid ? '192.168.1.115' : 'localhost';
+  }
+
+  static void startEmulators() {
+    if (kDebugMode && EnvUtils.useFirebaseEmulator) {
+      FirebaseAuth.instance.useAuthEmulator(firebaseLocalHost, 9099);
+      FirebaseFunctions.instance.useFunctionsEmulator(firebaseLocalHost, 5001);
+      FirebaseDataConnectService.startLocalEmulators();
     }
   }
 }

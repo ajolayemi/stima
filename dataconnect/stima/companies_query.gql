@@ -1,0 +1,17 @@
+query GetAllCompanies
+@auth(
+  expr: "auth.token.email_verified == true && (auth.token.role == 'user' || auth.token.role == 'editor' || auth.token.role == 'admin')"
+) {
+  companies {
+    id
+    name
+    contactPersonName
+    phoneNumber
+    email
+    address
+    isActive
+    kmlMapFileLink
+    createdAt
+    updatedAt
+  }
+}

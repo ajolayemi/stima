@@ -30,12 +30,10 @@ class CompanySearchController extends _$CompanySearchController {
     if (query.isEmpty) {
       state = AsyncValue.data(allCompanies);
     } else {
-      final filteredCompanies = allCompanies
-          .where(
-            (company) =>
-                company.name.toLowerCase().contains(query.toLowerCase()),
-          )
-          .toList();
+      final filteredCompanies = allCompanies.where((company) {
+        return company.name?.toLowerCase().contains(query.toLowerCase()) ==
+            true;
+      }).toList();
       state = AsyncValue.data(filteredCompanies);
     }
   }

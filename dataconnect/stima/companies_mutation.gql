@@ -1,0 +1,59 @@
+mutation CreateCompany(
+  $name: String!
+  $contactPersonName: String!
+  $phoneNumber: String!
+  $email: String
+  $address: String
+  $isActive: Boolean
+  $kmlMapFileLink: String
+)
+@auth(
+  expr: "auth.token.email_verified == true && (auth.token.role == 'editor' || auth.token.role == 'admin')"
+) {
+  company_insert(
+    data: {
+      name: $name
+      contactPersonName: $contactPersonName
+      phoneNumber: $phoneNumber
+      email: $email
+      address: $address
+      isActive: $isActive
+      kmlMapFileLink: $kmlMapFileLink
+    }
+  )
+}
+
+mutation UpdateCompany(
+  $id: UUID!
+  $name: String
+  $contactPersonName: String
+  $phoneNumber: String
+  $email: String
+  $address: String
+  $isActive: Boolean
+  $kmlMapFileLink: String
+)
+@auth(
+  expr: "auth.token.email_verified == true && (auth.token.role == 'editor' || auth.token.role == 'admin')"
+) {
+  company_update(
+    id: $id
+    data: {
+      name: $name
+      contactPersonName: $contactPersonName
+      phoneNumber: $phoneNumber
+      email: $email
+      address: $address
+      isActive: $isActive
+      kmlMapFileLink: $kmlMapFileLink
+      updatedAt_expr: "request.time"
+    }
+  )
+}
+
+mutation DeleteCompany($id: UUID!)
+@auth(
+  expr: "auth.token.email_verified == true && (auth.token.role == 'editor' || auth.token.role == 'admin')"
+) {
+  company_delete(id: $id)
+}

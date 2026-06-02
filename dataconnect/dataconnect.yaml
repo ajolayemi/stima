@@ -1,0 +1,14 @@
+specVersion: "v1"
+serviceId: "stime-dev-473921-service"
+location: "europe-west8"
+schemas:
+  - source: "./schema"
+    datasource:
+      postgresql:
+        database: "stime-dev-473921-database"
+        cloudSql:
+          instanceId: "stime-dev-473921-instance"
+          # schemaValidation: "STRICT"     # STRICT mode makes Postgres schema match Data Connect exactly.
+          # schemaValidation: "COMPATIBLE" # COMPATIBLE mode makes Postgres schema compatible with Data Connect.
+connectorDirs: ["./stima"]
+  

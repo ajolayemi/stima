@@ -1,0 +1,120 @@
+extend type Company {
+  """
+  Implicit metadata field that cannot be written. It provides extra information about query results.
+  """
+  _metadata: _Metadata @fdc_generated(from: "Company", purpose: METADATA_FIELD)
+  """
+  ✨ Count the number of rows in the `Company` table.
+  """
+  _count: Int! @fdc_generated(from: "Company.", purpose: QUERY_COUNT)
+  """
+  ✨ Count the number of rows in the `Company` table where the `address` field is non-null. Pass the `distinct` argument to instead count the number of distinct values.
+  """
+  address_count(
+    """
+    Set to true to count the number of distinct values.
+    """
+    distinct: Boolean = false
+  ): Int! @fdc_generated(from: "Company.address", purpose: QUERY_COUNT)
+  """
+  ✨ Count the number of rows in the `Company` table where the `contactPersonName` field is non-null. Pass the `distinct` argument to instead count the number of distinct values.
+  """
+  contactPersonName_count(
+    """
+    Set to true to count the number of distinct values.
+    """
+    distinct: Boolean = false
+  ): Int! @fdc_generated(from: "Company.contactPersonName", purpose: QUERY_COUNT)
+  """
+  ✨ Count the number of rows in the `Company` table where the `createdAt` field is non-null. Pass the `distinct` argument to instead count the number of distinct values.
+  """
+  createdAt_count(
+    """
+    Set to true to count the number of distinct values.
+    """
+    distinct: Boolean = false
+  ): Int! @fdc_generated(from: "Company.createdAt", purpose: QUERY_COUNT)
+  """
+  ✨ Count the number of rows in the `Company` table where the `email` field is non-null. Pass the `distinct` argument to instead count the number of distinct values.
+  """
+  email_count(
+    """
+    Set to true to count the number of distinct values.
+    """
+    distinct: Boolean = false
+  ): Int! @fdc_generated(from: "Company.email", purpose: QUERY_COUNT)
+  """
+  ✨ Count the number of rows in the `Company` table where the `id` field is non-null. Pass the `distinct` argument to instead count the number of distinct values.
+  """
+  id_count(
+    """
+    Set to true to count the number of distinct values.
+    """
+    distinct: Boolean = false
+  ): Int! @fdc_generated(from: "Company.id", purpose: QUERY_COUNT)
+  """
+  ✨ Count the number of rows in the `Company` table where the `isActive` field is non-null. Pass the `distinct` argument to instead count the number of distinct values.
+  """
+  isActive_count(
+    """
+    Set to true to count the number of distinct values.
+    """
+    distinct: Boolean = false
+  ): Int! @fdc_generated(from: "Company.isActive", purpose: QUERY_COUNT)
+  """
+  ✨ Count the number of rows in the `Company` table where the `kmlMapFileLink` field is non-null. Pass the `distinct` argument to instead count the number of distinct values.
+  """
+  kmlMapFileLink_count(
+    """
+    Set to true to count the number of distinct values.
+    """
+    distinct: Boolean = false
+  ): Int! @fdc_generated(from: "Company.kmlMapFileLink", purpose: QUERY_COUNT)
+  """
+  ✨ Count the number of rows in the `Company` table where the `name` field is non-null. Pass the `distinct` argument to instead count the number of distinct values.
+  """
+  name_count(
+    """
+    Set to true to count the number of distinct values.
+    """
+    distinct: Boolean = false
+  ): Int! @fdc_generated(from: "Company.name", purpose: QUERY_COUNT)
+  """
+  ✨ Count the number of rows in the `Company` table where the `phoneNumber` field is non-null. Pass the `distinct` argument to instead count the number of distinct values.
+  """
+  phoneNumber_count(
+    """
+    Set to true to count the number of distinct values.
+    """
+    distinct: Boolean = false
+  ): Int! @fdc_generated(from: "Company.phoneNumber", purpose: QUERY_COUNT)
+  """
+  ✨ Count the number of rows in the `Company` table where the `updatedAt` field is non-null. Pass the `distinct` argument to instead count the number of distinct values.
+  """
+  updatedAt_count(
+    """
+    Set to true to count the number of distinct values.
+    """
+    distinct: Boolean = false
+  ): Int! @fdc_generated(from: "Company.updatedAt", purpose: QUERY_COUNT)
+  """
+  ✨ Minimum of the `createdAt` field in the `Company` table.
+  """
+  createdAt_min: Timestamp @fdc_generated(from: "Company.createdAt", purpose: QUERY_MIN)
+  """
+  ✨ Minimum of the `updatedAt` field in the `Company` table.
+  """
+  updatedAt_min: Timestamp @fdc_generated(from: "Company.updatedAt", purpose: QUERY_MIN)
+  """
+  ✨ Maximum of the `createdAt` field in the `Company` table.
+  """
+  createdAt_max: Timestamp @fdc_generated(from: "Company.createdAt", purpose: QUERY_MAX)
+  """
+  ✨ Maximum of the `updatedAt` field in the `Company` table.
+  """
+  updatedAt_max: Timestamp @fdc_generated(from: "Company.updatedAt", purpose: QUERY_MAX)
+  """
+  A generated field that is used for caching results in SDKs.
+  """
+  _id: ID! @fdc_generated(from: "Company.id", purpose: ENTITY_ID)
+}

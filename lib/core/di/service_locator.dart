@@ -1,9 +1,8 @@
-import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:get_it/get_it.dart';
 import 'package:logging/logging.dart';
 import 'package:stima/core/exceptions/error_logger.dart';
 import 'package:stima/features/companies/data/company_repository.dart';
-import 'package:stima/features/companies/data/firebase_company_repository.dart';
+import 'package:stima/features/companies/data/dataconnect_company_repository.dart';
 
 class ServiceLocator {
   const ServiceLocator._();
@@ -12,7 +11,6 @@ class ServiceLocator {
 
   static GetIt get _getIt => GetIt.instance;
 
-  static FirebaseFirestore get _firestore => FirebaseFirestore.instance;
 
   static void init() {
     _logger.info('Initializing ServiceLocator');
@@ -23,7 +21,7 @@ class ServiceLocator {
   static void _registerRepositories() {
     _logger.info('Registering repositories');
     _getIt.registerSingleton<CompanyRepository>(
-      FirestoreCompanyRepository(_firestore),
+      DataConnectCompanyRepository(),
     );
   }
 

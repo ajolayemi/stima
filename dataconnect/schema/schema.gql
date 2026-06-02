@@ -1,0 +1,12 @@
+type Company @table(name: "companies", key: "id") {
+  id: UUID! @col(name: "company_id") @default(expr: "uuidV4()")
+  name: String!
+  contactPersonName: String!
+  phoneNumber: String
+  email: String
+  address: String
+  isActive: Boolean! @default(value: true)
+  kmlMapFileLink: String
+  createdAt: Timestamp! @default(expr: "request.time")
+  updatedAt: Timestamp
+}
