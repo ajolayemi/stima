@@ -11,6 +11,8 @@
 		1498D2341E8E89220040F4C2 /* GeneratedPluginRegistrant.m in Sources */ = {isa = PBXBuildFile; fileRef = 1498D2331E8E89220040F4C2 /* GeneratedPluginRegistrant.m */; };
 		16CFAB888A99B3CF0C23123D /* Pods_Runner.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 68BD29A917A6D620B497FD78 /* Pods_Runner.framework */; };
 		22B0CFD249FCD4ED0ECA9713 /* stgLaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 8EE077B07A1B8346B5A97D64 /* stgLaunchScreen.storyboard */; };
+		2EEC71722FCEDF0A00EE16D5 /* GoogleService-Info.plist in Resources */ = {isa = PBXBuildFile; fileRef = 2EEC71712FCEDF0A00EE16D5 /* GoogleService-Info.plist */; };
+		2EEC71742FCEDF3700EE16D5 /* GoogleService-Info.plist in Resources */ = {isa = PBXBuildFile; fileRef = 2EEC71732FCEDF3700EE16D5 /* GoogleService-Info.plist */; };
 		3284214C699337C00A8ABC0A /* devDebug.xcconfig in Resources */ = {isa = PBXBuildFile; fileRef = 70101E987B06E115DC42B1E9 /* devDebug.xcconfig */; };
 		331C808B294A63AB00263BE5 /* RunnerTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 331C807B294A618700263BE5 /* RunnerTests.swift */; };
 		3B3967161E833CAA004F5970 /* AppFrameworkInfo.plist in Resources */ = {isa = PBXBuildFile; fileRef = 3B3967151E833CAA004F5970 /* AppFrameworkInfo.plist */; };
@@ -62,6 +64,8 @@
 		26C23F5A24ABD7C5E7EFDC3D /* prodLaunchScreen.storyboard */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = file.storyboard; name = prodLaunchScreen.storyboard; path = Runner/prodLaunchScreen.storyboard; sourceTree = "<group>"; };
 		2E2C54F9E0077248F244B150 /* Pods-RunnerTests.profile-stg.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-RunnerTests.profile-stg.xcconfig"; path = "Target Support Files/Pods-RunnerTests/Pods-RunnerTests.profile-stg.xcconfig"; sourceTree = "<group>"; };
 		2E3A6C3D2DA2C44F9991343F /* Pods_RunnerTests.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_RunnerTests.framework; sourceTree = BUILT_PRODUCTS_DIR; };
+		2EEC71712FCEDF0A00EE16D5 /* GoogleService-Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; name = "GoogleService-Info.plist"; path = "Runner/GoogleService-Info.plist"; sourceTree = "<group>"; };
+		2EEC71732FCEDF3700EE16D5 /* GoogleService-Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = "GoogleService-Info.plist"; sourceTree = "<group>"; };
 		330039C5A8C817FAE17D4C4A /* Pods-Runner.profile.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-Runner.profile.xcconfig"; path = "Target Support Files/Pods-Runner/Pods-Runner.profile.xcconfig"; sourceTree = "<group>"; };
 		331C807B294A618700263BE5 /* RunnerTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RunnerTests.swift; sourceTree = "<group>"; };
 		331C8081294A63A400263BE5 /* RunnerTests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = RunnerTests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
@@ -209,6 +213,7 @@
 				26C23F5A24ABD7C5E7EFDC3D /* prodLaunchScreen.storyboard */,
 				3992BDE5E08A0D3BB07BF41E /* Pods */,
 				2754B9AA223D00C8E499FE32 /* Frameworks */,
+				2EEC71712FCEDF0A00EE16D5 /* GoogleService-Info.plist */,
 			);
 			sourceTree = "<group>";
 		};
@@ -224,6 +229,7 @@
 		97C146F01CF9000F007C117D /* Runner */ = {
 			isa = PBXGroup;
 			children = (
+				2EEC71732FCEDF3700EE16D5 /* GoogleService-Info.plist */,
 				97C146FA1CF9000F007C117D /* Main.storyboard */,
 				97C146FD1CF9000F007C117D /* Assets.xcassets */,
 				97C146FF1CF9000F007C117D /* LaunchScreen.storyboard */,
@@ -264,6 +270,7 @@
 			buildPhases = (
 				26FC3D202553810FE72D4C9C /* [CP] Check Pods Manifest.lock */,
 				9740EEB61CF901F6004384FC /* Run script */,
+				2ED5BE942E8F1CA2006DA27C /* Copy google service info */,
 				97C146EA1CF9000F007C117D /* Sources */,
 				97C146EB1CF9000F007C117D /* Frameworks */,
 				97C146EC1CF9000F007C117D /* Resources */,
@@ -271,8 +278,7 @@
 				3B06AD1E1E4923F5004D2608 /* Thin Binary */,
 				3A51B474BD5E9CA373E182AE /* [CP] Embed Pods Frameworks */,
 				78096EE5F98AB23ED90F6552 /* [CP] Copy Pods Resources */,
-				2ED5BE942E8F1CA2006DA27C /* Copy google service info */,
-				2EEC716F2FB11A5300EE16D5 /* Upload Crashlytics dYSM */,
+				2E172A2D2FCEE895002E2CA3 /* Upload Crashlytics dYSM */,
 			);
 			buildRules = (
 			);
@@ -345,7 +351,9 @@
 				96E6AA009119CFEFA997BBE0 /* stgProfile.xcconfig in Resources */,
 				4E8CB95CFA3AC26A9308D9F8 /* stgRelease.xcconfig in Resources */,
 				96BF89B5EC1127BAB26C3469 /* prodDebug.xcconfig in Resources */,
+				2EEC71742FCEDF3700EE16D5 /* GoogleService-Info.plist in Resources */,
 				81BD01341639B908284F38BC /* prodProfile.xcconfig in Resources */,
+				2EEC71722FCEDF0A00EE16D5 /* GoogleService-Info.plist in Resources */,
 				EDB587E8FD908805F01569DD /* prodRelease.xcconfig in Resources */,
 				E952C7DDCE480D3C4C507741 /* devLaunchScreen.storyboard in Resources */,
 				22B0CFD249FCD4ED0ECA9713 /* stgLaunchScreen.storyboard in Resources */,
@@ -378,6 +386,30 @@
 			shellScript = "diff \"${PODS_PODFILE_DIR_PATH}/Podfile.lock\" \"${PODS_ROOT}/Manifest.lock\" > /dev/null\nif [ $? != 0 ] ; then\n    # print error to STDERR\n    echo \"error: The sandbox is not in sync with the Podfile.lock. Run 'pod install' or update your CocoaPods installation.\" >&2\n    exit 1\nfi\n# This output is used by Xcode 'outputs' to avoid re-running this script phase.\necho \"SUCCESS\" > \"${SCRIPT_OUTPUT_FILE_0}\"\n";
 			showEnvVarsInLog = 0;
 		};
+		2E172A2D2FCEE895002E2CA3 /* Upload Crashlytics dYSM */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputFileListPaths = (
+			);
+			inputPaths = (
+				"${DWARF_DSYM_FOLDER_PATH}/${DWARF_DSYM_FILE_NAME}",
+				"${DWARF_DSYM_FOLDER_PATH}/${DWARF_DSYM_FILE_NAME}/Contents/Resources/DWARF/${PRODUCT_NAME}",
+				"${DWARF_DSYM_FOLDER_PATH}/${DWARF_DSYM_FILE_NAME}/Contents/Info.plist",
+				"$(TARGET_BUILD_DIR)/$(UNLOCALIZED_RESOURCES_FOLDER_PATH)/GoogleService-Info.plist",
+				"$(TARGET_BUILD_DIR)/$(EXECUTABLE_PATH)",
+			);
+			name = "Upload Crashlytics dYSM";
+			outputFileListPaths = (
+			);
+			outputPaths = (
+				"$(DERIVED_FILE_DIR)/firebase_crashlytics.txt",
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "\"${PODS_ROOT}/FirebaseCrashlytics/run\"\n";
+		};
 		2ED5BE942E8F1CA2006DA27C /* Copy google service info */ = {
 			isa = PBXShellScriptBuildPhase;
 			buildActionMask = 2147483647;
@@ -394,32 +426,7 @@
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 			shellPath = /bin/sh;
-			shellScript = "# Type a script or drag a script file from your workspace to insert its path.\nsh \"${PROJECT_DIR}/Runner/../copy-google-service-info.sh\" ${APP_ENV}\n";
-		};
-		2EEC716F2FB11A5300EE16D5 /* Upload Crashlytics dYSM */ = {
-			isa = PBXShellScriptBuildPhase;
-			buildActionMask = 2147483647;
-			files = (
-			);
-			inputFileListPaths = (
-			);
-			inputPaths = (
-				"${DWARF_DSYM_FOLDER_PATH}/${DWARF_DSYM_FILE_NAME}",
-				"${DWARF_DSYM_FOLDER_PATH}/${DWARF_DSYM_FILE_NAME}/Contents/Resources/DWARF/${PRODUCT_NAME}",
-				"${DWARF_DSYM_FOLDER_PATH}/${DWARF_DSYM_FILE_NAME}/Contents/Resources/DWARF/${PRODUCT_NAME}",
-				"${DWARF_DSYM_FOLDER_PATH}/${DWARF_DSYM_FILE_NAME}/Contents/Info.plist",
-				"$(TARGET_BUILD_DIR)/$(UNLOCALIZED_RESOURCES_FOLDER_PATH)/GoogleService-Info.plist",
-				"$(TARGET_BUILD_DIR)/$(EXECUTABLE_PATH)",
-			);
-			name = "Upload Crashlytics dYSM";
-			outputFileListPaths = (
-			);
-			outputPaths = (
-				"$(DERIVED_FILE_DIR)/firebase_crashlytics.txt",
-			);
-			runOnlyForDeploymentPostprocessing = 0;
-			shellPath = /bin/sh;
-			shellScript = "\"{PODS_ROOT}/FirebaseCrashlytics/run\"\n";
+			shellScript = "# Type a script or drag a script file from your workspace to insert its path.\nsh \"${PROJECT_DIR}/copy-google-service-info.sh\" ${APP_ENV}\n";
 		};
 		3153B0402421CE02C0A28FF4 /* [CP] Check Pods Manifest.lock */ = {
 			isa = PBXShellScriptBuildPhase;
