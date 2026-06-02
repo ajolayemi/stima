@@ -13,7 +13,7 @@ ConfigRepository configRepository(Ref ref) {
 }
 
 @Riverpod(keepAlive: true)
-VersionUpdateConfig versionUpdateConfig(Ref ref) {
+VersionUpdateConfig? versionUpdateConfig(Ref ref) {
   final configRepo = ref.watch(configRepositoryProvider);
   return configRepo.getVersionUpdateConfig();
 }
