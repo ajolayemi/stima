@@ -3,15 +3,6 @@ from firebase_functions import identity_fn
 
 initialize_app()
 
-from firestore_funcs.data_reader import (
-    read_counter, transaction
-)
-from firebase_functions.firestore_fn import (
-    on_document_created,
-    Event,
-    DocumentSnapshot,
-)
-
 from shared.config import COMPANY_EMAIL_DOMAIN
 
 
