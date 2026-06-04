@@ -1,11 +1,10 @@
 from firebase_admin import initialize_app
-from firebase_functions import identity_fn
+from firebase_functions import identity_fn, logger
+
+from shared.utils import generate_uuid
 
 initialize_app()
 
-from firestore_funcs.data_reader import (
-    read_counter, transaction
-)
 from firebase_functions.firestore_fn import (
     on_document_created,
     Event,
@@ -20,11 +19,11 @@ def on_company_created(event: Event[DocumentSnapshot]) -> None:
     """ Executed when a company is created.
     It basically helps in setting the "id" field of the document created. """
     document_ref = event.data.reference
-    print(f"Event document ref is {document_ref.id}")
+    logger.info(f"Event document ref is {document_ref.id}")
     new_value = event.data.to_dict()
-    print(f'Event data is: {new_value}')
-    new_company_id = read_counter(transaction)
-    print(f"New company id is {new_company_id}")
+    logger.info(f'Event data is: {new_value}')
+    new_company_id = generate_uuid()
+    logger.info(f"New company id is {new_company_id}")
     document_ref.update({"id": new_company_id})
 
 
@@ -34,7 +33,7 @@ def intercept_user_creation(event: identity_fn.AuthBlockingEvent) -> identity_fn
     1. marks them as verified should their email belong to incampagna's domain
     2. assign them a role """
     email = event.data.email
-    print(f"Event email is {email}")
+    logger.info(f"Event email is {email}")
     is_company_email = email is not None and COMPANY_EMAIL_DOMAIN in email
     user_email_verified = event.data.email_verified or is_company_email
 
