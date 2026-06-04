@@ -6,11 +6,13 @@ class AppSecondaryButton extends StatelessWidget {
     required this.label,
     this.onPressed,
     this.icon,
+    this.style,
   });
 
   final VoidCallback? onPressed;
   final String label;
   final Widget? icon;
+  final ButtonStyle? style;
 
   @override
   Widget build(BuildContext context) {
@@ -18,6 +20,7 @@ class AppSecondaryButton extends StatelessWidget {
       onPressed: onPressed,
       label: Text(label),
       icon: icon,
+      style: style,
     );
   }
 }
