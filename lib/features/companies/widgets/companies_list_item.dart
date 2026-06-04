@@ -7,6 +7,7 @@ import 'package:stima/features/companies/models/company.dart';
 import 'package:stima/gen/assets.gen.dart';
 import 'package:stima/shared/constants/app_sizes.dart';
 import 'package:stima/shared/widgets/app_divider.dart';
+import 'package:stima/shared/widgets/buttons/app_secondary_button.dart';
 
 class CompaniesListItem extends ConsumerWidget {
   const CompaniesListItem({super.key, this.company});
@@ -92,20 +93,17 @@ class CompaniesListItem extends ConsumerWidget {
             ),
           ),
           AppDivider(thickness: 2),
-          Center(
-            child: TextButton.icon(
-              // TODO: implement onPressed
-              onPressed: () {},
-              label: Text(
-                loc.companies_list_item_view_on_map_btn,
-                style: textTheme.bodyMedium,
-              ),
-              icon: Assets.icons.map.svg(
-                fit: BoxFit.contain,
-                width: 16,
-                height: 16,
-              ),
+          AppSecondaryButton(
+            label: loc.companies_list_item_view_on_map_btn,
+            icon: Assets.icons.map.svg(
+              fit: BoxFit.contain,
+              width: 16,
+              height: 16,
             ),
+            onPressed: () {
+              print('pressseddd');
+            },
+            style: OutlinedButton.styleFrom(side: BorderSide.none),
           ),
         ],
       ),
