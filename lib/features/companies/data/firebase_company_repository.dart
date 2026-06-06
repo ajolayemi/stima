@@ -1,18 +1,23 @@
 import 'package:cloud_firestore/cloud_firestore.dart';
+import 'package:cloud_functions/cloud_functions.dart';
 import 'package:logging/logging.dart';
+import 'package:stima/core/constants/app_constants.dart';
+import 'package:stima/core/dto/firebase_callable_func_data.dart';
+import 'package:stima/features/companies/constants/company_firestore_constants.dart';
 import 'package:stima/features/companies/data/company_repository.dart';
 import 'package:stima/features/companies/models/company.dart';
 
 class FirestoreCompanyRepository implements CompanyRepository {
   final FirebaseFirestore _firestore;
+  final FirebaseFunctions _functions;
 
-  FirestoreCompanyRepository(this._firestore);
+  FirestoreCompanyRepository(this._firestore, this._functions);
 
   static final _logger = Logger('FirestoreCompanyRepository');
 
   CollectionReference<Company> get _companiesDocRef {
     return _firestore
-        .collection('companies')
+        .collection(CompanyFirestoreConstants.companiesCollection)
         .withConverter<Company>(
           fromFirestore: (snapshot, _) {
             return Company.fromJson(snapshot.data() ?? <String, dynamic>{});
@@ -30,19 +35,25 @@ class FirestoreCompanyRepository implements CompanyRepository {
       return;
     }
 
-    try {
-      await _companiesDocRef.doc(company.name).set(company);
-      _logger.info('Company with name ${company.name} added successfully');
-    } catch (e, st) {
-      _logger.severe('Failed to add company: $e', e, st);
-      rethrow;
+    final payloadData = FirebaseCallableFuncData(
+      collectionName: CompanyFirestoreConstants.companiesCollection,
+      data: company.toJson(),
+    );
+
+    final result = await _functions
+        .httpsCallable(AppConstants.addDocumentFirebaseFunc)
+        .call(payloadData.toJson());
+    final resultData = result.data;
+
+    if (resultData is Map<String, dynamic>) {
+      final docId = resultData['document_id'];
+      _logger.info('company created with document id: $docId');
     }
   }
 
   @override
   Future<List<Company>> fetchCompanies() async {
     final snapshot = await _companiesDocRef.get();
-    _logger.fine('Fetched companies: ${snapshot.docs}');
     return snapshot.docs.map((doc) => doc.data()).toList();
   }
 
@@ -50,6 +61,12 @@ class FirestoreCompanyRepository implements CompanyRepository {
   Stream<List<Company>> watchCompanies() {
     return _companiesDocRef.snapshots().map((snapshot) {
       return snapshot.docs.map((doc) => doc.data()).toList();
-    }); 
+    });
+  }
+
+  @override
+  Future<Company?> getCompany(String companyId) async {
+    final doc = await _companiesDocRef.doc(companyId).get();
+    return doc.data();
   }
 }

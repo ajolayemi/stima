@@ -12,6 +12,49 @@ import 'package:flutter/widgets.dart';
 import 'package:flutter_svg/flutter_svg.dart' as _svg;
 import 'package:vector_graphics/vector_graphics.dart' as _vg;
 
+class $AssetsConfigGen {
+  const $AssetsConfigGen();
+
+  /// File path: assets/config/remote_config_defaults_dev.json
+  String get remoteConfigDefaultsDev =>
+      'assets/config/remote_config_defaults_dev.json';
+
+  /// List of all assets
+  List<String> get values => [remoteConfigDefaultsDev];
+}
+
+class $AssetsFontsGen {
+  const $AssetsFontsGen();
+
+  /// File path: assets/fonts/Roboto-Bold.ttf
+  String get robotoBold => 'assets/fonts/Roboto-Bold.ttf';
+
+  /// File path: assets/fonts/Roboto-BoldItalic.ttf
+  String get robotoBoldItalic => 'assets/fonts/Roboto-BoldItalic.ttf';
+
+  /// File path: assets/fonts/Roboto-Italic.ttf
+  String get robotoItalic => 'assets/fonts/Roboto-Italic.ttf';
+
+  /// File path: assets/fonts/Roboto-Light.ttf
+  String get robotoLight => 'assets/fonts/Roboto-Light.ttf';
+
+  /// File path: assets/fonts/Roboto-Medium.ttf
+  String get robotoMedium => 'assets/fonts/Roboto-Medium.ttf';
+
+  /// File path: assets/fonts/Roboto-Regular.ttf
+  String get robotoRegular => 'assets/fonts/Roboto-Regular.ttf';
+
+  /// List of all assets
+  List<String> get values => [
+    robotoBold,
+    robotoBoldItalic,
+    robotoItalic,
+    robotoLight,
+    robotoMedium,
+    robotoRegular,
+  ];
+}
+
 class $AssetsIconsGen {
   const $AssetsIconsGen();
 
@@ -71,6 +114,10 @@ class $AssetsIconsGen {
   SvgGenImage get draftMenuUnselected =>
       const SvgGenImage('assets/icons/draft_menu_unselected.svg');
 
+  /// File path: assets/icons/drawer_border.svg
+  SvgGenImage get drawerBorder =>
+      const SvgGenImage('assets/icons/drawer_border.svg');
+
   /// File path: assets/icons/email.svg
   SvgGenImage get email => const SvgGenImage('assets/icons/email.svg');
 
@@ -96,6 +143,9 @@ class $AssetsIconsGen {
 
   /// File path: assets/icons/map.svg
   SvgGenImage get map => const SvgGenImage('assets/icons/map.svg');
+
+  /// File path: assets/icons/modify.svg
+  SvgGenImage get modify => const SvgGenImage('assets/icons/modify.svg');
 
   /// File path: assets/icons/person-bold.svg
   SvgGenImage get personBold =>
@@ -153,6 +203,7 @@ class $AssetsIconsGen {
     delete,
     draftMenuSelected,
     draftMenuUnselected,
+    drawerBorder,
     email,
     file,
     google,
@@ -161,6 +212,7 @@ class $AssetsIconsGen {
     lock,
     logout,
     map,
+    modify,
     personBold,
     person,
     phone,
@@ -189,6 +241,8 @@ class $AssetsImagesGen {
 class Assets {
   const Assets._();
 
+  static const $AssetsConfigGen config = $AssetsConfigGen();
+  static const $AssetsFontsGen fonts = $AssetsFontsGen();
   static const $AssetsIconsGen icons = $AssetsIconsGen();
   static const $AssetsImagesGen images = $AssetsImagesGen();
 }

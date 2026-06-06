@@ -1,4 +1,5 @@
 import 'package:cloud_firestore/cloud_firestore.dart';
+import 'package:cloud_functions/cloud_functions.dart';
 import 'package:get_it/get_it.dart';
 import 'package:logging/logging.dart';
 import 'package:stima/core/exceptions/error_logger.dart';
@@ -14,6 +15,7 @@ class ServiceLocator {
 
   static FirebaseFirestore get _firestore => FirebaseFirestore.instance;
 
+  static FirebaseFunctions get _functions => .instance;
   static void init() {
     _logger.info('Initializing ServiceLocator');
     _registerRepositories();
@@ -23,7 +25,7 @@ class ServiceLocator {
   static void _registerRepositories() {
     _logger.info('Registering repositories');
     _getIt.registerSingleton<CompanyRepository>(
-      FirestoreCompanyRepository(_firestore),
+      FirestoreCompanyRepository(_firestore, _functions),
     );
   }
 

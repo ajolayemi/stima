@@ -38,4 +38,8 @@ abstract class Company with _$Company {
       _$CompanyFromJson(json);
 
   bool get hasPhoneNumber => phoneNumber != null && phoneNumber!.isNotEmpty;
+
+  bool get hasKmlFileLink {
+    return kmlMapFileLink?.isNotEmpty == true;
+  }
 }

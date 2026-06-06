@@ -138,5 +138,10 @@
   "form_stepper_indicator_label": "{currentStep} di {totalSteps}",
 
   "continue_cta_button": "Continua",
-  "save_cta_button": "Salva"
+  "save_cta_button": "Salva",
+  "error_page_text_content": "Si è verificato un errore inaspettato. Riprova più tardi o contatta il supporto se il problema persiste.",
+  "error_page_retry_cta_btn": "Riprova",
+  "generic_loading": "Caricamento...",
+  "company_details_modify_button_tooltip": "Modifica i dettagli dell'azienda",
+  "company_details_delete_button_tooltip": "Elimina l'azienda"
 }

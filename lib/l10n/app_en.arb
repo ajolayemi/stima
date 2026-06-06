@@ -170,5 +170,10 @@
   },
 
   "continue_cta_button": "Continue",
-  "save_cta_button": "Save"
+  "save_cta_button": "Save",
+  "error_page_text_content": "An unexpected error occurred. Please try again later or contact support if the problem persists.",
+  "error_page_retry_cta_btn": "Retry",
+  "generic_loading": "Loading...",
+  "company_details_modify_button_tooltip": "Modify company details",
+  "company_details_delete_button_tooltip": "Delete company"
 }
