@@ -1,30 +1,110 @@
-from firebase_admin import initialize_app
-from firebase_functions import identity_fn, logger
+from firebase_admin import initialize_app, firestore
+from firebase_functions import identity_fn, logger, https_fn
 
-from shared.utils import generate_uuid
-
-initialize_app()
-
-from firebase_functions.firestore_fn import (
-    on_document_created,
-    Event,
-    DocumentSnapshot,
-)
+from shared.utils import generate_uuid, check_if_user_can_edit
 
 from shared.config import COMPANY_EMAIL_DOMAIN
 
+from google.cloud.firestore_v1 import SERVER_TIMESTAMP
 
-@on_document_created(document="companies/{id}")
-def on_company_created(event: Event[DocumentSnapshot]) -> None:
-    """ Executed when a company is created.
-    It basically helps in setting the "id" field of the document created. """
-    document_ref = event.data.reference
-    logger.info(f"Event document ref is {document_ref.id}")
-    new_value = event.data.to_dict()
-    logger.info(f'Event data is: {new_value}')
-    new_company_id = generate_uuid()
-    logger.info(f"New company id is {new_company_id}")
-    document_ref.update({"id": new_company_id})
+initialize_app()
+
+
+@https_fn.on_call()
+def add_document(req: https_fn.CallableRequest) -> dict:
+    """
+    Firebase callable cloud function to add data to a Firestore collection.
+
+    The caller must be authenticated and possess a custom claim whose value
+    is one of the ALLOWED_ROLES (e.g. {"role": "admin"}).
+
+    Expected request payload:
+    {
+        "collection": "users", # (required) Firestore collection name
+        "document_id": "abc123", # (optional) custom doc ID; auto-generated if omitted
+        "data": { # (required) fields to write
+            "name": "Alice",
+            "email": "alice@example.com"
+        }
+    }
+
+    Returns:
+    {
+        "success": True,
+        "document_id": "<id of the written document>"
+    }
+    """
+
+    logger.info("Received request to add document:", req.data)
+    # ── 1. Authentication guard
+    if req.auth is None:
+        raise https_fn.HttpsError(
+            code=https_fn.FunctionsErrorCode.UNAUTHENTICATED,
+            message="You must be signed in to call this function.",
+        )
+
+    uid = req.auth.uid  # caller's Firebase UID, available for auditing / ownership
+
+    # ── 2. Role-based authorization
+    # They arrive in req.auth.token as a plain dict.
+    token_claims: dict = req.auth.token or {}
+    can_edit = check_if_user_can_edit(token_claims)
+
+    if not can_edit:
+        logger.error("user doesn't have permission to edit")
+        raise https_fn.HttpsError(
+            code=https_fn.FunctionsErrorCode.PERMISSION_DENIED,
+            message="Access denied."
+        )
+
+    # ── 3. Validate input
+    data = req.data  # dict sent by the client
+
+    collection_name: str = data.get("collection", "").strip()
+    if not collection_name:
+        raise https_fn.HttpsError(
+            code=https_fn.FunctionsErrorCode.INVALID_ARGUMENT,
+            message="'collection' is required and must be a non-empty string.",
+        )
+
+    document_data: dict = data.get("data")
+    if not isinstance(document_data, dict) or not document_data:
+        raise https_fn.HttpsError(
+            code=https_fn.FunctionsErrorCode.INVALID_ARGUMENT,
+            message="'data' is required and must be a non-empty object.",
+        )
+
+    document_id: str | None = data.get("document_id")  # maybe None → auto-id
+
+    # This is a flag that will be used to auto-set an internal id for the document
+    should_add_id_to_document: bool = data.get("should_add_id_to_document", False)
+
+    # ── 4. Enrich the payload
+    document_data["created_by"] = uid  # record who created the doc
+    document_data["created_at"] = SERVER_TIMESTAMP  # server-side timestamp
+
+    # ── 5. Write to Firestore
+    db = firestore.client()
+    collection_ref = db.collection(collection_name)
+    final_document_id = document_id or generate_uuid()
+
+    if should_add_id_to_document:
+        document_data["id"] = final_document_id
+
+    try:
+        logger.info(f"Writing document to {collection_name} with id {final_document_id}")
+        doc_ref = collection_ref.document(final_document_id)
+        doc_ref.set(document_data)
+
+    except Exception as exc:
+        raise https_fn.HttpsError(
+            code=https_fn.FunctionsErrorCode.INTERNAL,
+            message=f"Failed to write document: {exc}",
+        )
+
+    # ── 6. Return the result
+    logger.info(f"Document written to {collection_name} with id {final_document_id}")
+    return {"success": True, "document_id": doc_ref.id}
 
 
 @identity_fn.before_user_created()
