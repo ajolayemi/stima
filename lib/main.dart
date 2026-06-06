@@ -26,7 +26,7 @@ void runMainApp({FirebaseOptions? firebaseOptions}) async {
         return;
       }
       debugPrint(
-        '[${record.level.name}]: ${record.time}: ${record.loggerName}: ${record.message}',
+        '[${record.loggerName}]: ${record.level.name}: ${record.time}: ${record.message}',
       );
     });
   }
