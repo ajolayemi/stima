@@ -261,7 +261,7 @@ class _AddNewCompanyStepOnePageState
                                 fieldHintText:
                                     loc.add_new_company_form_address_field_hint,
                                 keyboardType: TextInputType.text,
-                                textInputAction: TextInputAction.continueAction,
+                                textInputAction: TextInputAction.done,
                                 onEditingComplete: _continueToNextStep,
                               ),
                             ],
