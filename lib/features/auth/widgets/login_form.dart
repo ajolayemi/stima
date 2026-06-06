@@ -144,13 +144,13 @@ class _LoginFormState extends ConsumerState<LoginForm> with AppFormMixin {
         child: AuthFormCard(
           child: Column(
             children: [
-              gapH48,
+             AppSizes. gapH48,
 
               Text(
                 loc.login_screen_welcome_back,
                 style: textTheme.headlineMedium,
               ),
-              gapH8,
+              AppSizes.gapH8,
 
               Text(
                 loc.login_screen_sign_in_to_continue,
@@ -160,7 +160,7 @@ class _LoginFormState extends ConsumerState<LoginForm> with AppFormMixin {
                 textAlign: TextAlign.center,
               ),
 
-              gapH12,
+              AppSizes.gapH12,
 
               Form(
                 key: _formKey,
@@ -170,7 +170,7 @@ class _LoginFormState extends ConsumerState<LoginForm> with AppFormMixin {
                 child: Column(
                   crossAxisAlignment: CrossAxisAlignment.stretch,
                   children: [
-                    gapH32,
+                    AppSizes.gapH32,
 
                     // Email field
                     FormTitleAndField(
@@ -186,7 +186,7 @@ class _LoginFormState extends ConsumerState<LoginForm> with AppFormMixin {
                       enabled: !widget.isLoading,
                       onChanged: _onFormFieldChanged,
                     ),
-                    gapH20,
+                    AppSizes.gapH20,
 
                     // Password field
                     Consumer(
@@ -219,7 +219,7 @@ class _LoginFormState extends ConsumerState<LoginForm> with AppFormMixin {
                 ),
               ),
 
-              gapH12,
+              AppSizes.gapH12,
               Consumer(
                 builder: (context, ref, child) {
                   final btnEnabled = ref.watch(loginButtonEnabledProvider);
@@ -238,7 +238,7 @@ class _LoginFormState extends ConsumerState<LoginForm> with AppFormMixin {
                 },
               ),
 
-              gapH32,
+              AppSizes.gapH32,
             ],
           ),
         ),

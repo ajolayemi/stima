@@ -146,7 +146,7 @@ class _ResetPasswordFormState extends ConsumerState<ResetPasswordForm>
                 child: Column(
                   crossAxisAlignment: CrossAxisAlignment.stretch,
                   children: [
-                    gapH12,
+                    AppSizes.gapH12,
 
                     // Password field
                     Consumer(
@@ -176,7 +176,7 @@ class _ResetPasswordFormState extends ConsumerState<ResetPasswordForm>
                         );
                       },
                     ),
-                    gapH8,
+                    AppSizes.gapH8,
                     // Password suggestion text
                     Text(
                       loc.forgot_password_reset_page_field_suggestion(
@@ -188,7 +188,7 @@ class _ResetPasswordFormState extends ConsumerState<ResetPasswordForm>
                     ),
 
                     // Confirm password field
-                    gapH20,
+                    AppSizes.gapH20,
                     Consumer(
                       builder: (context, ref, child) {
                         final obscure = !ref.watch(showConfirmPasswordProvider);
@@ -222,7 +222,7 @@ class _ResetPasswordFormState extends ConsumerState<ResetPasswordForm>
                   ],
                 ),
               ),
-              gapH12,
+              AppSizes.gapH12,
 
               AuthFormButtonsSection(
                 authCtaKey: submitButtonKey,
@@ -232,7 +232,7 @@ class _ResetPasswordFormState extends ConsumerState<ResetPasswordForm>
                 onAuthButtonPressed: _resetPassword,
                 isLoading: widget.isLoading,
               ),
-              gapH32,
+              AppSizes.gapH32,
             ],
           ),
         ),

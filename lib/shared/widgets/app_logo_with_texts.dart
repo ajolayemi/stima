@@ -19,11 +19,11 @@ class AppLogoWithTexts extends StatelessWidget {
         children: [
           Assets.icons.appIcon.svg(),
           if (title != null) ...[
-            gapH12,
+            AppSizes.gapH12,
             Text(title!, style: textTheme.titleLarge),
           ],
           if (subtitle != null) ...[
-            gapH4,
+            AppSizes.gapH4,
             Text(
               subtitle!,
               style: textTheme.bodyMedium?.copyWith(color: AppColors.gray600),

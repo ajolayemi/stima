@@ -102,7 +102,7 @@ class _ForgotPasswordFormState extends ConsumerState<ForgotPasswordForm>
                 : AutovalidateMode.disabled,
             child: Column(
               children: [
-                gapH12,
+                AppSizes.gapH12,
 
                 Text(
                   loc.forgot_password_email_form_header,
@@ -111,7 +111,7 @@ class _ForgotPasswordFormState extends ConsumerState<ForgotPasswordForm>
                   ),
                   textAlign: TextAlign.center,
                 ),
-                gapH12,
+                AppSizes.gapH12,
                 // Email field
                 FormTitleAndField(
                   fieldKey: emailFieldKey,
@@ -125,7 +125,7 @@ class _ForgotPasswordFormState extends ConsumerState<ForgotPasswordForm>
                   prefixIcon: Assets.icons.email.svg(fit: BoxFit.scaleDown),
                   enabled: !widget.isLoading,
                 ),
-                gapH20,
+                AppSizes.gapH20,
                 AuthFormButtonsSection(
                   isLoading: widget.isLoading,
                   onAuthButtonPressed: _sendPasswordRecoveryMail,
@@ -133,7 +133,7 @@ class _ForgotPasswordFormState extends ConsumerState<ForgotPasswordForm>
                   authButtonEnabled: true,
                 ),
 
-                gapH32,
+                AppSizes.gapH32,
               ],
             ),
           ),

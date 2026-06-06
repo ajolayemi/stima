@@ -31,7 +31,7 @@ class AppSplashScreen extends StatelessWidget {
                 loc.app_title,
                 style: textTheme.titleMedium?.copyWith(color: AppColors.white),
               ),
-              gapH12,
+              AppSizes.gapH12,
               const AppCircularLoader(bgColor: AppColors.white),
             ],
           ),

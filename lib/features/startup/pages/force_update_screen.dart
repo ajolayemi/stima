@@ -32,7 +32,7 @@ class ForceUpdateScreen extends StatelessWidget {
                 style: textTheme.titleMedium,
                 textAlign: TextAlign.center,
               ),
-              gapH24,
+              AppSizes.gapH24,
               AppPrimaryButton(
                 label: loc.force_update_update_btn,
                 onPressed: () {

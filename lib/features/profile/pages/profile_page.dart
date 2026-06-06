@@ -39,7 +39,7 @@ class ProfilePage extends ConsumerWidget {
             crossAxisAlignment: CrossAxisAlignment.start,
             mainAxisAlignment: MainAxisAlignment.center,
             children: [
-              gapH12,
+              AppSizes.gapH12,
               AppCard(
                 child: Padding(
                   padding: const EdgeInsets.all(AppSizes.p16),
@@ -99,7 +99,7 @@ class ProfilePage extends ConsumerWidget {
                                     ),
                                   ),
 
-                                  gapH4,
+                                  AppSizes.gapH4,
                                   Consumer(
                                     builder: (context, ref, child) {
                                       final userRole = ref
@@ -113,9 +113,9 @@ class ProfilePage extends ConsumerWidget {
                             ],
                           ),
 
-                          gapH24,
+                          AppSizes.gapH24,
                           const AppDivider(),
-                          gapH4,
+                          AppSizes.gapH4,
                           ListTile(
                             contentPadding: const EdgeInsets.all(0),
                             leading: AppCircleAvatar(
@@ -141,13 +141,13 @@ class ProfilePage extends ConsumerWidget {
                 ),
               ),
 
-              gapH12,
+              AppSizes.gapH12,
 
               Text(
                 loc.user_profile_account_section_title,
                 style: textTheme.bodyLarge,
               ),
-              gapH12,
+              AppSizes.gapH12,
               AppListTile(
                 leading: AppCircleAvatar(
                   child: Assets.icons.settings.svg(fit: BoxFit.scaleDown),
@@ -162,7 +162,7 @@ class ProfilePage extends ConsumerWidget {
                 },
               ),
 
-              gapH12,
+              AppSizes.gapH12,
               AppListTile(
                 leading: AppCircleAvatar(
                   color: AppColors.red50,
@@ -177,9 +177,9 @@ class ProfilePage extends ConsumerWidget {
                   ref.read(authRepositoryProvider).logOut();
                 },
               ),
-              gapH32,
+              AppSizes.gapH32,
               const AppDivider(),
-              gapH8,
+              AppSizes.gapH8,
               Center(
                 child: Consumer(
                   builder: (context, ref, child) {
@@ -194,7 +194,7 @@ class ProfilePage extends ConsumerWidget {
                   },
                 ),
               ),
-              gapH100,
+              AppSizes.gapH100,
             ],
           ),
         ),

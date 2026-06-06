@@ -27,7 +27,7 @@ class FormStepperIndicator extends StatelessWidget {
           loc.form_stepper_indicator_label(currentStep, totalSteps),
           style: textTheme.bodyMedium,
         ),
-        gapH8,
+        AppSizes.gapH8,
         Container(
           height: 12,
           width: screenWidth,

@@ -192,7 +192,7 @@ class _RegistrationFormState extends ConsumerState<RegistrationForm>
                 child: Column(
                   crossAxisAlignment: CrossAxisAlignment.stretch,
                   children: [
-                    gapH32,
+                    AppSizes.gapH32,
 
                     // Name field
                     FormTitleAndField(
@@ -211,7 +211,7 @@ class _RegistrationFormState extends ConsumerState<RegistrationForm>
                         fit: BoxFit.scaleDown,
                       ),
                     ),
-                    gapH20,
+                    AppSizes.gapH20,
 
                     // Surname field
                     FormTitleAndField(
@@ -230,7 +230,7 @@ class _RegistrationFormState extends ConsumerState<RegistrationForm>
                         fit: BoxFit.scaleDown,
                       ),
                     ),
-                    gapH20,
+                    AppSizes.gapH20,
 
                     // Email field
                     FormTitleAndField(
@@ -245,7 +245,7 @@ class _RegistrationFormState extends ConsumerState<RegistrationForm>
                       enabled: !widget.isLoading,
                       prefixIcon: Assets.icons.email.svg(fit: BoxFit.scaleDown),
                     ),
-                    gapH20,
+                    AppSizes.gapH20,
 
                     // Password field
                     Consumer(
@@ -275,7 +275,7 @@ class _RegistrationFormState extends ConsumerState<RegistrationForm>
                         );
                       },
                     ),
-                    gapH8,
+                   AppSizes.gapH8,
                     // Password suggestion text
                     Text(
                       loc.registration_form_password_field_suggestion(
@@ -287,7 +287,7 @@ class _RegistrationFormState extends ConsumerState<RegistrationForm>
                     ),
 
                     // Confirm password field
-                    gapH20,
+                    AppSizes.gapH20,
                     Consumer(
                       builder: (context, ref, child) {
                         final obscure = !ref.watch(showConfirmPasswordProvider);
@@ -321,7 +321,7 @@ class _RegistrationFormState extends ConsumerState<RegistrationForm>
                   ],
                 ),
               ),
-              gapH12,
+              AppSizes.gapH12,
               Consumer(
                 builder: (context, ref, child) {
                   return AuthFormButtonsSection(
@@ -337,7 +337,7 @@ class _RegistrationFormState extends ConsumerState<RegistrationForm>
                   );
                 },
               ),
-              gapH32,
+              AppSizes.gapH32,
             ],
           ),
         ),

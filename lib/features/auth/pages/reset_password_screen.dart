@@ -46,17 +46,17 @@ class ResetPasswordScreen extends ConsumerWidget {
             mainAxisAlignment: MainAxisAlignment.center,
             crossAxisAlignment: CrossAxisAlignment.center,
             children: [
-              gapH48,
+              AppSizes.gapH48,
               AppLogoWithTexts(
                 title: loc.forgot_password_reset_page_icon_title,
                 subtitle: loc.forgot_password_reset_page_icon_subtitle,
               ),
-              gapH48,
+              AppSizes.gapH48,
               ResetPasswordForm(
                 isLoading: isLoading,
                 confirmationCode: confirmationCode,
               ),
-              gapH100,
+              AppSizes.gapH100,
             ],
           ),
         ),

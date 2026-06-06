@@ -42,11 +42,11 @@ class RegistrationScreen extends ConsumerWidget {
             mainAxisAlignment: MainAxisAlignment.center,
             crossAxisAlignment: CrossAxisAlignment.center,
             children: [
-              gapH48,
+              AppSizes.gapH48,
               AppLogoWithTexts(title: loc.registration_screen_icon_text),
-              gapH48,
+              AppSizes.gapH48,
               RegistrationForm(isLoading: isLoading),
-              gapH32,
+              AppSizes.gapH32,
               ScaledRichText(
                 text: TextSpan(
                   text: loc.registration_page_already_have_account,
@@ -72,7 +72,7 @@ class RegistrationScreen extends ConsumerWidget {
                   ],
                 ),
               ),
-              gapH100,
+              AppSizes.gapH100,
             ],
           ),
         ),

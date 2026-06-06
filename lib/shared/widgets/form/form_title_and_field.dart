@@ -69,7 +69,7 @@ class FormTitleAndField extends StatelessWidget {
               color: AppColors.textPrimary,
             ),
           ),
-          gapH8,
+          AppSizes.gapH8,
         ],
         IgnorePointer(
           ignoring: !enabled,

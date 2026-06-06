@@ -25,7 +25,7 @@ class OrWithWidget extends StatelessWidget {
             color: dividerColor,
           ),
         ),
-        gapH8,
+        AppSizes.gapH8,
         Padding(
           padding: const EdgeInsets.symmetric(
             horizontal: AppSizes.p8,
@@ -36,7 +36,7 @@ class OrWithWidget extends StatelessWidget {
             style: textTheme.bodyMedium
           ),
         ),
-        gapH8,
+        AppSizes.gapH8,
         Expanded(
           child: Container(
             height: 1,

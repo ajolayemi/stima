@@ -110,7 +110,7 @@ class _CompaniesListPageState extends ConsumerState<CompaniesListPage>
                           crossAxisAlignment: CrossAxisAlignment.start,
                           mainAxisAlignment: MainAxisAlignment.center,
                           children: [
-                            gapH24,
+                            AppSizes.gapH24,
                             Form(
                               key: _formKey,
                               child: FormTitleAndField(
@@ -135,19 +135,19 @@ class _CompaniesListPageState extends ConsumerState<CompaniesListPage>
                                 textInputAction: TextInputAction.search,
                               ),
                             ),
-                            gapH24,
+                            AppSizes.gapH24,
                             ListView.separated(
                               controller: _scrollController,
                               shrinkWrap: true,
                               itemCount: data.length,
                               separatorBuilder: (context, index) {
-                                return gapH16;
+                                return AppSizes.gapH16;
                               },
                               itemBuilder: (context, index) {
                                 return CompaniesListItem(company: data[index]);
                               },
                             ),
-                            gapH100,
+                            AppSizes.gapH100,
                           ],
                         ),
                       ),

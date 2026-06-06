@@ -32,14 +32,14 @@ class ForgotPasswordScreen extends ConsumerWidget {
             mainAxisAlignment: MainAxisAlignment.center,
             crossAxisAlignment: CrossAxisAlignment.center,
             children: [
-              gapH48,
+              AppSizes.gapH48,
               AppLogoWithTexts(
                 title: loc.forgot_password_email_page_icon_title,
                 subtitle: loc.forgot_password_email_page_icon_subtitle,
               ),
-              gapH48,
+              AppSizes.gapH48,
               ForgotPasswordForm(isLoading: isLoading),
-              gapH100,
+              AppSizes.gapH100,
             ],
           ),
         ),

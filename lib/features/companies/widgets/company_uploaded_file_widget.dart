@@ -142,7 +142,7 @@ class CompanyUploadedFileWidget extends ConsumerWidget {
                 ],
               ),
             ),
-            gapH16,
+            AppSizes.gapH16,
           ],
         ),
       ),

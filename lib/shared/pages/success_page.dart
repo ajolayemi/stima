@@ -37,12 +37,12 @@ class SuccessPage extends StatelessWidget {
             crossAxisAlignment: CrossAxisAlignment.center,
             children: [
               const SuccessPageContainerIcon(),
-              gapH24,
+              AppSizes.gapH24,
               title,
-              gapH12,
+              AppSizes.gapH12,
               subtitle ?? const SizedBox.shrink(),
               if (ctaLabel != null) ...[
-                gapH24,
+                AppSizes.gapH24,
                 AppPrimaryButton(
                   label: ctaLabel ?? '',
                   onPressed: onCtaPressed,

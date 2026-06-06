@@ -37,7 +37,7 @@ class AppCustomListTile extends StatelessWidget {
           children: [
             if (leading != null) ...[
               leading ?? const SizedBox.shrink(),
-              gapW12,
+              AppSizes.gapW12,
             ],
             Flexible(
               child: Column(
@@ -46,7 +46,7 @@ class AppCustomListTile extends StatelessWidget {
                 mainAxisAlignment: MainAxisAlignment.start,
                 children: [
                   title ?? const SizedBox.shrink(),
-                  gapH4,
+                  AppSizes.gapH4,
                   subtitle ?? const SizedBox.shrink(),
                 ],
               ),

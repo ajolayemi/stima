@@ -71,27 +71,27 @@ class AddNewCompanyStepTwoPage extends ConsumerWidget {
                   child: Column(
                     crossAxisAlignment: CrossAxisAlignment.start,
                     children: [
-                      gapH24,
+                      AppSizes.gapH24,
                       FormStepperIndicator(totalSteps: 2, currentStep: 2),
-                      gapH24,
+                      AppSizes.gapH24,
                       Text(
                         loc.add_new_company_step_two_section_title,
                         style: textTheme.titleMedium,
                       ),
-                      gapH12,
+                      AppSizes.gapH12,
                       Text(
                         loc.add_new_company_step_two_section_subtitle,
                         style: textTheme.bodyMedium,
                       ),
-                      gapH12,
+                      AppSizes.gapH12,
                       CompanyFileUploaderWidget(),
-                      gapH12,
+                      AppSizes.gapH12,
                       CompanyUploadedFileWidget(),
                     ],
                   ),
                 ),
               ),
-              gapH24,
+              AppSizes.gapH24,
               AppPrimaryButton(
                 label: loc.save_cta_button,
                 onPressed: isLoading ? null : () => _saveCompany(context, ref),

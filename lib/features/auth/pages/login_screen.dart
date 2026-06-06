@@ -40,11 +40,11 @@ class LoginScreen extends ConsumerWidget {
             mainAxisAlignment: MainAxisAlignment.center,
             crossAxisAlignment: CrossAxisAlignment.center,
             children: [
-              gapH48,
+              AppSizes.gapH48,
               AppLogoWithTexts(title: loc.login_screen_icon_text),
-              gapH48,
+              AppSizes.gapH48,
               LoginForm(isLoading: isLoading),
-              gapH32,
+              AppSizes.gapH32,
               ScaledRichText(
                 text: TextSpan(
                   text: loc.login_screen_no_account,
@@ -71,7 +71,7 @@ class LoginScreen extends ConsumerWidget {
                 ),
               ),
 
-              gapH100,
+              AppSizes.gapH100,
             ],
           ),
         ),

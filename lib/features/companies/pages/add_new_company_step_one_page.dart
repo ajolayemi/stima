@@ -160,9 +160,9 @@ class _AddNewCompanyStepOnePageState
                     crossAxisAlignment: CrossAxisAlignment.stretch,
                     mainAxisAlignment: MainAxisAlignment.start,
                     children: [
-                      gapH24,
+                      AppSizes.gapH24,
                       FormStepperIndicator(totalSteps: 2, currentStep: 1),
-                      gapH24,
+                      AppSizes.gapH24,
                       FocusScope(
                         node: _node,
                         child: Form(
@@ -272,7 +272,7 @@ class _AddNewCompanyStepOnePageState
                   ),
                 ),
               ),
-              gapH24,
+              AppSizes.gapH24,
               AppPrimaryButton(
                 label: loc.continue_cta_button,
                 onPressed: _continueToNextStep,

@@ -50,7 +50,7 @@ class AuthFormButtonsSection extends StatelessWidget {
                 ),
               ],
 
-              gapH12,
+              AppSizes.gapH12,
 
               if (authButtonLabel != null) ...[
                 // Submit button
@@ -60,12 +60,12 @@ class AuthFormButtonsSection extends StatelessWidget {
                   key: authCtaKey,
                 ),
 
-                gapH32,
+                AppSizes.gapH32,
               ],
 
               if (orWithText != null) ...[
                 OrWithWidget(orText: orWithText ?? ''),
-                gapH32,
+                AppSizes.gapH32,
               ],
 
               if (authWithGoogleLabel != null)

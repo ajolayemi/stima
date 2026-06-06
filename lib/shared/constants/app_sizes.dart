@@ -1,6 +1,9 @@
 import 'package:flutter/material.dart';
 
 class AppSizes {
+  const AppSizes._();
+
+
   static const p4 = 4.0;
   static const p8 = 8.0;
   static const p12 = 12.0;
@@ -13,27 +16,28 @@ class AppSizes {
   static const p50 = 50.0;
   static const p64 = 64.0;
   static const p100 = 100.0;
-}
+
 
 /// Constant gap widths
-const gapW4 = SizedBox(width: AppSizes.p4);
-const gapW8 = SizedBox(width: AppSizes.p8);
-const gapW12 = SizedBox(width: AppSizes.p12);
-const gapW16 = SizedBox(width: AppSizes.p16);
-const gapW20 = SizedBox(width: AppSizes.p20);
-const gapW24 = SizedBox(width: AppSizes.p24);
-const gapW32 = SizedBox(width: AppSizes.p32);
-const gapW48 = SizedBox(width: AppSizes.p48);
-const gapW64 = SizedBox(width: AppSizes.p64);
+static const gapW4 = SizedBox(width: AppSizes.p4);
+static const gapW8 = SizedBox(width: AppSizes.p8);
+static const gapW12 = SizedBox(width: AppSizes.p12);
+static const gapW16 = SizedBox(width: AppSizes.p16);
+static const gapW20 = SizedBox(width: AppSizes.p20);
+static const gapW24 = SizedBox(width: AppSizes.p24);
+static const gapW32 = SizedBox(width: AppSizes.p32);
+static const gapW48 = SizedBox(width: AppSizes.p48);
+static const gapW64 = SizedBox(width: AppSizes.p64);
 
 /// Constant gap heights
-const gapH4 = SizedBox(height: AppSizes.p4);
-const gapH8 = SizedBox(height: AppSizes.p8);
-const gapH12 = SizedBox(height: AppSizes.p12);
-const gapH16 = SizedBox(height: AppSizes.p16);
-const gapH20 = SizedBox(height: AppSizes.p20);
-const gapH24 = SizedBox(height: AppSizes.p24);
-const gapH32 = SizedBox(height: AppSizes.p32);
-const gapH48 = SizedBox(height: AppSizes.p48);
-const gapH64 = SizedBox(height: AppSizes.p64);
-const gapH100 = SizedBox(height: AppSizes.p100);
+static const gapH4 = SizedBox(height: AppSizes.p4);
+static const gapH8 = SizedBox(height: AppSizes.p8);
+static const gapH12 = SizedBox(height: AppSizes.p12);
+static const gapH16 = SizedBox(height: AppSizes.p16);
+static const gapH20 = SizedBox(height: AppSizes.p20);
+static const gapH24 = SizedBox(height: AppSizes.p24);
+static const gapH32 = SizedBox(height: AppSizes.p32);
+static const gapH48 = SizedBox(height: AppSizes.p48);
+static const gapH64 = SizedBox(height: AppSizes.p64);
+static const gapH100 = SizedBox(height: AppSizes.p100);
+}
